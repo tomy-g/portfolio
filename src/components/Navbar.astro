@@ -1,0 +1,12 @@
+---
+import Nav from "./Nav";
+interface Props {
+  pages: string[];
+}
+
+const { pages } = Astro.props;
+---
+
+<header>
+  <Nav pages={pages} client:load/>
+</header>
