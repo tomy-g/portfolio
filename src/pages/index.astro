@@ -3,11 +3,12 @@
 import i18next, { t, changeLanguage } from "i18next";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
 import Navbar from "../components/Navbar.astro";
+import "../styles/global.css";
 
 changeLanguage("en");
 ---
 
-<html lang={i18next.language}>
+<html lang={i18next.language} >
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -19,6 +20,9 @@ changeLanguage("en");
     <HeadHrefLangs />
   </head>
   <body>
+    <section class="degradado h-screen overflow-hidden">
+
+    
     <!-- <h1>{t("home.title")}</h1>
     <p>
       <Trans i18nKey="home.subtitle">
@@ -35,6 +39,8 @@ changeLanguage("en");
         t("navbar.contact"),
       ]}
     />
+  </section>
+</div>
   </body>
 </html>
 
