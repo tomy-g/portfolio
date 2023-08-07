@@ -1,12 +1,101 @@
 ---
-import Nav from "./Nav";
+import NavigationDesktop from "./Navigation-desktop";
+import downloadIcon from "../assets/download-icon.svg";
+import languageIcon from "../assets/language-icon.svg";
 interface Props {
   pages: string[];
 }
 
 const { pages } = Astro.props;
+const { pathname } = Astro.url;
 ---
 
 <header>
-  <Nav pages={pages} client:load/>
+  <NavigationDesktop pages={pages} client:load />
+  <ul>
+    <li>
+      <button> <img src={downloadIcon} /><span>Resume</span></button>
+    </li>
+    <li><a href={pathname === "/" ? "/es" : "/"}> <img src={languageIcon}></img> es | en</a></li>
+  </ul>
 </header>
+
+<style lang="scss">
+  header {
+    box-sizing: border-box;
+    position: sticky;
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    margin-right: 3.12rem;
+  }
+
+  li {
+    list-style: none;
+    a {
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: linear-gradient(var(--black-primary), var(--black-primary))
+        padding-box,
+      linear-gradient(
+          135deg,
+          var(--pink-primary),
+          var(--purple-primary),
+          var(--pink-primary)
+        )
+        0 0 / var(--bg-size) 100% border-box;
+    background-size: 300% 300%;
+    border-radius: 8px;
+    height: 2.5rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+
+    span {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 29px;
+      background: linear-gradient(
+          135deg,
+          var(--pink-primary),
+          var(--purple-primary),
+          var(--pink-primary)
+        )
+        0 0 / var(--bg-size);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 300%;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    img {
+    }
+  }
+</style>
