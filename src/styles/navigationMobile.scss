@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    position: absolute;
+    background-color: #05021e;
+    background: linear-gradient(180deg, #05021ed3 10%, #05021e00 100%);
+    z-index: 10;
+    inset: 0;
+    content: "";
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+.mobile-nav {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  transition: top 0.25s;
+  border-radius: 8px;
+  border: 1px solid var(--medium-gray, #6a687a);
+  z-index: 10;
+
+  &::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+    border-radius: 8px;
+    background: #08053027;
+    border: 1px solid var(--dark-gray, #080530);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+}
+
+.mobile-pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  list-style-type: none;
+  z-index: 10;
+  gap: 1rem;
+
+  &__page{
+    list-style: none;
+    display: flex;
+  }
+  &__page:first-child {
+    margin-top: 1rem;
+  }
+
+  &__page:last-child {
+    margin-bottom: 1rem;
+  }
+
+  &__page-link {
+    text-align: center;
+    color: var(--white-primary);
+    font-weight: 500;
+    padding: 1rem 2rem;
+    cursor: pointer;
+
+    &--icon{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
+
+  &__img{
+    fill: var(--white-primary);
+  }
+}
+
+.menu {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+  margin-right: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  z-index: 15;
+}
+.line {
+  fill: none;
+  stroke: var(--white-primary);
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+  stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}

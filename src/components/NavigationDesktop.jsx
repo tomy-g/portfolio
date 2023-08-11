@@ -2,11 +2,11 @@ import "../styles/navigationDesktop.scss";
 
 const NavigationDesktop = ({ pages }) => {
   return (
-      <nav>
+      <nav className="desktop-nav">
         <ul className="pages">
           {pages.map((page) => (
-            <li key={page}>
-              <a>{page}</a>
+            <li className="pages__li" key={page}>
+              <a className="pages__a">{page}</a>
             </li>
           ))}
         </ul>

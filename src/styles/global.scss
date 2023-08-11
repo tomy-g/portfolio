@@ -8,7 +8,7 @@
   --black-primary: #05021e;
   --white-primary: #ebeaf3;
 
-  --fade-gray: linear-gradient(180deg, #ebeaf3 0%, rgba(166, 163, 189, 0) 200%);
+  --fade-gray: linear-gradient(180deg, var(--white-primary) 0%, rgba(166, 163, 189, 0) 300%);
 
   --bg-size: 400%;
 }
