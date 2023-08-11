@@ -1,0 +1,16 @@
+{
+    "site": {
+      "title": "Tomás Goizueta",
+      "description": "Portfolio of Tomás Goizueta, a software developer from Spain. Made in Astro"
+    },
+    "home": {
+      "title": "Welcome to my awesome website!",
+      "subtitle": "This is a <0>more complex</0> string to translate, mixed with <1>html elements</1>, such as a <2>a cool link</2>!"
+    },
+    "navbar": {
+      "hello": "Hello!",
+      "about": "About",
+      "projects": "Projects",
+      "contact": "Contact"
+    }
+  }
