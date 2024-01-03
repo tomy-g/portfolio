@@ -43,13 +43,13 @@ const NavigationMobile = ({ pages, pathname }) => {
           ))}
           <li className="mobile-pages__page" key="resume">
             <a className="mobile-pages__page-link mobile-pages__page-link--icon">
-              <img class="mobile-pages__img" src={downloadIcon} />
+              <img className="mobile-pages__img" src={downloadIcon} />
               Resume
             </a>
           </li>
           <li className="mobile-pages__page" key="resume">
             <a className="mobile-pages__page-link mobile-pages__page-link--icon">
-              <img class="mobile-pages__img" src={languageIcon} />
+              <img className="mobile-pages__img" src={languageIcon} />
               en | es
             </a>
           </li>
