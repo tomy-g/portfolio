@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets"
 import NavigationDesktop from "./NavigationDesktop";
 import NavigationMobile from "./NavigationMobile";
 import downloadIcon from "../assets/download-icon-pink.svg";
@@ -17,17 +18,17 @@ const { pathname } = Astro.url;
   <ul class="header-desktop__ul">
     <li class="header-desktop__li header-desktop__li--download">
       <button class="header-desktop__button">
-        <img
-          class="header-desktop__img header-desktop__img--download"
+        <Image
           src={downloadIcon}
+          alt="Download Icon"
         /><span class="header-desktop__span">Resume</span></button
       >
     </li>
     <li class="header-desktop__li header-desktop__li--lang">
       <a class="header-desktop__a" href={pathname === "/" ? "/es" : "/"}>
-        <img
-          class="header-desktop__img header-desktop__img--lang"
+        <Image
           src={languageIcon}
+          alt="Language icon"
         />
         <p class="header-desktop__p">es | en</p>
       </a>
