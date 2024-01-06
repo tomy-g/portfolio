@@ -2,7 +2,6 @@ import downloadIcon from "../assets/download-icon-white.svg";
 import "../styles/navigationMobile.scss";
 import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
-import { Image } from "astro:assets"
 
 const NavigationMobile = ({ pages, pathname }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,13 +43,13 @@ const NavigationMobile = ({ pages, pathname }) => {
           ))}
           <li className="mobile-pages__page" key="resume">
             <a className="mobile-pages__page-link mobile-pages__page-link--icon">
-              <img className="mobile-pages__img" src={downloadIcon} />
+              <img className="mobile-pages__img" src={downloadIcon.src} />
               Resume
             </a>
           </li>
           <li className="mobile-pages__page" key="resume">
             <a className="mobile-pages__page-link mobile-pages__page-link--icon">
-              <img className="mobile-pages__img" src={languageIcon} />
+              <img className="mobile-pages__img" src={languageIcon.src} />
               en | es
             </a>
           </li>

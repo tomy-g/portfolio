@@ -1,4 +1,5 @@
 import "../styles/navigationDesktop.scss";
+import { useState } from 'react'
 
 const NavigationDesktop = ({ pages }) => {
   return (
