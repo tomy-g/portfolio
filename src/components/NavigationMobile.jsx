@@ -2,6 +2,7 @@ import downloadIcon from "../assets/download-icon-white.svg";
 import "../styles/navigationMobile.scss";
 import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
+import { Image } from "astro:assets"
 
 const NavigationMobile = ({ pages, pathname }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
