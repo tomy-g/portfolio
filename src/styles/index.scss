@@ -67,6 +67,8 @@ html {
   right: -70%;
   bottom: 0;
   filter: blur(100px) !important;
+  -webkit-filter: blur(100px);
+
 }
 
 .gradient {
@@ -82,6 +84,7 @@ html {
     #6b2cd6 100%
   );
   filter: blur(100px) !important;
+  -webkit-filter: blur(100px);
 }
 
 .info {
