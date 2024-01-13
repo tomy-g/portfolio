@@ -80,17 +80,16 @@ changeLanguage("en");
           <Image class="ellipse" src={ellipse} alt=""></Image>
         </div>  
       </section>
-
-      <svg class="svg-filter">
-        <filter id="noiseFilter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.50"
-            0.30
-            stitchTiles="stitch"></feTurbulence>
-        </filter>
       </svg>
     </main>
+    <svg class="svg-filter">
+      <filter id="noiseFilter">
+        <feTurbulence
+          type="fractalNoise"
+          baseFrequency="0.4"
+          0.30
+          stitchTiles="stitch"></feTurbulence>
+      </filter>
   </body>
 </html>
 
