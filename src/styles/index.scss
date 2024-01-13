@@ -25,18 +25,6 @@ html {
   height: 100vh;
 }
 
-.body::before {
-  position: absolute;
-  right: 0;
-  top: 0;
-  content: "";
-  width: 100%;
-  height: 100%;
-  opacity: 15%;
-  filter: url(#noiseFilter);
-  pointer-events: none;
-}
-
 .bg-figure--1 {
   position: absolute;
   width: 45.9vw;
@@ -103,7 +91,7 @@ html {
   margin-bottom: auto;
   align-items: center;
 
-  &__data{
+  &__data {
     display: inline-flex;
     position: relative;
     flex-direction: column;
@@ -206,9 +194,6 @@ html {
 }
 
 @media (width < 50em) {
-  body::before{
-    filter: none;
-  }
 
   .blob-container {
     bottom: -10%;
@@ -245,5 +230,19 @@ html {
       flex-direction: column;
       align-items: flex-start;
     }
+  }
+}
+
+@media (width >= 50em){
+  .body::before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    opacity: 15%;
+    filter: url(#noiseFilter);
+    pointer-events: none;
   }
 }
