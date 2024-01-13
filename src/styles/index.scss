@@ -206,6 +206,10 @@ html {
 }
 
 @media (width < 50em) {
+  body::before{
+    filter: none;
+  }
+
   .blob-container {
     bottom: -10%;
     right: -45%;
