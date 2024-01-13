@@ -25,17 +25,17 @@ html {
   height: 100vh;
 }
 
-.main::before {
-  position: absolute;
-  right: 0;
-  top: 0;
-  content: "";
-  width: 100%;
-  height: 100%;
-  opacity: 15%;
-  filter: url(#noiseFilter);
-  pointer-events: none;
-}
+// .main::before {
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   content: "";
+//   width: 100%;
+//   height: 100%;
+//   opacity: 15%;
+//   filter: url(#noiseFilter);
+//   pointer-events: none;
+// }
 
 .bg-figure--1 {
   position: absolute;
