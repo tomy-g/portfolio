@@ -55,7 +55,9 @@ html {
 .section--1 {
   width: calc(50vw + 10.6562rem);
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .gradient-container {
@@ -68,7 +70,13 @@ html {
   bottom: 0;
   filter: blur(100px) !important;
   -webkit-filter: blur(100px);
+}
 
+.ellipse {
+  z-index: -2;
+  position: absolute;
+  overflow: hidden;
+  left: 30%;
 }
 
 .gradient {

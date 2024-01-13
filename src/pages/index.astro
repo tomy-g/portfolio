@@ -7,6 +7,7 @@ import "../styles/global.scss";
 import "../styles/index.scss";
 import { Image } from "astro:assets";
 import "@fontsource-variable/inter";
+import ellipse from "../images/Ellipse 38.png"
 changeLanguage("en");
 ---
 
@@ -73,7 +74,9 @@ changeLanguage("en");
             <div class="gradient">
             </div>
           </div> -->
+          
         </div>
+        <Image class="ellipse" src={ellipse} alt=""></Image>
       </section>
 <!-- 
       <svg class="svg-filter">
