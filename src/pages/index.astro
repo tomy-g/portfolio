@@ -7,7 +7,7 @@ import "../styles/global.scss";
 import "../styles/index.scss";
 import { Image } from "astro:assets";
 import "@fontsource-variable/inter";
-import ellipse from "../images/Ellipse 38.png"
+import ellipse from "../images/Ellipse 38.png";
 changeLanguage("en");
 ---
 
@@ -48,13 +48,13 @@ changeLanguage("en");
       <section class="section section--1">
         <div class="info">
           <div class="info__data">
-            
             <h1 class="info__h1">TOMÁS GOIZUETA</h1>
             <h2 class="info__h2">Front-End Developer / UI</h2>
             <p class="info__p">
-              Software Engineer who is starting his career as a web developer. My
-              lifelong passion for design has been combined with my interest in
-              software development to create responsive and attractive products.
+              Software Engineer who is starting his career as a web developer.
+              My lifelong passion for design has been combined with my interest
+              in software development to create responsive and attractive
+              products.
               <br />
               <br />
               Currently working at
@@ -77,11 +77,11 @@ changeLanguage("en");
               </div>
             </div> -->
           </div>
-          <Image class="ellipse" src={ellipse} alt=""></Image>
-        </div>  
+          <Image class="ellipse" src={ellipse} alt="" />
+        </div>
       </section>
-      </svg>
     </main>
+
     <svg class="svg-filter">
       <filter id="noiseFilter">
         <feTurbulence
@@ -90,6 +90,6 @@ changeLanguage("en");
           0.30
           stitchTiles="stitch"></feTurbulence>
       </filter>
+    </svg>
   </body>
 </html>
-
