@@ -1,125 +1,83 @@
 ---
-// USE `npx astro-i18next generate` TO GENERATE TRANSLATED PAGES
-import i18next, { t, changeLanguage } from "i18next";
-import { Trans, HeadHrefLangs } from "astro-i18next/components";
 import Header from "../../components/Header.astro";
 import "../../styles/global.scss";
 import "../../styles/index.scss";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import "@fontsource-variable/inter";
-
-changeLanguage("es");
+import ellipse from "../../images/Ellipse 38.png";
+import LanguagePicker from "../../components/LanguagePicker.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<html lang={i18next.language}>
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{t("site.title")}</title>
-    <meta name="description" content={t("site.description")} />
+    <title>{t("SITE.TITLE")}</title>
+    <meta name="description" content={t("SITE.DESCRIPTION")} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Tomás Goizueta" />
-    <HeadHrefLangs />
+    <meta name="author" content="Tomy Goizueta" />
   </head>
   <body class="body">
-    {
-      /*
-      <h1>{t("home.title")}</h1>
-      <p>
-        <Trans i18nKey="home.subtitle">
-          This is a <em>more complex</em> string to translate, mixed with <strong
-          >html elements
-          </strong> such as <a href="https://example.com/">a cool link</a>!
-        </Trans>
-      </p>   
-    */
-    }
-
     <Header
       pages={[
-        t("navbar.hello"),
-        t("navbar.about"),
-        t("navbar.projects"),
-        t("navbar.contact"),
+        t("NAVBAR.HELLO"),
+        t("NAVBAR.ABOUT"),
+        t("NAVBAR.EXPERIENCE"),
+        t("NAVBAR.PROJECTS"),
+        t("NAVBAR.CONTACT"),
       ]}
     />
     <main class="main">
       <section class="section section--1">
         <div class="info">
-          <h1 class="info__h1">TOMÁS GOIZUETA</h1>
-          <h2 class="info__h2">Front-End Developer / UI</h2>
-          <p class="info__p">
-            Software Engineer who is starting his career as a web developer. My
-            lifelong passion for design has been combined with my interest in
-            software development to create responsive and attractive products.
-            <br />
-            <br />
-            Currently working at
-            <strong class="info__strong"
-              ><a
-                class="info__a"
-                href="https://www.babelgroup.com/en"
-                target="_blank"
-                rel="noopener noreferrer">Babel</a
-              ></strong
-            >.
-          </p>
-          <div class="info__buttons">
-            <button class="info__cta">
-              <span class="info__span">MY WORKS</span>
-            </button>
+          <div class="info__data">
+            <h1 class="info__h1">{t("HOME.TITLE")}</h1>
+            <h2 class="info__h2">Front-End Developer / UI</h2>
+            <p class="info__p">
+              Software Engineer who is starting his career as a web developer.
+              My lifelong passion for design has been combined with my interest
+              in software development to create responsive and attractive
+              products.
+              <br />
+              <br />
+              Currently working at
+              <strong class="info__strong"
+                ><a
+                  class="info__a"
+                  href="https://www.babelgroup.com/en"
+                  target="_blank"
+                  rel="noopener noreferrer">Babel</a
+                ></strong
+              >.
+            </p>
+            <div class="info__buttons">
+              <button class="info__cta">
+                <span class="info__span">MY WORKS</span>
+              </button>
+            </div>
+            <!-- <div class="gradient-container">
+              <div class="gradient">
+              </div>
+            </div> -->
           </div>
-          <div class="blob-container">
-            <svg
-              viewBox="0 0 500 500"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="100%"
-              id="blobSvg"
-            >
-              <defs>
-                <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style="stop-color: rgb(91, 46, 219);"
-                  ></stop>
-                  <stop offset="100%" style="stop-color: rgb(254, 25, 170);"
-                  ></stop>
-                </linearGradient>
-              </defs>
-              <path
-                fill="url(#gradient)">
-                <animate
-                attributeName="d"
-                dur="28s"
-                repeatCount="indefinite"
-                values="M379,295.5Q375,341,325.5,335.5Q276,330,242.5,353.5Q209,377,134,383Q59,389,39,319.5Q19,250,53,190.5Q87,131,147,125Q207,119,252.5,111.5Q298,104,309,151.5Q320,199,351.5,224.5Q383,250,379,295.5Z;
-                M379.5,281.5Q337,313,315.5,349.5Q294,386,249.5,387.5Q205,389,197.5,341.5Q190,294,122,272Q54,250,123.5,229.5Q193,209,200.5,164.5Q208,120,266,71.5Q324,23,339.5,98Q355,173,388.5,211.5Q422,250,379.5,281.5Z;
-                M400,270.5Q307,291,307,358Q307,425,260,394.5Q213,364,131.5,379.5Q50,395,38.5,322.5Q27,250,108.5,228Q190,206,192,141Q194,76,239.5,110Q285,144,319.5,159.5Q354,175,423.5,212.5Q493,250,400,270.5Z;
-                M405,287.5Q353,325,322.5,352.5Q292,380,262.5,341.5Q233,303,168.5,329.5Q104,356,103.5,303Q103,250,100.5,195Q98,140,140,90.5Q182,41,232,96.5Q282,152,332.5,152.5Q383,153,420,201.5Q457,250,405,287.5Z;
-                M439,316.5Q433,383,353,352.5Q273,322,235.5,366.5Q198,411,139,392.5Q80,374,42,312Q4,250,78.5,214.5Q153,179,186.5,168Q220,157,257.5,134.5Q295,112,360.5,117Q426,122,435.5,186Q445,250,439,316.5Z;
-                M409,320Q443,390,380,422.5Q317,455,263,415Q209,375,203.5,331.5Q198,288,163.5,269Q129,250,139.5,214Q150,178,187,174.5Q224,171,252.5,162.5Q281,154,359,134Q437,114,406,182Q375,250,409,320Z;
-                M401,313Q423,376,362.5,392.5Q302,409,240,440Q178,471,164.5,396.5Q151,322,79,286Q7,250,71,208.5Q135,167,174.5,153.5Q214,140,258.5,113Q303,86,310.5,143.5Q318,201,348.5,225.5Q379,250,401,313Z;
-                M450,316.5Q433,383,350.5,344Q268,305,248.5,309.5Q229,314,213.5,301Q198,288,127.5,269Q57,250,108.5,217.5Q160,185,172.5,117Q185,49,243.5,70Q302,91,338,125.5Q374,160,420.5,205Q467,250,450,316.5Z;
-                M401.5,309Q413,368,349,362.5Q285,357,259.5,328Q234,299,158,335.5Q82,372,42.5,311Q3,250,53.5,197Q104,144,166,163.5Q228,183,277,99.5Q326,16,348,89Q370,162,380,206Q390,250,401.5,309Z;
-                M409,320Q443,390,380,422.5Q317,455,263,415Q209,375,203.5,331.5Q198,288,163.5,269Q129,250,139.5,214Q150,178,187,174.5Q224,171,252.5,162.5Q281,154,359,134Q437,114,406,182Q375,250,409,320Z;
-                M379.5,281.5Q337,313,315.5,349.5Q294,386,249.5,387.5Q205,389,197.5,341.5Q190,294,122,272Q54,250,123.5,229.5Q193,209,200.5,164.5Q208,120,266,71.5Q324,23,339.5,98Q355,173,388.5,211.5Q422,250,379.5,281.5Z;
-                M379,295.5Q375,341,325.5,335.5Q276,330,242.5,353.5Q209,377,134,383Q59,389,39,319.5Q19,250,53,190.5Q87,131,147,125Q207,119,252.5,111.5Q298,104,309,151.5Q320,199,351.5,224.5Q383,250,379,295.5Z;";
-              ></animate>
-              </path>
-            </svg>
-          </div>
+          <Image class="ellipse" src={ellipse} alt="" />
         </div>
       </section>
+      <LanguagePicker />
     </main>
 
     <svg class="svg-filter">
       <filter id="noiseFilter">
         <feTurbulence
           type="fractalNoise"
-          baseFrequency="0.40" //0.30
+          baseFrequency="0.5"
+          0.30
           stitchTiles="stitch"></feTurbulence>
       </filter>
     </svg>
   </body>
 </html>
-

@@ -1,54 +1,41 @@
 ---
-// USE `npx astro-i18next generate` TO GENERATE TRANSLATED PAGES
-import i18next, { t, changeLanguage } from "i18next";
-import { Trans, HeadHrefLangs } from "astro-i18next/components";
 import Header from "../components/Header.astro";
 import "../styles/global.scss";
 import "../styles/index.scss";
 import { Image } from "astro:assets";
 import "@fontsource-variable/inter";
 import ellipse from "../images/Ellipse 38.png";
-changeLanguage("en");
+import LanguagePicker from "../components/LanguagePicker.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<html lang={i18next.language}>
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{t("site.title")}</title>
-    <meta name="description" content={t("site.description")} />
+    <title>{t("SITE.TITLE")}</title>
+    <meta name="description" content={t("SITE.DESCRIPTION")} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Tomás Goizueta" />
-    <HeadHrefLangs />
+    <meta name="author" content="Tomy Goizueta" />
   </head>
   <body class="body">
-    {
-      /*
-      <h1>{t("home.title")}</h1>
-      <p>
-        <Trans i18nKey="home.subtitle">
-          This is a <em>more complex</em> string to translate, mixed with <strong
-          >html elements
-          </strong> such as <a href="https://example.com/">a cool link</a>!
-        </Trans>
-      </p>   
-    */
-    }
-
     <Header
       pages={[
-        t("navbar.hello"),
-        t("navbar.about"),
-        t("navbar.projects"),
-        t("navbar.contact"),
+        t("NAVBAR.HELLO"),
+        t("NAVBAR.ABOUT"),
+        t("NAVBAR.EXPERIENCE"),
+        t("NAVBAR.PROJECTS"),
+        t("NAVBAR.CONTACT"),
       ]}
     />
     <main class="main">
       <section class="section section--1">
         <div class="info">
           <div class="info__data">
-            <h1 class="info__h1">TOMÁS GOIZUETA</h1>
+            <h1 class="info__h1">{t("HOME.TITLE")}</h1>
             <h2 class="info__h2">Front-End Developer / UI</h2>
             <p class="info__p">
               Software Engineer who is starting his career as a web developer.
@@ -80,6 +67,7 @@ changeLanguage("en");
           <Image class="ellipse" src={ellipse} alt="" />
         </div>
       </section>
+      <LanguagePicker />
     </main>
 
     <svg class="svg-filter">
