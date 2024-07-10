@@ -24,11 +24,12 @@ const t = useTranslations(lang);
   <body class="body">
     <Header
       pages={[
-        t("NAVBAR.HELLO"),
         t("NAVBAR.ABOUT"),
         t("NAVBAR.EXPERIENCE"),
         t("NAVBAR.PROJECTS"),
         t("NAVBAR.CONTACT"),
+        "Re",
+        "En"
       ]}
     />
     <main class="main">
@@ -59,25 +60,11 @@ const t = useTranslations(lang);
                 <span class="info__span">MY WORKS</span>
               </button>
             </div>
-            <!-- <div class="gradient-container">
-              <div class="gradient">
-              </div>
-            </div> -->
           </div>
           <Image class="ellipse" src={ellipse} alt="" />
         </div>
       </section>
       <LanguagePicker />
     </main>
-
-    <svg class="svg-filter">
-      <filter id="noiseFilter">
-        <feTurbulence
-          type="fractalNoise"
-          baseFrequency="0.5"
-          0.30
-          stitchTiles="stitch"></feTurbulence>
-      </filter>
-    </svg>
   </body>
 </html>
