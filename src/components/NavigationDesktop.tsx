@@ -1,4 +1,4 @@
-import "../styles/navigationDesktop.scss";
+import "../styles/navigationDesktop.css";
 import { useState } from 'react'
 
 const NavigationDesktop = ({ pages }) => {
@@ -6,10 +6,18 @@ const NavigationDesktop = ({ pages }) => {
       <nav className="desktop-nav">
         <ul className="pages">
           {pages.map((page) => (
-            <li className="pages__li" key={page}>
-              <a className="pages__a">{page}</a>
+            <li key={page}>
+              <a>{page}</a>
             </li>
           ))}
+        </ul>
+        <ul className="icons">
+          <li>
+            <a>Es</a>
+          </li>
+          <li>
+            <a>CV</a>
+          </li>
         </ul>
       </nav>
   );

@@ -1,5 +1,5 @@
 import downloadIcon from "../assets/download-icon-white.svg";
-import "../styles/navigationMobile.scss";
+import "../styles/navigationMobile.css";
 import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
 
@@ -37,19 +37,19 @@ const NavigationMobile = ({ pages, pathname }) => {
       >
         <ul className="mobile-pages">
           {pages.map((page) => (
-            <li className="mobile-pages__page" key={page}>
-              <a className="mobile-pages__page-link">{page}</a>
+            <li key={page}>
+              <a>{page}</a>
             </li>
           ))}
-          <li className="mobile-pages__page" key="resume">
-            <a className="mobile-pages__page-link mobile-pages__page-link--icon">
-              <img className="mobile-pages__img" src={downloadIcon.src} />
+          <li key="resume">
+            <a className="icon">
+              <img src={downloadIcon.src} />
               Resume
             </a>
           </li>
-          <li className="mobile-pages__page" key="resume">
-            <a className="mobile-pages__page-link mobile-pages__page-link--icon">
-              <img className="mobile-pages__img" src={languageIcon.src} />
+          <li key="resume">
+            <a className="icon">
+              <img src={languageIcon.src} />
               en | es
             </a>
           </li>

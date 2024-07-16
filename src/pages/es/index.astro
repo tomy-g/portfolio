@@ -1,6 +1,6 @@
 ---
 import Header from "../../components/Header.astro";
-import "../../styles/global.scss";
+import "../../styles/global.css";
 import "../../styles/index.scss";
 import { Image } from "astro:assets";
 import "@fontsource-variable/inter";
@@ -24,7 +24,6 @@ const t = useTranslations(lang);
   <body class="body">
     <Header
       pages={[
-        t("NAVBAR.HELLO"),
         t("NAVBAR.ABOUT"),
         t("NAVBAR.EXPERIENCE"),
         t("NAVBAR.PROJECTS"),
