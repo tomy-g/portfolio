@@ -5,6 +5,7 @@ import "../styles/index.scss";
 import { Image } from "astro:assets";
 import "@fontsource-variable/inter";
 import ellipse from "../images/Ellipse 38.png";
+import gradient from "../images/Vector 2.png";
 import LanguagePicker from "../components/LanguagePicker.astro";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
@@ -59,10 +60,9 @@ const t = useTranslations(lang);
               </button>
             </div>
           </div>
-          <Image class="ellipse" src={ellipse} alt="" />
+          <Image class="ellipse" src={gradient} alt="" />
         </div>
       </section>
-      <LanguagePicker />
     </main>
   </body>
 </html>
