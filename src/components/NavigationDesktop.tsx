@@ -1,17 +1,38 @@
-import "../styles/navigationDesktop.scss";
-import { useState } from 'react'
+import "../styles/navigationDesktop.css";
+import { IconFileFilled, IconWorld } from "@tabler/icons-react";
+import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
 
-const NavigationDesktop = ({ pages }) => {
+interface Props {
+  pages: string[],
+  lang: string
+}
+
+const NavigationDesktop = ({pages, lang}: Props) => {
+  const translatePath = useTranslatedPath(lang as "en" | "es");
+  
   return (
-      <nav className="desktop-nav">
-        <ul className="pages">
-          {pages.map((page) => (
-            <li className="pages__li" key={page}>
-              <a className="pages__a">{page}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+    <nav className="desktop-nav">
+      <ul className="pages">
+        {pages.map((page) => (
+          <li key={page}>
+            <a>{page}</a>
+          </li>
+        ))}
+      </ul>
+      <ul className="icons">
+        <li>
+          <a className="translate" href={translatePath('/', lang === 'en' ? 'es' : 'en')}>
+            <IconWorld color="var(--light-gray)" stroke={1.5} />
+            Es
+          </a>
+        </li>
+        <li>
+          <button className="resume" >
+            <IconFileFilled color="var(--light-gray)" height={21} />
+          </button>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

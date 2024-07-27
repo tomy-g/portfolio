@@ -1,41 +1,54 @@
 ---
-import { Image } from "astro:assets"
 import NavigationDesktop from "./NavigationDesktop";
 import NavigationMobile from "./NavigationMobile";
-import downloadIcon from "../assets/download-icon-pink.svg";
-import languageIcon from "../assets/language-icon.svg";
-import "../styles/header.scss"
+import { getLangFromUrl } from '../i18n/utils';
 interface Props {
   pages: string[];
 }
 
 const { pages } = Astro.props;
 const { pathname } = Astro.url;
+const lang = getLangFromUrl(Astro.url);
 ---
 
-<header class="header header-desktop">
-  <NavigationDesktop pages={pages} client:load />
-  <ul class="header-desktop__ul">
-    <li class="header-desktop__li header-desktop__li--download">
-      <button class="header-desktop__button">
-        <Image
-          src={downloadIcon}
-          alt="Download Icon"
-        /><span class="header-desktop__span">Resume</span></button
-      >
-    </li>
-    <li class="header-desktop__li header-desktop__li--lang">
-      <a class="header-desktop__a" href={pathname === "/" ? "/es" : "/"}>
-        <Image
-          src={languageIcon}
-          alt="Language icon"
-        />
-        <p class="header-desktop__p">es | en</p>
-      </a>
-    </li>
-  </ul>
+<header class="header-desktop">
+  <NavigationDesktop pages={pages} lang={lang} client:load />
 </header>
 
-<header class="header header-mobile">
+<header class="header-mobile">
   <NavigationMobile pages={pages} pathname={pathname} client:load />
 </header>
+
+<style>
+  header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    z-index: 100;
+  }
+  .header-mobile {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-desktop {
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    flex-direction: row;
+  }
+
+  @media (width < 50rem) {
+    .header-desktop {
+      display: none;
+    }
+  }
+
+  @media (width >= 50rem) {
+    .header-mobile {
+      display: none;
+    }
+  }
+</style>
