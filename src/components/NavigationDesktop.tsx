@@ -1,7 +1,5 @@
 import "../styles/navigationDesktop.css";
 import { IconFileFilled, IconWorld } from "@tabler/icons-react";
-import LanguagePicker from "./LanguagePicker.astro";
-import { languages } from '../i18n/ui';
 import { getLangFromUrl, useTranslatedPath } from '../i18n/utils';
 
 interface Props {
@@ -23,7 +21,7 @@ const NavigationDesktop = ({pages, lang}: Props) => {
       </ul>
       <ul className="icons">
         <li>
-          <a className="translate" href={translatePath('/', lang)}>
+          <a className="translate" href={translatePath('/', lang === 'en' ? 'es' : 'en')}>
             <IconWorld color="var(--light-gray)" stroke={1.5} />
             Es
           </a>

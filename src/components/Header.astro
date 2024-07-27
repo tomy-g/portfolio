@@ -1,11 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import NavigationDesktop from "./NavigationDesktop";
 import NavigationMobile from "./NavigationMobile";
-import downloadIcon from "../assets/download-icon-pink.svg";
-import languageIcon from "../assets/language-icon.svg";
 import { getLangFromUrl } from '../i18n/utils';
-import "../styles/header.scss";
 interface Props {
   pages: string[];
 }
@@ -26,8 +22,9 @@ const lang = getLangFromUrl(Astro.url);
 <style>
   header {
     position: fixed;
-    width: 100vw;
+    width: 100%;
     display: flex;
+    z-index: 100;
   }
   .header-mobile {
     flex-direction: column;

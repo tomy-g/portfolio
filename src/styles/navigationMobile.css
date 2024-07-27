@@ -8,7 +8,6 @@
 
   &::before {
     position: absolute;
-    background-color: #05021e;
     background: linear-gradient(180deg, #05021ed3 10%, #05021e00 100%);
     z-index: 10;
     inset: 0;
@@ -26,7 +25,6 @@
   border-radius: 8px;
   border: 1px solid var(--medium-gray, #6a687a);
   z-index: 10;
-
   &::before {
     position: absolute;
     content: "";
@@ -38,6 +36,7 @@
     -webkit-backdrop-filter: blur(10px);
     z-index: -1;
   }
+
 }
 
 .mobile-pages {
@@ -63,11 +62,10 @@
 
   a {
     text-align: center;
-    color: var(--white-primary);
+    color: var(--white-primary, #ebeaf3);
     font-weight: 500;
     padding: 1rem 2rem;
     cursor: pointer;
-
   }
   
   .icon{
@@ -78,7 +76,7 @@
   }
   
   img {
-    fill: var(--white-primary);
+    fill: var(--white-primary, #ebeaf3);
   }
 }
 
@@ -95,7 +93,7 @@
 }
 .line {
   fill: none;
-  stroke: var(--white-primary);
+  stroke: var(--white-primary, #ebeaf3);
   stroke-width: 6;
   transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
   stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,9 +1,11 @@
+/* Burger menu by Mikael Ainalem (https://codepen.io/ainalem/pen/wvKOEMV) */
+
 import downloadIcon from "../assets/download-icon-white.svg";
 import "../styles/navigationMobile.css";
 import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
 
-const NavigationMobile = ({ pages, pathname }) => {
+function NavigationMobile ({ pages, pathname }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toogleMenu = () => {
@@ -12,9 +14,6 @@ const NavigationMobile = ({ pages, pathname }) => {
 
   return (
     <div className="container">
-
-      {/* Burger menu by Mikael Ainalem (https://codepen.io/ainalem/pen/wvKOEMV) */}
-
       <button
         className={isMenuOpen ? 'menu opened' : 'menu'}
         onClick={toogleMenu}
@@ -33,7 +32,7 @@ const NavigationMobile = ({ pages, pathname }) => {
       </button>
       <nav
         className="mobile-nav"
-        style={{ top: isMenuOpen ? "4rem" : "-75vh" }}
+        style={{ top: isMenuOpen ? "4rem" : "-75vh", opacity: isMenuOpen ? 1 : 0 }}
       >
         <ul className="mobile-pages">
           {pages.map((page) => (
