@@ -20,8 +20,8 @@ export const ui = {
     "NAVBAR.CONTACT": "Contact",
   },
   es: {
-    "NAVBAR.ABOUT": "Sobre mi",
-    "NAVBAR.EXPERIENCE": "Experiencia",
+    "NAVBAR.ABOUT": "Acerca",
+    "NAVBAR.EXPERIENCE": "Exp",
     "NAVBAR.PROJECTS": "Proyectos",
     "NAVBAR.CONTACT": "Contacto",
   },
