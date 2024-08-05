@@ -10,20 +10,32 @@ const t = useTranslations(lang);
 <section class="section section--1">
   <div class="info">
     <div class="data">
+      <div class="warning">
+        <p class="warning-1">
+          ❗This portfolio is under construction🚧. Please come back later.
+          Thank you!
+        </p>
+        <p class="warning-2">
+          You can contact me <a
+            class="link-warning"
+            href="mailto:tomasgoizuetadp@gmail.com"><b>here</b></a
+          >
+        </p>
+      </div>
       <h1>{t("HOME.TITLE")}</h1>
       <h2>Front-End Developer / UI</h2>
-      <p>
-        Software Engineer who is starting his career as a web developer. My
+      <p class="description">
+        Software Engineer with 1 year of experience as Front-End developer. My
         lifelong passion for design has been combined with my interest in
         software development to create responsive and attractive products.
         <br />
         <br />
-        Currently working at
+        Living in
         <strong
           ><a
-            href="https://www.babelgroup.com/en"
+            href="https://maps.app.goo.gl/98ggs2Xvfz3kNJxKA"
             target="_blank"
-            rel="noopener noreferrer">Babel</a
+            rel="noopener noreferrer">Málaga</a
           ></strong
         >.
       </p>
@@ -31,12 +43,12 @@ const t = useTranslations(lang);
         <button class="cta">
           <span>MY WORKS</span>
         </button>
-        <button class="social-button">
+        <a href="https://github.com/tomy-g" class="social-button">
           <Github stroke-width={1.5} stroke="#a5a3b7" size={30} />
-        </button>
-        <button class="social-button">
+        </a>
+        <a href="https://www.linkedin.com/in/tomas-goizueta/" class="social-button">
           <Linkedin stroke-width={1.5} stroke="#a5a3b7" size={30} />
-        </button>
+        </a>
       </div>
     </div>
     <Image class="gradient" src={gradient} alt="" />
@@ -57,6 +69,34 @@ const t = useTranslations(lang);
     font-family: "Inter Variable", sans-serif;
   }
 
+  .warning {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: -8rem;
+    width: 100%;
+    background-color: rgba(255, 0, 89, 0.195);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+    color: rgb(163, 163, 163);
+  }
+
+  .link-warning {
+    color: var(--pink-primary);
+  }
+
+  .warning-1 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .warning-2 {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   html {
     overflow-x: hidden;
   }
@@ -71,6 +111,7 @@ const t = useTranslations(lang);
     flex-direction: row;
     justify-content: flex-end;
     height: 100vh;
+    /* margin-bottom: 20rem; */
   }
   .info {
     display: inline-flex;
@@ -115,9 +156,9 @@ const t = useTranslations(lang);
       font-weight: 700;
       margin-top: calc(max(2vw, 2rem));
       background-clip: text;
-      font-size: 40px;
+      font-size: 2.5rem;
     }
-    p {
+    .description {
       color: var(--light-gray);
       max-width: 481px;
       margin-top: 3.7vh;
@@ -221,10 +262,10 @@ const t = useTranslations(lang);
 
       .buttons {
         margin-top: 3rem;
-        max-width: 20rem
+        max-width: 20rem;
       }
 
-      .cta{
+      .cta {
         padding: 0.81rem 1.5rem;
       }
     }

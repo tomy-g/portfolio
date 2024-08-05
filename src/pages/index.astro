@@ -4,6 +4,7 @@ import Home from "../sections/Home.astro";
 import "../styles/global.css";
 import "@fontsource-variable/inter";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import About from "../sections/About.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -19,16 +20,17 @@ const t = useTranslations(lang);
     <meta name="author" content="Tomy Goizueta" />
   </head>
   <body>
-    <Header
+    <!-- <Header
       pages={[
         t("NAVBAR.ABOUT"),
         t("NAVBAR.EXPERIENCE"),
         t("NAVBAR.PROJECTS"),
         t("NAVBAR.CONTACT"),
       ]}
-    />
+    /> -->
     <main class="main">
       <Home />
+      <!-- <About /> -->
     </main>
   </body>
 </html>
@@ -49,6 +51,6 @@ const t = useTranslations(lang);
     background-color: var(--black-primary);
     overflow-x: hidden;
     position: relative;
-    min-height: 300vh;
+    /* min-height: 300vh; */
   }
 </style>
