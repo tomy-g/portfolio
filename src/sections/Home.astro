@@ -1,0 +1,285 @@
+---
+import gradient from "../images/Vector 2.png";
+import { Github, Linkedin } from "lucide-astro";
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="section section--1">
+  <div class="info">
+    <div class="data">
+      <div class="warning">
+        <p class="warning-1">
+          ❗This portfolio is under construction🚧. Please come back later.
+          Thank you!
+        </p>
+        <p class="warning-2">
+          You can contact me <a
+            class="link-warning"
+            href="mailto:tomasgoizuetadp@gmail.com"><b>here</b></a
+          >
+        </p>
+      </div>
+      <h1>{t("HOME.TITLE")}</h1>
+      <h2>Front-End Developer / UI</h2>
+      <p class="description">
+        Software Engineer with 1 year of experience as Front-End developer. My
+        lifelong passion for design has been combined with my interest in
+        software development to create responsive and attractive products.
+        <br />
+        <br />
+        Living in
+        <strong
+          ><a
+            href="https://maps.app.goo.gl/98ggs2Xvfz3kNJxKA"
+            target="_blank"
+            rel="noopener noreferrer">Málaga</a
+          ></strong
+        >.
+      </p>
+      <div class="buttons">
+        <button class="cta">
+          <span>MY WORKS</span>
+        </button>
+        <a href="https://github.com/tomy-g" class="social-button">
+          <Github stroke-width={1.5} stroke="#a5a3b7" size={30} />
+        </a>
+        <a href="https://www.linkedin.com/in/tomas-goizueta/" class="social-button">
+          <Linkedin stroke-width={1.5} stroke="#a5a3b7" size={30} />
+        </a>
+      </div>
+    </div>
+    <Image class="gradient" src={gradient} alt="" />
+  </div>
+</section>
+
+<style>
+  @keyframes gradient-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    color: var(--white-primary);
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  .warning {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: -8rem;
+    width: 100%;
+    background-color: rgba(255, 0, 89, 0.195);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+    color: rgb(163, 163, 163);
+  }
+
+  .link-warning {
+    color: var(--pink-primary);
+  }
+
+  .warning-1 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .warning-2 {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  .section {
+    height: 100vh;
+  }
+
+  .section--1 {
+    width: calc(50vw + 14rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100vh;
+    /* margin-bottom: 20rem; */
+  }
+  .info {
+    display: inline-flex;
+    position: relative;
+    flex-direction: row;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+
+    .data {
+      display: inline-flex;
+      position: relative;
+      flex-direction: column;
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+    }
+    .gradient {
+      z-index: -2;
+      position: absolute;
+      overflow: hidden;
+      left: 0%;
+      top: -15%;
+    }
+
+    h1 {
+      display: inline-block;
+      background: linear-gradient(270deg, #fe19aa 0%, #0e37f1 250%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+      font-size: calc(min(4.6875rem, 6.5vw));
+      font-weight: 800;
+    }
+
+    h2 {
+      display: inline-block;
+      background: var(--fade-gray);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      margin-top: calc(max(2vw, 2rem));
+      background-clip: text;
+      font-size: 2.5rem;
+    }
+    .description {
+      color: var(--light-gray);
+      max-width: 481px;
+      margin-top: 3.7vh;
+      font-size: 1.125rem;
+      font-weight: 400;
+    }
+
+    strong {
+      background: linear-gradient(90deg, #0e37f1 -300%, #fe19aa 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .buttons {
+      display: flex;
+      margin-top: 6.7vh;
+      max-width: 30.06rem;
+      align-items: center;
+    }
+
+    .social-button {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      outline: inherit;
+      margin: 0.625rem;
+      /* color: var(--light-gray, #a5a3b7); */
+    }
+
+    .cta {
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      background:
+        linear-gradient(var(--black-primary), var(--black-primary)) padding-box,
+        linear-gradient(
+            90deg,
+            var(--pink-primary),
+            var(--purple-primary),
+            var(--pink-primary)
+          )
+          0 0 / var(--bg-size) 100% border-box;
+      background-size: 200% 200%;
+      animation: gradient-bg 8s linear infinite;
+      border-radius: 10px;
+      padding: 0.81rem 3rem;
+      margin-right: auto;
+      span {
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 29px;
+        background: linear-gradient(
+            90deg,
+            var(--pink-primary),
+            var(--purple-primary),
+            var(--pink-primary)
+          )
+          0 0 / var(--bg-size);
+        background-size: 200% 200%;
+        animation: gradient-bg 8s linear infinite;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+    }
+  }
+
+  @media (width < 50em) {
+    .info {
+      margin-left: 1.5rem;
+      margin-top: 6.5rem;
+      h1 {
+        font-size: 3.25rem;
+      }
+      h2 {
+        margin-top: 2.12rem;
+        font-size: 1.625rem;
+      }
+
+      p {
+        margin-top: 1.88rem;
+        font-size: 0.875rem;
+        max-width: 20rem;
+      }
+
+      strong {
+        font-size: 0.875rem;
+      }
+
+      .buttons {
+        margin-top: 3rem;
+        max-width: 20rem;
+      }
+
+      .cta {
+        padding: 0.81rem 1.5rem;
+      }
+    }
+  }
+
+  @media (width >= 50em) {
+    .body::before {
+      position: absolute;
+      right: 0;
+      top: 0;
+      content: "";
+      width: 100%;
+      height: 100%;
+      opacity: 15%;
+    }
+  }
+</style>

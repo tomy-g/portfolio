@@ -19,7 +19,7 @@
     border-radius: 8px;
     /* background: #080530; */
     background: linear-gradient(180deg, #080530 0%, #0805305a 100%);
-    border: 1px solid var(--dark-gray, #38364A);
+    border: 1px solid var(--dark-gray, #38364a);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: -1;

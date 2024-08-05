@@ -19,6 +19,8 @@
     "@types/react-dom": "^18.3.0",
     "astro": "^4.11.5",
     "gl-react-blur": "^2.0.1",
+    "lucide-astro": "^0.417.0",
+    "lucide-react": "^0.417.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sass": "^1.64.2"
