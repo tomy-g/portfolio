@@ -1,31 +1,77 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import tomy from "../images/tomy.png";
+import educationIcon from "../assets/education.svg";
+import workIcon from "../assets/work.svg";
+import reactIcon from "../assets/react.svg";
+import nextIcon from "../assets/next.svg";
+import astroIcon from "../assets/astro.svg";
+import sassIcon from "../assets/sass.svg";
+import jsIcon from "../assets/js.svg";
+import tsIcon from "../assets/ts.svg";
+import htmlIcon from "../assets/html.svg";
+import cssIcon from "../assets/css.svg";
+import angularIcon from "../assets/angular.svg";
+import figmaIcon from "../assets/figma.svg";
+import nodeIcon from "../assets/node.svg";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
 <section class="section section--2">
-    <div class="info">
-        <div class="data">
-            <h2>A little about me.</h2>
-            <div class="about">
-                <div class="text">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut facilis
-                        dicta quas. Quisquam est error deserunt, pariatur molestias doloremque
-                        illum corporis eos ratione iste eaque hic unde voluptas accusamus
-                        laudantium?
-                    </p>
-                    <div class="timeline"></div>
-                </div>
-                <aside>
-                    <!-- <Image/> -->
-                </aside>
+  <div class="info">
+    <div class="data">
+      <h2>A little about me.</h2>
+      <div class="about">
+        <div class="text">
+          <p>
+            Apasionado por el desarrollo y el diseño.
+            <br />
+            <br />
+            Estudiante autodidacta, continuamente aprendiendo y estando al día en
+            nuevas tecnologías.
+            <br />
+            <br />
+            Actualmente centrado en mejorar mis habilidades técnicas y estar al día
+            con nuevos frameworks como Next.js 14 o Astro.
+          </p>
+          <div class="timeline">
+            <div class="education">
+              <div class="header">
+                <Image src={educationIcon} alt="Icon of a school hat" />
+                <h3>Ingeniería del Software en <a>UMA</a></h3>
+              </div>
+              <span>2019 - Actualidad</span>
             </div>
-            
+            <div class="work">
+              <div class="header">
+                <Image src={workIcon} alt="Icon of a school hat" />
+                <h3>Software Engineer Front en <a>Babel</a></h3>
+              </div>
+              <span>2023 - Actualidad</span>
+            </div>
+          </div>
         </div>
+        <aside>
+          <Image class="photo" src={tomy} alt="Photo of Tomy Goizueta" />
+        </aside>
+      </div>
+      <ul class="stack">
+        <li><Image src={reactIcon} alt="React logo"/></li>
+        <li><Image src={angularIcon} alt="Angular logo"/></li>
+        <li><Image src={nextIcon} alt="Next.js logo"/></li>
+        <li><Image src={astroIcon} alt="Astro logo"/></li>
+        <li><Image src={htmlIcon} alt="HTML logo"/></li>
+        <li><Image src={cssIcon} alt="CSS logo"/></li>
+        <li><Image src={jsIcon} alt="JavaScript logo"/></li>
+        <li><Image src={tsIcon} alt="TypeScript logo"/></li>
+        <li><Image src={sassIcon} alt="Sass logo"/></li>
+        <li><Image src={nodeIcon} alt="Node.js logo"/></li>
+        <li><Image src={figmaIcon} alt="Figma logo"/></li>
+      </ul>
     </div>
+  </div>
 </section>
 
 <style>
@@ -51,10 +97,9 @@ const t = useTranslations(lang);
     justify-content: flex-end;
     height: 100vh;
     margin-bottom: 20rem;
-
   }
 
-  .info{
+  .info {
     display: inline-flex;
     position: relative;
     flex-direction: row;
@@ -77,15 +122,100 @@ const t = useTranslations(lang);
     flex-direction: column;
   }
 
-  .about{
+  .about {
+    margin-top: 3.25rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  p{
+  p {
     max-width: 481px;
-    margin-top: 3.25rem;
+    color: var(--light-gray, #a5a3b7);
+    font-size: 1.125rem;
+  }
 
+  .photo {
+    width: 100%;
+    max-width: 247px;
+    height: 100%;
+    border-radius: 5px;
+    mask-image: linear-gradient(to left, black 60%, transparent);
+  }
+  aside {
+    width: 37.42%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .education {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+    padding-left: 1rem;
+    padding-bottom: 0.875rem;
+    border-left: 2px solid var(--blue-vibrant, #0e92f1);
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h3 {
+      font-size: 0.875rem;
+      color: var(--white-primary, #ebeaf3);
+      font-weight: 500;
+    }
+    span {
+      font-size: 0.8125rem;
+      color: var(--light-gray, #a5a3b7);
+    }
+    a{
+      color: var(--blue-vibrant, #0e92f1);
+    }
+
+  }
+  
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+    padding-left: 1rem;
+    padding-bottom: 0.875rem;
+    border-left: 2px solid var(--pink-primary, #fe19aa);
+    
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    h3 {
+      font-size: 0.875rem;
+      color: var(--white-primary, #ebeaf3);
+      font-weight: 500;
+    }
+    span {
+      font-size: 0.8125rem;
+      color: var(--light-gray, #a5a3b7);
+    }
+    a{
+      color: var(--pink-primary, #fe19aa);
+    }
+  }
+
+  .stack{
+    margin-top: 2.875rem;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
   }
 </style>
