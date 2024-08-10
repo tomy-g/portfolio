@@ -4,17 +4,18 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import tomy from "../images/tomy.png";
 import educationIcon from "../assets/education.svg";
 import workIcon from "../assets/work.svg";
-import reactIcon from "../assets/react.svg";
-import nextIcon from "../assets/next.svg";
-import astroIcon from "../assets/astro.svg";
-import sassIcon from "../assets/sass.svg";
-import jsIcon from "../assets/js.svg";
-import tsIcon from "../assets/ts.svg";
-import htmlIcon from "../assets/html.svg";
-import cssIcon from "../assets/css.svg";
-import angularIcon from "../assets/angular.svg";
-import figmaIcon from "../assets/figma.svg";
-import nodeIcon from "../assets/node.svg";
+import { URLS } from "../constants/urls";
+import AngularIcon from "../icons/AngularIcon";
+import ReactIcon from "../icons/ReactIcon";
+import NextIcon from "../icons/NextIcon";
+import AstroIcon from "../icons/AstroIcon";
+import HtmlIcon from "../icons/HtmlIcon";
+import CssIcon from "../icons/CSSIcon";
+import JsIcon from "../icons/JsIcon";
+import TsIcon from "../icons/TsIcon";
+import SassIcon from "../icons/SassIcon";
+import NodeIcon from "../icons/NodeIcon";
+import FigmaIcon from "../icons/FigmaIcon";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -58,17 +59,61 @@ const t = useTranslations(lang);
         </aside>
       </div>
       <ul class="stack">
-        <li><Image src={reactIcon} alt="React logo"/></li>
-        <li><Image src={angularIcon} alt="Angular logo"/></li>
-        <li><Image src={nextIcon} alt="Next.js logo"/></li>
-        <li><Image src={astroIcon} alt="Astro logo"/></li>
-        <li><Image src={htmlIcon} alt="HTML logo"/></li>
-        <li><Image src={cssIcon} alt="CSS logo"/></li>
-        <li><Image src={jsIcon} alt="JavaScript logo"/></li>
-        <li><Image src={tsIcon} alt="TypeScript logo"/></li>
-        <li><Image src={sassIcon} alt="Sass logo"/></li>
-        <li><Image src={nodeIcon} alt="Node.js logo"/></li>
-        <li><Image src={figmaIcon} alt="Figma logo"/></li>
+        <li>
+          <a href={URLS.REACT} target="_blank" rel="noopener noreferrer">
+            <ReactIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.ANGULAR} target="_blank" rel="noopener noreferrer">
+            <AngularIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+            <NextIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.ASTRO} target="_blank" rel="noopener noreferrer">
+            <AstroIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.HTML} target="_blank" rel="noopener noreferrer">
+            <HtmlIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.CSS} target="_blank" rel="noopener noreferrer">
+            <CssIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.JS} target="_blank" rel="noopener noreferrer">
+            <JsIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.TS} target="_blank" rel="noopener noreferrer">
+            <TsIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.SASS} target="_blank" rel="noopener noreferrer">
+            <SassIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.NODE} target="_blank" rel="noopener noreferrer">
+            <NodeIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.FIGMA} target="_blank" rel="noopener noreferrer">
+            <FigmaIcon />
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -177,12 +222,11 @@ const t = useTranslations(lang);
       font-size: 0.8125rem;
       color: var(--light-gray, #a5a3b7);
     }
-    a{
+    a {
       color: var(--blue-vibrant, #0e92f1);
     }
-
   }
-  
+
   .work {
     display: flex;
     flex-direction: column;
@@ -190,13 +234,13 @@ const t = useTranslations(lang);
     padding-left: 1rem;
     padding-bottom: 0.875rem;
     border-left: 2px solid var(--pink-primary, #fe19aa);
-    
+
     .header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     h3 {
       font-size: 0.875rem;
       color: var(--white-primary, #ebeaf3);
@@ -206,12 +250,12 @@ const t = useTranslations(lang);
       font-size: 0.8125rem;
       color: var(--light-gray, #a5a3b7);
     }
-    a{
+    a {
       color: var(--pink-primary, #fe19aa);
     }
   }
 
-  .stack{
+  .stack {
     margin-top: 2.875rem;
     list-style: none;
     display: flex;
