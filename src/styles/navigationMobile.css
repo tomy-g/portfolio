@@ -8,12 +8,12 @@
 
   &::before {
     position: absolute;
-    background: linear-gradient(180deg, #05021ed3 10%, #05021e00 100%);
+    background: linear-gradient(180deg, #05021e 10%, #05021e00 100%);
     z-index: 10;
     inset: 0;
     content: "";
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
+    /* -webkit-backdrop-filter: blur(10px); */
   }
 }
 

@@ -9,3 +9,10 @@
     transition-duration: 150ms;
   }
 }
+
+@media (width < 50em) {
+  .logo{
+    width: 5vw;
+    max-width: 1.5rem;
+  }
+}

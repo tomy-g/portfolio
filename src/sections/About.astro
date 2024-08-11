@@ -116,6 +116,8 @@ const t = useTranslations(lang);
         </li>
       </ul>
     </div>
+    <div class='ellipse'>
+    </div>
   </div>
 </section>
 
@@ -151,6 +153,18 @@ const t = useTranslations(lang);
     margin-top: auto;
     margin-bottom: auto;
     align-items: center;
+    margin-left: 1.5rem;
+  }
+
+  .ellipse{
+    width: 415px;
+    height: 500px;
+    border-radius: 50%;
+    position: absolute;
+    background: linear-gradient(0deg, rgba(126,25,254,0) 0%, rgba(107,44,214,1) 100%);
+    filter: blur(70px);
+    z-index: -100;
+    left: -15rem
   }
 
   h2 {
@@ -199,6 +213,9 @@ const t = useTranslations(lang);
     justify-content: space-between;
   }
 
+  .timeline {
+    margin-top: 2.875rem;
+  }
   .education {
     display: flex;
     flex-direction: column;
@@ -261,5 +278,26 @@ const t = useTranslations(lang);
     display: flex;
     width: 100%;
     justify-content: space-between;
+  }
+
+  @media (width < 50em) {
+    .section--2 {
+      width: 90%;
+    }
+    aside {
+      display: none;
+    }
+
+    .about {
+      margin-top: 2.375rem;
+    }
+
+    .ellipse{
+      left: -25rem;
+    }
+
+    .section--2 {
+      height: 150vh;
+    }
   }
 </style>
