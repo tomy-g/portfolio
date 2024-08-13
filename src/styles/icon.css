@@ -1,17 +1,17 @@
 .logo {
   fill: var(--light-gray, #a5a3b7);
-  
-  &:hover {
-    fill: var(--white-primary, #ebeaf3);
-    transform: scale(1.1);
-    transition: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
+}
+
+.logo:hover {
+  fill: var(--white-primary, #ebeaf3);
+  transform: scale(1.1);
+  transition: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 @media (width < 50em) {
-  .logo{
+  .logo {
     /* width: 5vw; */
     /* max-width: 1.5rem; */
     width: 2rem;

@@ -1,21 +1,12 @@
 ---
-import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import tomy from "../images/tomy.png";
-import educationIcon from "../assets/education.svg";
-import workIcon from "../assets/work.svg";
 import { URLS } from "../constants/urls";
 import AngularIcon from "../icons/AngularIcon";
-import ReactIcon from "../icons/ReactIcon";
-import NextIcon from "../icons/NextIcon";
-import AstroIcon from "../icons/AstroIcon";
 import HtmlIcon from "../icons/HtmlIcon";
 import CssIcon from "../icons/CSSIcon";
-import JsIcon from "../icons/JsIcon";
 import TsIcon from "../icons/TsIcon";
 import SassIcon from "../icons/SassIcon";
 import NodeIcon from "../icons/NodeIcon";
-import FigmaIcon from "../icons/FigmaIcon";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -115,11 +106,7 @@ const t = useTranslations(lang);
     height: 500px;
     border-radius: 50%;
     position: absolute;
-    background: linear-gradient(
-      0deg,
-      rgba(126, 25, 254, 0) 0%,
-      #2E0EF1 100%
-    );
+    background: linear-gradient(0deg, rgba(126, 25, 254, 0) 0%, #2e0ef1 100%);
     filter: blur(100px);
     z-index: -100;
     left: 15rem;
@@ -129,7 +116,7 @@ const t = useTranslations(lang);
   h2 {
     background: var(--fade-gray);
     background-clip: text;
-    -webkit-backgrounfd-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
     background-clip: text;
@@ -151,26 +138,26 @@ const t = useTranslations(lang);
     padding-left: 1rem;
     padding-bottom: 0.875rem;
     border-left: 2px solid var(--pink-primary, #fe19aa);
+  }
 
-    p {
-      max-width: 406px;
-      color: var(--light-gray, #a5a3b7);
-      font-size: 1.125rem;
-    }
+  .work p {
+    max-width: 406px;
+    color: var(--light-gray, #a5a3b7);
+    font-size: 1.125rem;
+  }
 
-    h3 {
-      font-size: 1.25rem;
-      color: var(--white-primary, #ebeaf3);
-      font-weight: 400;
-    }
-    span {
-      font-size: 1.125rem;
-      color: var(--light-gray, #a5a3b7);
-      margin-bottom: 1.625rem;
-    }
-    a {
-      color: var(--pink-primary, #fe19aa);
-    }
+  .work h3 {
+    font-size: 1.25rem;
+    color: var(--white-primary, #ebeaf3);
+    font-weight: 400;
+  }
+  .work span {
+    font-size: 1.125rem;
+    color: var(--light-gray, #a5a3b7);
+    margin-bottom: 1.625rem;
+  }
+  .work a {
+    color: var(--pink-primary, #fe19aa);
   }
 
   .desc {

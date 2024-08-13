@@ -116,8 +116,7 @@ const t = useTranslations(lang);
         </li>
       </ul>
     </div>
-    <div class='ellipse'>
-    </div>
+    <div class="ellipse"></div>
   </div>
 </section>
 
@@ -155,24 +154,27 @@ const t = useTranslations(lang);
     margin-left: 1.5rem;
   }
 
-  .ellipse{
+  .ellipse {
     width: 415px;
     height: 500px;
     border-radius: 50%;
     position: absolute;
-    background: linear-gradient(0deg, rgba(126,25,254,0) 0%, rgba(107,44,214,1) 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(126, 25, 254, 0) 0%,
+      rgba(107, 44, 214, 1) 100%
+    );
     filter: blur(70px);
     z-index: -100;
-    left: -15rem
+    left: -15rem;
   }
 
   h2 {
     background: var(--fade-gray);
     background-clip: text;
-    -webkit-backgrounfd-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
-    background-clip: text;
     font-size: 3rem;
   }
   .data {
@@ -222,25 +224,25 @@ const t = useTranslations(lang);
     padding-left: 1rem;
     padding-bottom: 0.875rem;
     border-left: 2px solid var(--blue-vibrant, #0e92f1);
+  }
 
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+  .education .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    h3 {
-      font-size: 0.875rem;
-      color: var(--white-primary, #ebeaf3);
-      font-weight: 500;
-    }
-    span {
-      font-size: 0.8125rem;
-      color: var(--light-gray, #a5a3b7);
-    }
-    a {
-      color: var(--blue-vibrant, #0e92f1);
-    }
+  .education h3 {
+    font-size: 0.875rem;
+    color: var(--white-primary, #ebeaf3);
+    font-weight: 500;
+  }
+  .education span {
+    font-size: 0.8125rem;
+    color: var(--light-gray, #a5a3b7);
+  }
+  .education a {
+    color: var(--blue-vibrant, #0e92f1);
   }
 
   .work {
@@ -250,25 +252,24 @@ const t = useTranslations(lang);
     padding-left: 1rem;
     padding-bottom: 0.875rem;
     border-left: 2px solid var(--pink-primary, #fe19aa);
+  }
+  .work .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    h3 {
-      font-size: 0.875rem;
-      color: var(--white-primary, #ebeaf3);
-      font-weight: 500;
-    }
-    span {
-      font-size: 0.8125rem;
-      color: var(--light-gray, #a5a3b7);
-    }
-    a {
-      color: var(--pink-primary, #fe19aa);
-    }
+  .work h3 {
+    font-size: 0.875rem;
+    color: var(--white-primary, #ebeaf3);
+    font-weight: 500;
+  }
+  .work span {
+    font-size: 0.8125rem;
+    color: var(--light-gray, #a5a3b7);
+  }
+  .work a {
+    color: var(--pink-primary, #fe19aa);
   }
 
   .stack {
@@ -292,11 +293,11 @@ const t = useTranslations(lang);
       margin-top: 2.375rem;
     }
 
-    .ellipse{
+    .ellipse {
       left: -25rem;
     }
 
-    .stack{
+    .stack {
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.75rem;
