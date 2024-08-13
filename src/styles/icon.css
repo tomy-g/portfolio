@@ -12,7 +12,8 @@
 
 @media (width < 50em) {
   .logo{
-    width: 5vw;
-    max-width: 1.5rem;
+    /* width: 5vw; */
+    /* max-width: 1.5rem; */
+    width: 2rem;
   }
 }

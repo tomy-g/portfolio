@@ -13,6 +13,7 @@
     "@astrojs/node": "^8.3.2",
     "@astrojs/react": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vercel": "^7.7.2",
     "@fontsource-variable/inter": "^5.0.19",
     "@tabler/icons-react": "^3.11.0",
     "@types/react": "^18.3.3",
