@@ -1,11 +1,16 @@
 import '../styles/icon.css'
 
-export default function CssIcon () {
+interface Props{
+  width?: number
+  height?: number
+}
+
+export default function CssIcon ({width, height}: Props) {
   return (
     <svg
       className='logo'
-      width='41'
-      height='41'
+      width={width ?? 41}
+      height={height ?? 41}
       viewBox='0 0 41 41'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

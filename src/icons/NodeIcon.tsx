@@ -1,11 +1,17 @@
 import '../styles/icon.css'
 
-export default function NodeIcon () {
+interface Props{
+  width?: number
+  height?: number
+}
+
+
+export default function NodeIcon ({width, height}: Props) {
   return (
     <svg
       className='logo'
-      width='37'
-      height='41'
+      width={width ?? 37}
+      height={height ?? 41}
       viewBox='0 0 37 41'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

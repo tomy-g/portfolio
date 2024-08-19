@@ -15,7 +15,7 @@ const NavigationDesktop = ({pages, lang}: Props) => {
       <ul className="pages">
         {pages.map((page) => (
           <li key={page}>
-            <a>{page}</a>
+            <a href={`/#${page.toLowerCase()}`}>{page}</a>
           </li>
         ))}
       </ul>

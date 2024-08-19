@@ -6,6 +6,7 @@ import "@fontsource-variable/inter";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import About from "../sections/About.astro";
 import Experience from "../sections/Experience.astro";
+import Projects from "../sections/Projects.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -33,6 +34,7 @@ const t = useTranslations(lang);
       <Home />
       <About />
       <Experience />
+      <Projects id="projects" />
     </main>
   </body>
 </html>

@@ -1,12 +1,17 @@
 import React from 'react'
 import '../styles/icon.css'
 
-export default function SassIcon () {
+interface Props{
+  width?: number
+  height?: number
+}
+
+export default function SassIcon ({width, height}: Props) {
   return (
     <svg
       className='logo'
-      width='55'
-      height='41'
+      width={width ?? 55}
+      height={height ?? 41}
       viewBox='0 0 55 41'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
