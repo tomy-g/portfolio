@@ -23,34 +23,26 @@ const t = useTranslations(lang);
 <section class="section section--2">
   <div class="info">
     <div class="data">
-      <h2>A little about me.</h2>
+      <h2>{t("ABOUT.TITLE")}</h2>
       <div class="about">
         <div class="text">
           <p>
-            Apasionado por el desarrollo y el diseño.
-            <br />
-            <br />
-            Estudiante autodidacta, continuamente aprendiendo y estando al día en
-            nuevas tecnologías.
-            <br />
-            <br />
-            Actualmente centrado en mejorar mis habilidades técnicas y estar al día
-            con nuevos frameworks como Next.js 14 o Astro.
+            {t("ABOUT.DESCRIPTION")}
           </p>
           <div class="timeline">
             <div class="education">
               <div class="header">
                 <Image src={educationIcon} alt="Icon of a school hat" />
-                <h3>Ingeniería del Software en <a>UMA</a></h3>
+                <h3>{t('ABOUT.STUDIES')} <a>{t('ABOUT.UNIVERSITY')}</a></h3>
               </div>
-              <span>2019 - Actualidad</span>
+              <span>{t('ABOUT.TIMESTUDIES')}</span>
             </div>
             <div class="work">
               <div class="header">
                 <Image src={workIcon} alt="Icon of a school hat" />
-                <h3>Software Engineer Front en <a>Babel</a></h3>
+                <h3>{t('ABOUT.LASTROLE')} <a>{t('ABOUT.LASTCOMPANY')}</a></h3>
               </div>
-              <span>2023 - Actualidad</span>
+              <span>{t('ABOUT.TIMECOMPANY')}</span>
             </div>
           </div>
         </div>
@@ -151,7 +143,8 @@ const t = useTranslations(lang);
     margin-top: auto;
     margin-bottom: auto;
     align-items: center;
-    margin-left: 1.5rem;
+    margin-left: 10vw;
+
   }
 
   .ellipse {

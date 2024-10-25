@@ -23,7 +23,9 @@ const { id } = Astro.props;
       <ul class="projects">
         <li class="project">
             <div class="picture">
-              <Image class="screenshot" src={nextfive} alt="Screenshot of NextFive"/>
+              <a href="https:/nextfive.vercel.app">
+                <Image class="screenshot" src={nextfive} alt="Screenshot of NextFive"/>
+              </a>
             </div>
             <div class="card">
               <h3>NextFive</h3>
@@ -100,7 +102,7 @@ const { id } = Astro.props;
     /* margin-top: auto; */
     /* margin-bottom: auto; */
     align-items: center;
-    margin-left: 1.5rem;
+    margin-left: 10vw;
   }
 
   .ellipse {
@@ -159,6 +161,13 @@ const { id } = Astro.props;
     z-index: 10;
   }
 
+  .picture:hover{
+    transform: scale(1.05);
+    transition: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
   .screenshot{
     width: 100%;
     height: 100%;
@@ -166,19 +175,32 @@ const { id } = Astro.props;
   }
 
   .card{
-    background-color: #ffffff08;
+    position: relative;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border: 1px solid #ffffff19;
     border-left: none;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     padding-left: 2rem;
     padding-top: 1.06rem;
     padding-right: 1.81rem;
   }
-
+  .card::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: -100;
+    background-color: #ffffff08;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    top: 0;
+    left: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
   .card h3{
     font-size: 1.25rem;
     font-weight: 600;
@@ -190,7 +212,9 @@ const { id } = Astro.props;
     font-size: 0.9375rem;
     color: var(--light-gray, #A5A3B7);
     max-width: 20rem;
+    z-index: 1000;
   }
+
 
   .icon-groups{
     display: flex;
@@ -224,6 +248,10 @@ const { id } = Astro.props;
       width: calc(50vw + 14rem);
     }
 
+    .info{
+      margin-left: 10vw;
+    }
+
     .ellipse {
       left: 0;
     }
@@ -238,12 +266,37 @@ const { id } = Astro.props;
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
     }
+
+    .card::before{
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
   }
 
   @media (width < 50em) {
     .section--4 {
       width: 90%;
       justify-content: flex-start;
+    }
+
+    .project{
+      /* width: 70%; */
+      margin-left: 30%;
+      margin-right: 30%;
+    }
+
+    .picture {
+      width: 18.6rem;
+      height: 11.3rem;
+      border-radius: 6px;
+    }
+
+    .stack > li{
+      transform: scale(0.8);
+    }
+    .stack{
+      gap: 0.5rem;
     }
   }
 </style>

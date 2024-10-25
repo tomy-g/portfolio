@@ -25,23 +25,21 @@ const t = useTranslations(lang);
       <h1>{t("HOME.TITLE")}</h1>
       <h2>Front-End Developer / UI</h2>
       <p class="description">
-        Software Engineer with 1 year of experience as Front-End developer. My
-        lifelong passion for design has been combined with my interest in
-        software development to create responsive and attractive products.
+        {t("HOME.DESCRIPTION")}
         <br />
         <br />
-        Living in
+        {t("HOME.HIGHLIGHT")}
         <strong
           ><a
             href="https://maps.app.goo.gl/98ggs2Xvfz3kNJxKA"
             target="_blank"
-            rel="noopener noreferrer">Málaga</a
+            rel="noopener noreferrer">{t("HOME.LOCATION")}</a
           ></strong
         >.
       </p>
       <div class="buttons">
         <button class="cta">
-          <span>MY WORKS</span>
+          <span>{t("HOME.CTA")}</span>
         </button>
         <a href="https://github.com/tomy-g" class="social-button">
           <Github stroke-width={1.5} stroke="#a5a3b7" size={30} />
@@ -243,13 +241,27 @@ const t = useTranslations(lang);
     text-fill-color: transparent;
   }
 
+  .cta:hover {
+    transform: scale(1.1);
+    transition: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  .cta:hover span {
+    transform: scale(1.1);
+    transition: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
   @media (width < 50em) {
     .section--1 {
       width: 90%;
       justify-content: flex-start;
     }
     .info {
-      margin-left: 1.5rem;
+      margin-left: 10vw;
     }
     .info h1 {
       font-size: 3.25rem;
