@@ -82,13 +82,17 @@ const t = useTranslations(lang);
   }
 
   @media (width < 50em) {
+    .gradient{
+      width: 100vw;
+      height: 42rem;
+    }
     nav{
     border-image: linear-gradient(
       90deg,
-      #1967fe00 0%,
+      #1967fe50 0%,
       #1967fe 25%,
       #fe19aa 75%,
-      #fe19aa00 100%
+      #fe19aa50 100%
       )
       1 0 0 0;
     }
