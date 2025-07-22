@@ -4,9 +4,13 @@ import downloadIcon from "../assets/download-icon-white.svg";
 import "../styles/navigationMobile.css";
 import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
+import { IconFileFilled, IconWorld } from "@tabler/icons-react";
+import { useTranslatedPath } from "../i18n/utils";
 
-function NavigationMobile ({ pages, pathname }) {
+function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: string, pathname?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const translatePath = useTranslatedPath(lang as "en" | "es");
+  
 
   const toogleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -42,14 +46,14 @@ function NavigationMobile ({ pages, pathname }) {
           ))}
           <li key="resume">
             <a className="icon">
-              <img src={downloadIcon.src} />
+              <IconFileFilled height={21} />
               Resume
             </a>
           </li>
           <li key="resume">
-            <a className="icon">
-              <img src={languageIcon.src} />
-              en | es
+            <a href={translatePath('/', lang === 'en' ? 'es' : 'en')} className="icon">
+              <IconWorld height={21} />
+              {lang === 'en' ? 'Es' : 'En'}
             </a>
           </li>
         </ul>

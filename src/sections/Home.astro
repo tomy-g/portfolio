@@ -198,6 +198,20 @@ const t = useTranslations(lang);
     outline: inherit;
     margin: 0.625rem;
     /* color: var(--light-gray, #a5a3b7); */
+    transform: scale(1);
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    svg {
+      transition: stroke 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  .social-button:hover {
+    transform: scale(1.1);
+
+    svg {
+      stroke: var(--white-primary, #ebeaf3);
+    }
   }
 
   .cta {
@@ -218,6 +232,8 @@ const t = useTranslations(lang);
     border-radius: 10px;
     padding: 0.81rem 3rem;
     margin-right: auto;
+    transform: scale(1);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cta span {
@@ -239,20 +255,16 @@ const t = useTranslations(lang);
     background-size: 200% 200%;
     background-clip: text;
     text-fill-color: transparent;
+    transform: scale(1);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .cta:hover {
     transform: scale(1.1);
-    transition: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
   }
 
   .cta:hover span {
     transform: scale(1.1);
-    transition: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
   }
 
   @media (width < 50em) {

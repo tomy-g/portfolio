@@ -26,9 +26,17 @@ const t = useTranslations(lang);
       <h2>{t("ABOUT.TITLE")}</h2>
       <div class="about">
         <div class="text">
-          <p>
-            {t("ABOUT.DESCRIPTION")}
-          </p>
+          <div>
+            <p>
+              {t("ABOUT.DESCRIPTION.1")}
+            </p>
+            <p style="margin-top: 1.5rem;">
+              {t("ABOUT.DESCRIPTION.2")}
+            </p>
+            <p style="margin-top: 1.5rem;">
+              {t("ABOUT.DESCRIPTION.3")}
+            </p>
+          </div>
           <div class="timeline">
             <div class="education">
               <div class="header">
@@ -160,6 +168,7 @@ const t = useTranslations(lang);
     filter: blur(70px);
     z-index: -100;
     left: -15rem;
+    opacity: 0.6;
   }
 
   h2 {
@@ -269,6 +278,7 @@ const t = useTranslations(lang);
 
   .stack {
     margin-top: 2.875rem;
+    margin-bottom: 8rem;
     list-style: none;
     display: flex;
     width: 100%;

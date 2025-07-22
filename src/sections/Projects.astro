@@ -64,6 +64,49 @@ const { id } = Astro.props;
               </div>
             </div>
         </li>
+        <li class="project">
+            <div class="picture">
+              <a href="https:/nextfive.vercel.app">
+                <Image class="screenshot" src={nextfive} alt="Screenshot of NextFive"/>
+              </a>
+            </div>
+            <div class="card">
+              <h3>NextFive</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, amet libero eos itaque corporis, a, asperiores cumque vitae illo sapiente quibusdam nam</p>
+              <div class="icon-groups">
+                <ul class="stack">
+                  <li>
+                    <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+                      <NextIcon width={28.78} height={28.78}/>
+                    </a>
+                  </li>
+                  <li>
+                    <a href={URLS.REACT} target="_blank" rel="noopener noreferrer">
+                      <ReactIcon width={28.78} height={28.78} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+                      <AngularIcon width={29} height={29} />
+                    </a>
+                  </li>
+                  <li>
+                </ul>
+                <ul class="links">
+                  <li>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <ExternalIcon/>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank" rel="noopener noreferrer">
+                      <GithubIcon/>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </li>
         <li>
           <h3 class="temporary">
             ✨ More in the making...
@@ -150,6 +193,19 @@ const { id } = Astro.props;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 2.625rem;
+  }
+
+  .project:nth-child(2n){
+    flex-direction: row-reverse;
+
+    .card{
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-left: 1px solid #ffffff19;
+    }
   }
 
   .picture{
@@ -159,13 +215,11 @@ const { id } = Astro.props;
     border-radius: 8px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 10;
+    transition: transform 300ms cubic-bezier(.4,0,.2,1);
   }
 
   .picture:hover{
     transform: scale(1.05);
-    transition: transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
   }
 
   .screenshot{
@@ -220,7 +274,7 @@ const { id } = Astro.props;
     display: flex;
     flex-direction: row;
     margin-top: 1.31rem;
-    margin-bottom: 1.31rem;
+    margin-bottom: 1rem;
     align-items: center;
     justify-content: space-between;
   }
@@ -242,7 +296,7 @@ const { id } = Astro.props;
   }
 
 
-  @media (width < 75em) {
+  /* @media (width < 75em) {
 
     .section--4 {
       width: calc(50vw + 14rem);
@@ -272,7 +326,7 @@ const { id } = Astro.props;
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
     }
-  }
+  } */
 
   @media (width < 50em) {
     .section--4 {
@@ -280,10 +334,11 @@ const { id } = Astro.props;
       justify-content: flex-start;
     }
 
-    .project{
+    .project, .project:nth-child(2n){
       /* width: 70%; */
       margin-left: 30%;
       margin-right: 30%;
+      flex-direction: column;
     }
 
     .picture {
@@ -297,6 +352,24 @@ const { id } = Astro.props;
     }
     .stack{
       gap: 0.5rem;
+    }
+
+    .ellipse {
+      left: 0;
+    }
+
+    .card{
+      border: 1px solid #ffffff19;
+      border-top: none; 
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .card::before{
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
   }
 </style>

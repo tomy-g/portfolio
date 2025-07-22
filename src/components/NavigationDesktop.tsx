@@ -23,7 +23,7 @@ const NavigationDesktop = ({pages, lang}: Props) => {
         <li>
           <a className="translate" href={translatePath('/', lang === 'en' ? 'es' : 'en')}>
             <IconWorld color="var(--light-gray)" stroke={1.5} />
-            Es
+            {lang === 'en' ? 'Es' : 'En'}
           </a>
         </li>
         <li>

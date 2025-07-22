@@ -61,6 +61,7 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.1s;
 }
 .pages a:hover {
   color: var(--white-primary, #ebeaf3);
@@ -95,6 +96,8 @@
   padding-bottom: 0.5518rem;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
+  transition: all 0.1s;
+
 }
 .resume:hover {
   color: var(--white-primary, #ebeaf3);
