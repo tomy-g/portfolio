@@ -10,6 +10,20 @@ import { useTranslatedPath } from "../i18n/utils";
 function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: string, pathname?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const translatePath = useTranslatedPath(lang as "en" | "es");
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    if(lang === 'es') {
+      link.href = '/files/CV ES.pdf';
+      link.download = 'CV ES.pdf';
+    } else {
+      link.href = '/files/CV EN.pdf';
+      link.download = 'CV EN.pdf';
+    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   
 
   const toogleMenu = () => {
@@ -45,12 +59,12 @@ function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: s
             </li>
           ))}
           <li key="resume">
-            <a className="icon">
+            <a onClick={handleDownload} className="icon">
               <IconFileFilled height={21} />
-              Resume
+              <span>{lang === 'en' ? 'Resume' : 'CV'}</span>
             </a>
           </li>
-          <li key="resume">
+          <li key="language">
             <a href={translatePath('/', lang === 'en' ? 'es' : 'en')} className="icon">
               <IconWorld height={21} />
               {lang === 'en' ? 'Es' : 'En'}

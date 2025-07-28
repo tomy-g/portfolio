@@ -6,8 +6,10 @@ import NextIcon from "../icons/NextIcon";
 import ReactIcon from "../icons/ReactIcon";
 import ExternalIcon from "../icons/ExternalIcon";
 import GithubIcon from "../icons/GithubIcon";
+import NodeIcon from "../icons/NodeIcon";
 import { Image } from "astro:assets";
 import nextfive from "../images/nextfive_ss.png";
+import classfolder from "../images/cf_thumbnail.png";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 interface Props {
@@ -19,17 +21,17 @@ const { id } = Astro.props;
 <section id={id} class="section section--4">
   <div class="info">
     <div class="data">
-      <h2>Personal projects.</h2>
+      <h2>{t("PROJECTS.TITLE")}</h2>
       <ul class="projects">
         <li class="project">
             <div class="picture">
-              <a href="/classfolder">
-                <Image class="screenshot" src={nextfive} alt="Screenshot of NextFive"/>
+              <a href={ lang === "es" ? "/es/classfolder" : "/classfolder"}>
+                <Image class="screenshot" src={classfolder} alt="Screenshot of NextFive"/>
               </a>
             </div>
             <div class="card">
-              <h3>NextFive</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, amet libero eos itaque corporis, a, asperiores cumque vitae illo sapiente quibusdam nam</p>
+              <h3>{t("PROJECTS.1.TITLE")}</h3>
+              <p>{t("PROJECTS.1.DESCRIPTION")}</p>
               <div class="icon-groups">
                 <ul class="stack">
                   <li>
@@ -43,20 +45,20 @@ const { id } = Astro.props;
                     </a>
                   </li>
                   <li>
-                    <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
-                      <AngularIcon width={29} height={29} />
+                    <a href={URLS.NODE} target="_blank" rel="noopener noreferrer">
+                      <NodeIcon width={28.78} height={28.78} />
                     </a>
                   </li>
                   <li>
                 </ul>
                 <ul class="links">
                   <li>
-                    <a href="" target="_blank" rel="noopener noreferrer">
+                    <a href={ lang === "es" ? "/es/classfolder" : "/classfolder"} rel="noopener noreferrer">
                       <ExternalIcon/>
                     </a>
                   </li>
                   <li>
-                    <a href="" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/tomy-g/classfolder-front" target="_blank" rel="noopener noreferrer">
                       <GithubIcon/>
                     </a>
                   </li>
@@ -71,8 +73,8 @@ const { id } = Astro.props;
               </a>
             </div>
             <div class="card">
-              <h3>NextFive</h3>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, amet libero eos itaque corporis, a, asperiores cumque vitae illo sapiente quibusdam nam</p>
+              <h3>{t("PROJECTS.2.TITLE")}</h3>
+              <p>{t("PROJECTS.2.DESCRIPTION")}</p>
               <div class="icon-groups">
                 <ul class="stack">
                   <li>
@@ -85,21 +87,21 @@ const { id } = Astro.props;
                       <ReactIcon width={28.78} height={28.78} />
                     </a>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
                       <AngularIcon width={29} height={29} />
                     </a>
-                  </li>
+                  </li> -->
                   <li>
                 </ul>
                 <ul class="links">
                   <li>
-                    <a href="" target="_blank" rel="noopener noreferrer">
+                    <a href="https://nextfive.vercel.app/" target="_blank" rel="noopener noreferrer">
                       <ExternalIcon/>
                     </a>
                   </li>
                   <li>
-                    <a href="" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/tomy-g/NextFive" target="_blank" rel="noopener noreferrer">
                       <GithubIcon/>
                     </a>
                   </li>
@@ -109,7 +111,7 @@ const { id } = Astro.props;
         </li>
         <li>
           <h3 class="temporary">
-            ✨ More in the making...
+            ✨ {t("PROJECTS.TEMPORARY_MESSAGE")}
           </h3>
         </li>
       </ul>
@@ -210,12 +212,13 @@ const { id } = Astro.props;
 
   .picture{
     width: 442px;
-    height: 268px;
+    /* height: 268px; */
     background-color: var(--black-primary,  #060329);
     border-radius: 8px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     z-index: 10;
     transition: transform 300ms cubic-bezier(.4,0,.2,1);
+    object-fit: cover;
   }
 
   .picture:hover{

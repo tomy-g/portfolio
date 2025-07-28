@@ -20,7 +20,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="section section--2">
+<section id="about" class="section section--2">
   <div class="info">
     <div class="data">
       <h2>{t("ABOUT.TITLE")}</h2>
@@ -55,7 +55,7 @@ const t = useTranslations(lang);
           </div>
         </div>
         <aside>
-          <Image class="photo" src={tomy} alt="Photo of Tomy Goizueta" />
+          <Image class="photo" src={tomy} alt="Photo of Tomás Goizueta" />
         </aside>
       </div>
       <ul class="stack">

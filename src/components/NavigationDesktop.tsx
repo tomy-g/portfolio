@@ -9,6 +9,20 @@ interface Props {
 
 const NavigationDesktop = ({pages, lang}: Props) => {
   const translatePath = useTranslatedPath(lang as "en" | "es");
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    if(lang === 'es') {
+      link.href = '/files/CV ES.pdf';
+      link.download = 'CV ES.pdf';
+    } else {
+      link.href = '/files/CV EN.pdf';
+      link.download = 'CV EN.pdf';
+    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   
   return (
     <nav className="desktop-nav">
@@ -27,7 +41,7 @@ const NavigationDesktop = ({pages, lang}: Props) => {
           </a>
         </li>
         <li>
-          <button className="resume" >
+          <button onClick={handleDownload} className="resume" >
             <IconFileFilled color="var(--light-gray)" height={21} />
           </button>
         </li>

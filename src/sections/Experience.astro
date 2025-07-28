@@ -11,23 +11,20 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="section section--3">
+<section id="exp" class="section section--3">
   <div class="info">
     <div class="data">
-      <h2>Experience.</h2>
+      <h2>{t("EXPERIENCE.TITLE")}</h2>
       <div class="timeline">
         <div class="work">
-          <h3>Software Engineer Front en <a>Babel</a></h3>
-          <span>Feb 2023 - Feb 2024</span>
+          <h3>{t("EXPERIENCE.POSITION.1.TITLE")} <a class="company-link" href="https://babelgroup.com/">{t("EXPERIENCE.POSITION.1.COMPANY")}</a></h3>
+          <span>{t("EXPERIENCE.POSITION.1.TIME")}</span>
         </div>
         <p class="desc">
-          Desarrollador Front trabajando externamente para un proyecto del Banco
-          Santander.
+          {t("EXPERIENCE.POSITION.1.DESCRIPTION.1")}
           <br />
           <br />
-          He trabajado principalmente en el Front-end de la aplicación, aunque también
-          he mantenido el catálogo de componentes web con Stencil y en el Back-end
-          hecho con Node.js
+          {t("EXPERIENCE.POSITION.1.DESCRIPTION.2")}
         </p>
       </div>
       <ul class="stack">
@@ -77,6 +74,11 @@ const t = useTranslations(lang);
 
   html {
     overflow-x: hidden;
+  }
+
+  .company-link {
+    color: var(--pink-primary, #fe19aa);
+    text-decoration: none;
   }
 
   .section {

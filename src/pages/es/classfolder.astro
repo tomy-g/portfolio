@@ -1,22 +1,22 @@
 ---
-import Header from "../components/Header.astro";
-import Home from "../sections/Home.astro";
-import "../styles/global.css";
+import Header from "../../components/Header.astro";
+import Home from "../../sections/Home.astro";
+import "../../styles/global.css";
 import "@fontsource-variable/inter";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import About from "../sections/About.astro";
-import Experience from "../sections/Experience.astro";
-import Projects from "../sections/Projects.astro";
-import Contact from "../sections/Contact.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import About from "../../sections/About.astro";
+import Experience from "../../sections/Experience.astro";
+import Projects from "../../sections/Projects.astro";
+import Contact from "../../sections/Contact.astro";
 import { ArrowLeft } from "lucide-react";
 import { Calendar } from "lucide-astro";
 import { Image } from "astro:assets";
-import landingPic from "../images/cf_landing.png";
-import dashboardPic from "../images/cf_dashboard.png";
-import filePic from "../images/cf_file.png";
-import threadPic from "../images/cf_thread.png";
-import messagesPic from "../images/cf_messages.png";
-import Footer from "../components/Footer.astro";
+import landingPic from "../../images/cf_landing.png";
+import dashboardPic from "../../images/cf_dashboard.png";
+import filePic from "../../images/cf_file.png";
+import threadPic from "../../images/cf_thread.png";
+import messagesPic from "../../images/cf_messages.png";
+import Footer from "../../components/Footer.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
