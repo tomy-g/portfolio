@@ -4,9 +4,27 @@ import downloadIcon from "../assets/download-icon-white.svg";
 import "../styles/navigationMobile.css";
 import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
+import { IconFileFilled, IconWorld } from "@tabler/icons-react";
+import { useTranslatedPath } from "../i18n/utils";
 
-function NavigationMobile ({ pages, pathname }) {
+function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: string, pathname?: string }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const translatePath = useTranslatedPath(lang as "en" | "es");
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    if(lang === 'es') {
+      link.href = '/files/CV ES.pdf';
+      link.download = 'CV ES.pdf';
+    } else {
+      link.href = '/files/CV EN.pdf';
+      link.download = 'CV EN.pdf';
+    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  
 
   const toogleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -41,15 +59,15 @@ function NavigationMobile ({ pages, pathname }) {
             </li>
           ))}
           <li key="resume">
-            <a className="icon">
-              <img src={downloadIcon.src} />
-              Resume
+            <a onClick={handleDownload} className="icon">
+              <IconFileFilled height={21} />
+              <span>{lang === 'en' ? 'Resume' : 'CV'}</span>
             </a>
           </li>
-          <li key="resume">
-            <a className="icon">
-              <img src={languageIcon.src} />
-              en | es
+          <li key="language">
+            <a href={translatePath('/', lang === 'en' ? 'es' : 'en')} className="icon">
+              <IconWorld height={21} />
+              {lang === 'en' ? 'Es' : 'En'}
             </a>
           </li>
         </ul>

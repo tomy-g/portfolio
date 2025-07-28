@@ -1,31 +1,123 @@
 ---
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import tomy from "../images/tomy.png";
+import educationIcon from "../assets/education.svg";
+import workIcon from "../assets/work.svg";
+import { URLS } from "../constants/urls";
+import AngularIcon from "../icons/AngularIcon";
+import ReactIcon from "../icons/ReactIcon";
+import NextIcon from "../icons/NextIcon";
+import AstroIcon from "../icons/AstroIcon";
+import HtmlIcon from "../icons/HtmlIcon";
+import CssIcon from "../icons/CSSIcon";
+import JsIcon from "../icons/JsIcon";
+import TsIcon from "../icons/TsIcon";
+import SassIcon from "../icons/SassIcon";
+import NodeIcon from "../icons/NodeIcon";
+import FigmaIcon from "../icons/FigmaIcon";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<section class="section section--2">
-    <div class="info">
-        <div class="data">
-            <h2>A little about me.</h2>
-            <div class="about">
-                <div class="text">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut facilis
-                        dicta quas. Quisquam est error deserunt, pariatur molestias doloremque
-                        illum corporis eos ratione iste eaque hic unde voluptas accusamus
-                        laudantium?
-                    </p>
-                    <div class="timeline"></div>
-                </div>
-                <aside>
-                    <!-- <Image/> -->
-                </aside>
+<section id="about" class="section section--2">
+  <div class="info">
+    <div class="data">
+      <h2>{t("ABOUT.TITLE")}</h2>
+      <div class="about">
+        <div class="text">
+          <div>
+            <p>
+              {t("ABOUT.DESCRIPTION.1")}
+            </p>
+            <p style="margin-top: 1.5rem;">
+              {t("ABOUT.DESCRIPTION.2")}
+            </p>
+            <p style="margin-top: 1.5rem;">
+              {t("ABOUT.DESCRIPTION.3")}
+            </p>
+          </div>
+          <div class="timeline">
+            <div class="education">
+              <div class="header">
+                <Image src={educationIcon} alt="Icon of a school hat" />
+                <h3>{t('ABOUT.STUDIES')} <a>{t('ABOUT.UNIVERSITY')}</a></h3>
+              </div>
+              <span>{t('ABOUT.TIMESTUDIES')}</span>
             </div>
-            
+            <div class="work">
+              <div class="header">
+                <Image src={workIcon} alt="Icon of a school hat" />
+                <h3>{t('ABOUT.LASTROLE')} <a>{t('ABOUT.LASTCOMPANY')}</a></h3>
+              </div>
+              <span>{t('ABOUT.TIMECOMPANY')}</span>
+            </div>
+          </div>
         </div>
+        <aside>
+          <Image class="photo" src={tomy} alt="Photo of Tomás Goizueta" />
+        </aside>
+      </div>
+      <ul class="stack">
+        <li>
+          <a href={URLS.REACT} target="_blank" rel="noopener noreferrer">
+            <ReactIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.ANGULAR} target="_blank" rel="noopener noreferrer">
+            <AngularIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+            <NextIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.ASTRO} target="_blank" rel="noopener noreferrer">
+            <AstroIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.HTML} target="_blank" rel="noopener noreferrer">
+            <HtmlIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.CSS} target="_blank" rel="noopener noreferrer">
+            <CssIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.JS} target="_blank" rel="noopener noreferrer">
+            <JsIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.TS} target="_blank" rel="noopener noreferrer">
+            <TsIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.SASS} target="_blank" rel="noopener noreferrer">
+            <SassIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.NODE} target="_blank" rel="noopener noreferrer">
+            <NodeIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.FIGMA} target="_blank" rel="noopener noreferrer">
+            <FigmaIcon />
+          </a>
+        </li>
+      </ul>
     </div>
+    <div class="ellipse"></div>
+  </div>
 </section>
 
 <style>
@@ -50,42 +142,170 @@ const t = useTranslations(lang);
     flex-direction: row;
     justify-content: flex-end;
     height: 100vh;
-    margin-bottom: 20rem;
-
   }
 
-  .info{
+  .info {
     display: inline-flex;
     position: relative;
     flex-direction: row;
     margin-top: auto;
     margin-bottom: auto;
     align-items: center;
+    margin-left: 10vw;
+
+  }
+
+  .ellipse {
+    width: 415px;
+    height: 500px;
+    border-radius: 50%;
+    position: absolute;
+    background: linear-gradient(
+      0deg,
+      rgba(126, 25, 254, 0) 0%,
+      rgba(107, 44, 214, 1) 100%
+    );
+    filter: blur(70px);
+    z-index: -100;
+    left: -15rem;
+    opacity: 0.6;
   }
 
   h2 {
     background: var(--fade-gray);
     background-clip: text;
-    -webkit-backgrounfd-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
-    background-clip: text;
     font-size: 3rem;
   }
-  data {
+  .data {
     display: flex;
     flex-direction: column;
   }
 
-  .about{
+  .about {
+    margin-top: 3.25rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  p{
-    max-width: 481px;
-    margin-top: 3.25rem;
+  p {
+    max-width: 406px;
+    color: var(--light-gray, #a5a3b7);
+    font-size: 1.125rem;
+  }
 
+  .photo {
+    width: 100%;
+    max-width: 247px;
+    min-width: 247px;
+    height: 100%;
+    border-radius: 5px;
+    mask-image: linear-gradient(to left, black 60%, transparent);
+  }
+  aside {
+    width: 37.42%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 1.5rem;
+  }
+
+  .timeline {
+    margin-top: 2.875rem;
+  }
+  .education {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+    padding-left: 1rem;
+    padding-bottom: 0.875rem;
+    border-left: 2px solid var(--blue-vibrant, #0e92f1);
+  }
+
+  .education .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .education h3 {
+    font-size: 0.875rem;
+    color: var(--white-primary, #ebeaf3);
+    font-weight: 500;
+  }
+  .education span {
+    font-size: 0.8125rem;
+    color: var(--light-gray, #a5a3b7);
+  }
+  .education a {
+    color: var(--blue-vibrant, #0e92f1);
+  }
+
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1875rem;
+    padding-left: 1rem;
+    padding-bottom: 0.875rem;
+    border-left: 2px solid var(--pink-primary, #fe19aa);
+  }
+  .work .header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .work h3 {
+    font-size: 0.875rem;
+    color: var(--white-primary, #ebeaf3);
+    font-weight: 500;
+  }
+  .work span {
+    font-size: 0.8125rem;
+    color: var(--light-gray, #a5a3b7);
+  }
+  .work a {
+    color: var(--pink-primary, #fe19aa);
+  }
+
+  .stack {
+    margin-top: 2.875rem;
+    margin-bottom: 8rem;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  @media (width < 50em) {
+    .section--2 {
+      width: 90%;
+      justify-content: flex-start;
+    }
+    aside {
+      display: none;
+    }
+
+    .about {
+      margin-top: 2.375rem;
+    }
+
+    .ellipse {
+      left: -25rem;
+    }
+
+    .stack {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
   }
 </style>

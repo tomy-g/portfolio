@@ -1,0 +1,19 @@
+.logo {
+  fill: var(--light-gray, #a5a3b7);
+  transform:scale(1);
+  transition: transform 150ms cubic-bezier(.4,0,.2,1),
+              fill      150ms cubic-bezier(.4,0,.2,1);
+}
+
+.logo:hover {
+  fill:var(--white-primary, #ebeaf3);
+  transform:scale(1.1);
+}
+
+@media (width < 50em) {
+  .logo {
+    /* width: 5vw; */
+    /* max-width: 1.5rem; */
+    width: 2rem;
+  }
+}

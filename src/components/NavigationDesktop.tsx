@@ -9,13 +9,27 @@ interface Props {
 
 const NavigationDesktop = ({pages, lang}: Props) => {
   const translatePath = useTranslatedPath(lang as "en" | "es");
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    if(lang === 'es') {
+      link.href = '/files/CV ES.pdf';
+      link.download = 'CV ES.pdf';
+    } else {
+      link.href = '/files/CV EN.pdf';
+      link.download = 'CV EN.pdf';
+    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   
   return (
     <nav className="desktop-nav">
       <ul className="pages">
         {pages.map((page) => (
           <li key={page}>
-            <a>{page}</a>
+            <a href={`/#${page.toLowerCase()}`}>{page}</a>
           </li>
         ))}
       </ul>
@@ -23,11 +37,11 @@ const NavigationDesktop = ({pages, lang}: Props) => {
         <li>
           <a className="translate" href={translatePath('/', lang === 'en' ? 'es' : 'en')}>
             <IconWorld color="var(--light-gray)" stroke={1.5} />
-            Es
+            {lang === 'en' ? 'Es' : 'En'}
           </a>
         </li>
         <li>
-          <button className="resume" >
+          <button onClick={handleDownload} className="resume" >
             <IconFileFilled color="var(--light-gray)" height={21} />
           </button>
         </li>

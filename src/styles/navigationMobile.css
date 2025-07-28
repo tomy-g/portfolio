@@ -5,16 +5,15 @@
   justify-content: end;
   position: relative;
   width: 100%;
-
-  &::before {
-    position: absolute;
-    background: linear-gradient(180deg, #05021ed3 10%, #05021e00 100%);
-    z-index: 10;
-    inset: 0;
-    content: "";
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
+}
+.container::before {
+  position: absolute;
+  background: linear-gradient(180deg, #05021e 10%, #05021e00 100%);
+  z-index: 10;
+  inset: 0;
+  content: "";
+  /* backdrop-filter: blur(10px); */
+  /* -webkit-backdrop-filter: blur(10px); */
 }
 
 .mobile-nav {
@@ -25,17 +24,17 @@
   border-radius: 8px;
   border: 1px solid var(--medium-gray, #6a687a);
   z-index: 10;
-  &::before {
-    position: absolute;
-    content: "";
-    inset: 0;
-    border-radius: 8px;
-    background: #30050527;
-    border: 1px solid var(--dark-gray, #080530);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: -1;
-  }
+}
+.mobile-nav::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  border-radius: 8px;
+  background: #30050527;
+  border: 1px solid var(--dark-gray, #080530);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: -1;
 }
 
 .mobile-pages {
@@ -46,37 +45,38 @@
   list-style-type: none;
   z-index: 10;
   gap: 1.75rem;
+  padding: 0;
+}
+.mobile-pages li {
+  list-style: none;
+  display: flex;
+}
+.mobile-pages li:first-child {
+  margin-top: 1rem;
+}
 
-  li {
-    list-style: none;
-    display: flex;
-  }
-  li:first-child {
-    margin-top: 1rem;
-  }
+.mobile-pages li:last-child {
+  margin-bottom: 1rem;
+}
 
-  li:last-child {
-    margin-bottom: 1rem;
-  }
+.mobile-pages a {
+  text-align: center;
+  color: var(--white-primary, #ebeaf3);
+  font-weight: 500;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
 
-  a {
-    text-align: center;
-    color: var(--white-primary, #ebeaf3);
-    font-weight: 500;
-    padding: 1rem 2rem;
-    cursor: pointer;
-  }
+.mobile-pages .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  img {
-    fill: var(--white-primary, #ebeaf3);
-  }
+.mobile-pages img {
+  fill: var(--white-primary, #ebeaf3);
 }
 
 .menu {

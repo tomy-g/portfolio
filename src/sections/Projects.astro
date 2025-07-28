@@ -1,0 +1,378 @@
+---
+import { URLS } from "../constants/urls";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import AngularIcon from "../icons/AngularIcon";
+import NextIcon from "../icons/NextIcon";
+import ReactIcon from "../icons/ReactIcon";
+import ExternalIcon from "../icons/ExternalIcon";
+import GithubIcon from "../icons/GithubIcon";
+import NodeIcon from "../icons/NodeIcon";
+import { Image } from "astro:assets";
+import nextfive from "../images/nextfive_ss.png";
+import classfolder from "../images/cf_thumbnail.png";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<section id={id} class="section section--4">
+  <div class="info">
+    <div class="data">
+      <h2>{t("PROJECTS.TITLE")}</h2>
+      <ul class="projects">
+        <li class="project">
+            <div class="picture">
+              <a href={ lang === "es" ? "/es/classfolder" : "/classfolder"}>
+                <Image class="screenshot" src={classfolder} alt="Screenshot of NextFive"/>
+              </a>
+            </div>
+            <div class="card">
+              <h3>{t("PROJECTS.1.TITLE")}</h3>
+              <p>{t("PROJECTS.1.DESCRIPTION")}</p>
+              <div class="icon-groups">
+                <ul class="stack">
+                  <li>
+                    <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+                      <NextIcon width={28.78} height={28.78}/>
+                    </a>
+                  </li>
+                  <li>
+                    <a href={URLS.REACT} target="_blank" rel="noopener noreferrer">
+                      <ReactIcon width={28.78} height={28.78} />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={URLS.NODE} target="_blank" rel="noopener noreferrer">
+                      <NodeIcon width={28.78} height={28.78} />
+                    </a>
+                  </li>
+                  <li>
+                </ul>
+                <ul class="links">
+                  <li>
+                    <a href={ lang === "es" ? "/es/classfolder" : "/classfolder"} rel="noopener noreferrer">
+                      <ExternalIcon/>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/tomy-g/classfolder-front" target="_blank" rel="noopener noreferrer">
+                      <GithubIcon/>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </li>
+        <li class="project">
+            <div class="picture">
+              <a href="https:/nextfive.vercel.app">
+                <Image class="screenshot" src={nextfive} alt="Screenshot of NextFive"/>
+              </a>
+            </div>
+            <div class="card">
+              <h3>{t("PROJECTS.2.TITLE")}</h3>
+              <p>{t("PROJECTS.2.DESCRIPTION")}</p>
+              <div class="icon-groups">
+                <ul class="stack">
+                  <li>
+                    <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+                      <NextIcon width={28.78} height={28.78}/>
+                    </a>
+                  </li>
+                  <li>
+                    <a href={URLS.REACT} target="_blank" rel="noopener noreferrer">
+                      <ReactIcon width={28.78} height={28.78} />
+                    </a>
+                  </li>
+                  <!-- <li>
+                    <a href={URLS.NEXT} target="_blank" rel="noopener noreferrer">
+                      <AngularIcon width={29} height={29} />
+                    </a>
+                  </li> -->
+                  <li>
+                </ul>
+                <ul class="links">
+                  <li>
+                    <a href="https://nextfive.vercel.app/" target="_blank" rel="noopener noreferrer">
+                      <ExternalIcon/>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/tomy-g/NextFive" target="_blank" rel="noopener noreferrer">
+                      <GithubIcon/>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </li>
+        <li>
+          <h3 class="temporary">
+            ✨ {t("PROJECTS.TEMPORARY_MESSAGE")}
+          </h3>
+        </li>
+      </ul>
+    </div>
+    <div class="ellipse"></div>
+  </div>
+</section>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    color: var(--white-primary);
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  .section {
+    height: 100vh;
+  }
+
+  .section--4 {
+    width: calc(50vw + 14rem + 9.93rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100vh;
+  }
+
+  .info {
+    display: inline-flex;
+    position: relative;
+    flex-direction: row;
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    align-items: center;
+    margin-left: 10vw;
+  }
+
+  .ellipse {
+    width: 812px;
+    height: 597px;
+    border-radius: 50%;
+    position: absolute;
+    filter:background-size: 400% 100%;
+    background-position: 0px 0px;
+    background-image: conic-gradient(from 155deg at 28% 60%, #570EF1 0%, #0E37F100 100%);
+    filter: blur(80px);
+    z-index: -100;
+    left: 15rem;
+    top: 12rem;
+  }
+
+  h2 {
+    background: var(--fade-gray);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    background-clip: text;
+    font-size: 3rem;
+  }
+  .data {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .projects{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 3.25rem;
+    align-items: center;
+  }
+
+  .temporary{
+    margin-top: 3rem;
+    font-weight: 500;
+  }
+
+  .project{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2.625rem;
+  }
+
+  .project:nth-child(2n){
+    flex-direction: row-reverse;
+
+    .card{
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-left: 1px solid #ffffff19;
+    }
+  }
+
+  .picture{
+    width: 442px;
+    /* height: 268px; */
+    background-color: var(--black-primary,  #060329);
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+    transition: transform 300ms cubic-bezier(.4,0,.2,1);
+    object-fit: cover;
+  }
+
+  .picture:hover{
+    transform: scale(1.05);
+  }
+
+  .screenshot{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  .card{
+    position: relative;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid #ffffff19;
+    border-left: none;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    padding-left: 2rem;
+    padding-top: 1.06rem;
+    padding-right: 1.81rem;
+  }
+  .card::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: -100;
+    background-color: #ffffff08;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    top: 0;
+    left: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .card h3{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white-primary, #EBEAF3);
+  }
+
+  .card p {
+    margin-top: 1.06rem;
+    font-size: 0.9375rem;
+    color: var(--light-gray, #A5A3B7);
+    max-width: 20rem;
+    z-index: 1000;
+  }
+
+
+  .icon-groups{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.31rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .stack{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .links{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+
+  /* @media (width < 75em) {
+
+    .section--4 {
+      width: calc(50vw + 14rem);
+    }
+
+    .info{
+      margin-left: 10vw;
+    }
+
+    .ellipse {
+      left: 0;
+    }
+
+    .project{
+      flex-direction: column;
+    }
+    .card{
+      border: 1px solid #ffffff19;
+      border-top: none; 
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .card::before{
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  } */
+
+  @media (width < 50em) {
+    .section--4 {
+      width: 90%;
+      justify-content: flex-start;
+    }
+
+    .project, .project:nth-child(2n){
+      /* width: 70%; */
+      margin-left: 30%;
+      margin-right: 30%;
+      flex-direction: column;
+    }
+
+    .picture {
+      width: 18.6rem;
+      height: 11.3rem;
+      border-radius: 6px;
+    }
+
+    .stack > li{
+      transform: scale(0.8);
+    }
+    .stack{
+      gap: 0.5rem;
+    }
+
+    .ellipse {
+      left: 0;
+    }
+
+    .card{
+      border: 1px solid #ffffff19;
+      border-top: none; 
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .card::before{
+      border-radius: 0px;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  }
+</style>

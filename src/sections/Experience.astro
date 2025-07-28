@@ -1,0 +1,203 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { URLS } from "../constants/urls";
+import AngularIcon from "../icons/AngularIcon";
+import HtmlIcon from "../icons/HtmlIcon";
+import CssIcon from "../icons/CSSIcon";
+import TsIcon from "../icons/TsIcon";
+import SassIcon from "../icons/SassIcon";
+import NodeIcon from "../icons/NodeIcon";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="exp" class="section section--3">
+  <div class="info">
+    <div class="data">
+      <h2>{t("EXPERIENCE.TITLE")}</h2>
+      <div class="timeline">
+        <div class="work">
+          <h3>{t("EXPERIENCE.POSITION.1.TITLE")} <a class="company-link" href="https://babelgroup.com/">{t("EXPERIENCE.POSITION.1.COMPANY")}</a></h3>
+          <span>{t("EXPERIENCE.POSITION.1.TIME")}</span>
+        </div>
+        <p class="desc">
+          {t("EXPERIENCE.POSITION.1.DESCRIPTION.1")}
+          <br />
+          <br />
+          {t("EXPERIENCE.POSITION.1.DESCRIPTION.2")}
+        </p>
+      </div>
+      <ul class="stack">
+        <li>
+          <a href={URLS.ANGULAR} target="_blank" rel="noopener noreferrer">
+            <AngularIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.HTML} target="_blank" rel="noopener noreferrer">
+            <HtmlIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.CSS} target="_blank" rel="noopener noreferrer">
+            <CssIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.TS} target="_blank" rel="noopener noreferrer">
+            <TsIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.SASS} target="_blank" rel="noopener noreferrer">
+            <SassIcon />
+          </a>
+        </li>
+        <li>
+          <a href={URLS.NODE} target="_blank" rel="noopener noreferrer">
+            <NodeIcon />
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="ellipse"></div>
+  </div>
+</section>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    color: var(--white-primary);
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  .company-link {
+    color: var(--pink-primary, #fe19aa);
+    text-decoration: none;
+  }
+
+  .section {
+    height: 100vh;
+  }
+
+  .section--3 {
+    width: calc(50vw + 14rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100vh;
+  }
+
+  .info {
+    display: inline-flex;
+    position: relative;
+    flex-direction: row;
+    margin-top: auto;
+    margin-bottom: auto;
+    align-items: center;
+    margin-left: 10vw;
+  }
+
+  .ellipse {
+    width: 415px;
+    height: 500px;
+    border-radius: 50%;
+    position: absolute;
+    background: linear-gradient(0deg, rgba(126, 25, 254, 0) 0%, #2e0ef1 100%);
+    filter: blur(100px);
+    z-index: -100;
+    left: 15rem;
+    top: 5rem;
+  }
+
+  h2 {
+    background: var(--fade-gray);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    background-clip: text;
+    font-size: 3rem;
+  }
+  .data {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline {
+    margin-top: 3.25rem;
+  }
+
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: 1.625rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--pink-primary, #fe19aa);
+  }
+
+  .work p {
+    max-width: 406px;
+    color: var(--light-gray, #a5a3b7);
+    font-size: 1.125rem;
+  }
+
+  .work h3 {
+    font-size: 1.25rem;
+    color: var(--white-primary, #ebeaf3);
+    font-weight: 400;
+  }
+  .work span {
+    font-size: 1.125rem;
+    color: var(--light-gray, #a5a3b7);
+    margin-bottom: 1.625rem;
+  }
+  .work a {
+    color: var(--pink-primary, #fe19aa);
+  }
+
+  .desc {
+    max-width: 406px;
+    color: var(--light-gray, #a5a3b7);
+    font-size: 1.125rem;
+    margin-top: 3.375rem;
+    margin-right: 15.75rem;
+  }
+  .stack {
+    max-width: 406px;
+    flex-shrink: 0;
+    margin-top: 2.875rem;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  @media (width < 50em) {
+    .section--3 {
+      width: 90%;
+      justify-content: flex-start;
+    }
+    .about {
+      margin-top: 2.375rem;
+    }
+
+    .desc {
+      margin-right: 0;
+    }
+
+    .stack {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .ellipse {
+      left: 25rem;
+    }
+  }
+</style>

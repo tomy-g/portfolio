@@ -1,0 +1,132 @@
+---
+import { URLS } from "../constants/urls";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import AngularIcon from "../icons/AngularIcon";
+import NextIcon from "../icons/NextIcon";
+import ReactIcon from "../icons/ReactIcon";
+import ExternalIcon from "../icons/ExternalIcon";
+import GithubIcon from "../icons/GithubIcon";
+import { Image } from "astro:assets";
+import nextfive from "../images/nextfive_ss.png";
+import Footer from "../components/Footer.astro";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<section id={id} class="section section--5">
+  <div class="info">
+    <h2>{t('CONTACT.TITLE')}</h2>
+    <a href="mailto:tomasgoizuetadp@gmail.com">
+      <button class="cta">
+        <span>{t('CONTACT.CTA')}</span>
+      </button>
+    </a>
+  </div>
+  <Footer />
+</section>
+
+<style>
+  @keyframes gradient-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    color: var(--white-primary);
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  .section {
+    height: 100vh;
+  }
+
+  .section--5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    gap: 4.18rem;
+  }
+
+  h2 {
+    background: var(--fade-gray);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    background-clip: text;
+    font-size: 3rem;
+  }
+
+  .cta {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background:
+      linear-gradient(var(--black-primary), var(--black-primary)) padding-box,
+      linear-gradient(
+          90deg,
+          var(--pink-primary),
+          var(--purple-primary),
+          var(--pink-primary)
+        )
+        0 0 / var(--bg-size) 100% border-box;
+    background-size: 200% 200%;
+    animation: gradient-bg 8s linear infinite;
+    border-radius: 10px;
+    padding: 0.81rem 3.625rem;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta span {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 29px;
+    background: linear-gradient(
+        90deg,
+        var(--pink-primary),
+        var(--purple-primary),
+        var(--pink-primary)
+      )
+      0 0 / var(--bg-size);
+    background-size: 200% 200%;
+    animation: gradient-bg 8s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    background-clip: text;
+    text-fill-color: transparent;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta:hover {
+    transform: scale(1.1);
+  }
+
+  .cta:hover span {
+    transform: scale(1.1);
+  }
+
+  @media (width < 50em) {
+    /* .section--5 {
+      width: 90%;
+      justify-content: flex-start;
+    } */
+  }
+</style>
