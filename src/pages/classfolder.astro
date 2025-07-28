@@ -1,0 +1,342 @@
+---
+import Header from "../components/Header.astro";
+import Home from "../sections/Home.astro";
+import "../styles/global.css";
+import "@fontsource-variable/inter";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import About from "../sections/About.astro";
+import Experience from "../sections/Experience.astro";
+import Projects from "../sections/Projects.astro";
+import Contact from "../sections/Contact.astro";
+import { ArrowLeft } from "lucide-react";
+import { Calendar } from "lucide-astro";
+import { Image } from "astro:assets";
+import landingPic from "../images/cf_landing.png";
+import dashboardPic from "../images/cf_dashboard.png";
+import filePic from "../images/cf_file.png";
+import threadPic from "../images/cf_thread.png";
+import messagesPic from "../images/cf_messages.png";
+import Footer from "../components/Footer.astro";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{t("SITE.TITLE")}</title>
+    <meta name="description" content={t("SITE.DESCRIPTION")} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Tomy Goizueta" />
+  </head>
+  <body>
+    <Header
+      pages={[
+        t("NAVBAR.ABOUT"),
+        t("NAVBAR.EXPERIENCE"),
+        t("NAVBAR.PROJECTS"),
+        t("NAVBAR.CONTACT"),
+      ]}
+    />
+    <main class="main">
+      <article class="content">
+        <a href="/#projects" class="back-link">
+          <ArrowLeft className="arrow-icon" />
+          Back to portfolio
+        </a>
+        <h1>{t("CLASSFOLDER.TITLE")}</h1>
+        <h2>{t("CLASSFOLDER.DESCRIPTION")}</h2>
+        <div class="tag-list">
+          <span class="tag">{t("CLASSFOLDER.TAGS")[0]}</span>
+          <span class="tag">{t("CLASSFOLDER.TAGS")[1]}</span>
+          <span class="tag">{t("CLASSFOLDER.TAGS")[2]}</span>
+        </div>
+        <span class="date">
+          <Calendar className="calendar-icon" />
+          {t("CLASSFOLDER.DATE")}
+        </span>
+        <p class="regular-text">
+          {t("CLASSFOLDER.INTRODUCTION.1")}
+        </p>
+        <p class="regular-text">
+          {t("CLASSFOLDER.INTRODUCTION.2")}
+        </p>
+        <Image class="screenshot" src={landingPic} alt="Landing page" />
+        <section>
+          <h3 class="title-section">{t("CLASSFOLDER.FEATURES.TITLE")}</h3>
+          <ul class="features-list">
+            {
+              [1, 2, 3, 4, 5, 6, 7].map((i) => (
+                <li>{t(`CLASSFOLDER.FEATURES.LIST.${i}` as any)}</li>
+              ))
+            }
+          </ul>
+          <Image class="screenshot" src={dashboardPic} alt="Dashboard page" />
+        </section>
+        <section>
+          <h3 class="title-section">{t("CLASSFOLDER.STACK.TITLE")}</h3>
+          <ul class="features-list">
+            {
+              [1, 2, 3, 4, 5].map((i) => (
+                <li>{t(`CLASSFOLDER.STACK.LIST.${i}` as any)}</li>
+              ))
+            }
+          </ul>
+          <Image class="screenshot" src={filePic} alt="File page" />
+        </section>
+        <section>
+          <h3 class="title-section">{t("CLASSFOLDER.PROCESS.TITLE")}</h3>
+          <p class="regular-text process">
+            {t("CLASSFOLDER.PROCESS.DESCRIPTION")}
+          </p>
+          <Image class="screenshot" src={threadPic} alt="Thread page" />
+        </section>
+        <section>
+          <h3 class="title-section">{t("CLASSFOLDER.CHALLENGES.TITLE")}</h3>
+          <p class="regular-text process">
+            {t("CLASSFOLDER.CHALLENGES.DESCRIPTION.1")}
+          </p>
+          <p class="regular-text">
+            {t("CLASSFOLDER.CHALLENGES.DESCRIPTION.2")}
+          </p>
+          <Image class="screenshot" src={messagesPic} alt="Messages page" />
+        </section>
+      </article>
+      <section class="projects">
+        <a href="/#projects">
+          <button class="cta">
+            <span>{t("CLASSFOLDER.CTA")}</span>
+          </button>
+        </a>
+        <Footer />
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    color: var(--white-primary);
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--black-primary);
+    overflow-x: hidden;
+    /* position: relative; */
+  }
+
+  .content {
+    margin-left: 29.16666vw;
+    margin-right: 29.16666vw;
+    padding-top: 8rem;
+  }
+
+  .back-link {
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--light-gray);
+    margin-bottom: 3.125rem;
+  }
+
+  .back-link:hover {
+    color: var(--white-primary);
+    text-decoration: underline;
+  }
+
+  .arrow-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    color: inherit;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: var(--white-primary);
+    font-weight: 600;
+
+    display: inline-block;
+    background: linear-gradient(270deg, #fe19aa 0%, #0e37f1 250%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: var(--white-primary);
+    font-weight: 500;
+  }
+
+  .tag-list {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    background-color: var(--gray);
+    border-radius: 9999px;
+    border: 2px solid var(--blue-vibrant);
+    color: var(--blue-vibrant);
+    /* padding: 0.5rem 1rem; */
+    padding: 0.4375rem 0.875rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .date {
+    display: flex;
+    align-items: center;
+    font-size: 1.125rem;
+    color: var(--light-gray);
+    margin-top: 1.5rem;
+    margin-bottom: 2.75rem;
+  }
+
+  .calendar-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-right: 0.5rem;
+    color: var(--light-gray);
+  }
+
+  .regular-text {
+    font-size: 1.125rem;
+    color: var(--white-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .screenshot {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+  }
+
+  .title-section {
+    font-size: 2rem;
+    color: var(--white-primary);
+    font-weight: 500;
+    margin-top: 3rem;
+    position: relative;
+    text-decoration: none;
+    display: inline-flex;
+  }
+
+  .title-section::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(270deg, #fe19aa 0%, #0e37f1 250%);
+    bottom: -8px;
+    left: 0;
+    overflow: hidden;
+  }
+
+  .features-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 2rem;
+
+    li {
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  .process {
+    margin-top: 2rem;
+  }
+
+  .cta {
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background:
+      linear-gradient(var(--black-primary), var(--black-primary)) padding-box,
+      linear-gradient(
+          90deg,
+          var(--pink-primary),
+          var(--purple-primary),
+          var(--pink-primary)
+        )
+        0 0 / var(--bg-size) 100% border-box;
+    background-size: 200% 200%;
+    animation: gradient-bg 8s linear infinite;
+    border-radius: 10px;
+    padding: 0.81rem 3.625rem;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 18rem;
+    margin-bottom: 24rem;
+  }
+
+  .cta span {
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 29px;
+    background: linear-gradient(
+        90deg,
+        var(--pink-primary),
+        var(--purple-primary),
+        var(--pink-primary)
+      )
+      0 0 / var(--bg-size);
+    background-size: 200% 200%;
+    animation: gradient-bg 8s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    background-clip: text;
+    text-fill-color: transparent;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta:hover {
+    transform: scale(1.1);
+  }
+
+  .cta:hover span {
+    transform: scale(1.1);
+  }
+
+  .projects {
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  @media (width < 100em) {
+    .content {
+      margin-left: 10vw;
+      margin-right: 10vw;
+    }
+  }
+
+  @media (width < 50em) {
+    .content {
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
+  }
+</style>
