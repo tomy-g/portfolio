@@ -38,9 +38,9 @@ const t = useTranslations(lang);
         >.
       </p>
       <div class="buttons">
-        <button class="cta">
+        <a href={lang === "es" ? "/es#projects" : "#projects"} class="cta">
           <span>{t("HOME.CTA")}</span>
-        </button>
+        </a>
         <a href="https://github.com/tomy-g" class="social-button">
           <Github stroke-width={1.5} stroke="#a5a3b7" size={30} />
         </a>

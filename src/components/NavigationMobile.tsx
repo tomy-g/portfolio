@@ -53,11 +53,26 @@ function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: s
         style={{ top: isMenuOpen ? "4rem" : "-75vh", opacity: isMenuOpen ? 1 : 0 }}
       >
         <ul className="mobile-pages">
-          {pages.map((page) => (
+          {pages.map(page => {
+          const translatedPage =
+            lang === 'es'
+              ? page === 'Acerca'
+                ? 'about'
+                : page === 'Proyectos'
+                ? 'projects'
+                : page === 'Contacto'
+                ? 'contact'
+                : page.toLowerCase()
+              : page.toLowerCase()
+
+          return (
             <li key={page}>
-              <a>{page}</a>
+              <a onClick={() => setIsMenuOpen(false)} href={`/${lang === 'es' ? 'es/' : ''}#${translatedPage}`}>
+                {page}
+              </a>
             </li>
-          ))}
+          )
+        })}
           <li key="resume">
             <a onClick={handleDownload} className="icon">
               <IconFileFilled height={21} />
