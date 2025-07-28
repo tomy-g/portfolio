@@ -106,7 +106,7 @@ export const ui = {
     'HOME.TITLE': 'TOMÁS GOIZUETA',
     'HOME.DESCRIPTION':
       'Ingeniero de Software con 1 año de experiencia como desarrollador Front-End. Mi pasión de toda la vida por el diseño se ha combinado con mi interés en el desarrollo de software para crear productos atractivos y responsivos.',
-    'HOME.HIGHLIGHT': 'Viviendo en Málaga',
+    'HOME.HIGHLIGHT': 'Viviendo en ',
     'HOME.LOCATION': 'Málaga',
     'HOME.CTA': 'PROYECTOS',
 
