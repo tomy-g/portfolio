@@ -1,13 +1,16 @@
 import '../styles/navigationDesktop.css'
 import { IconFileFilled, IconWorld } from '@tabler/icons-react'
 import { getLangFromUrl, useTranslatedPath } from '../i18n/utils'
+import { defaultLang } from '../i18n/ui'
 
 interface Props {
   pages: string[]
   lang: string
+  pathname?: string
 }
 
-const NavigationDesktop = ({ pages, lang }: Props) => {
+const NavigationDesktop = ({ pages, lang, pathname }: Props) => {
+  const route = pathname ? (lang === defaultLang ? pathname.split('/')[1] : pathname.split('/')[2]) : '/'
   const translatePath = useTranslatedPath(lang as 'en' | 'es')
 
   const handleDownload = () => {
@@ -52,7 +55,7 @@ const NavigationDesktop = ({ pages, lang }: Props) => {
         <li>
           <a
             className='translate'
-            href={translatePath('/', lang === 'en' ? 'es' : 'en')}
+            href={translatePath(route, lang === 'en' ? 'es' : 'en')}
           >
             <IconWorld color='var(--light-gray)' stroke={1.5} />
             {lang === 'en' ? 'Es' : 'En'}
