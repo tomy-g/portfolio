@@ -6,8 +6,10 @@ import languageIcon from "../assets/language-icon.svg";
 import { useState } from "react";
 import { IconFileFilled, IconWorld } from "@tabler/icons-react";
 import { useTranslatedPath } from "../i18n/utils";
+import { defaultLang } from "../i18n/ui";
 
 function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: string, pathname?: string }) {
+  const route = pathname ? (lang === defaultLang ? pathname.split('/')[1] : pathname.split('/')[2]) : '/'
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const translatePath = useTranslatedPath(lang as "en" | "es");
 
@@ -67,7 +69,7 @@ function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: s
 
           return (
             <li key={page}>
-              <a onClick={() => setIsMenuOpen(false)} href={`/${lang === 'es' ? 'es/' : ''}#${translatedPage}`}>
+              <a style={{ textDecoration: 'none' }} onClick={() => setIsMenuOpen(false)} href={`/${lang === 'es' ? 'es/' : ''}#${translatedPage}`}>
                 {page}
               </a>
             </li>
@@ -76,11 +78,11 @@ function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: s
           <li key="resume">
             <a onClick={handleDownload} className="icon">
               <IconFileFilled height={21} />
-              <span>{lang === 'en' ? 'Resume' : 'CV'}</span>
+              <span>CV</span>
             </a>
           </li>
           <li key="language">
-            <a href={translatePath('/', lang === 'en' ? 'es' : 'en')} className="icon">
+            <a href={translatePath(route, lang === 'en' ? 'es' : 'en')} className="icon">
               <IconWorld height={21} />
               {lang === 'en' ? 'Es' : 'En'}
             </a>

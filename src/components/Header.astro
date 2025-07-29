@@ -12,7 +12,7 @@ const lang = getLangFromUrl(Astro.url);
 ---
 
 <header class="header-desktop">
-  <NavigationDesktop pages={pages} lang={lang} client:load />
+  <NavigationDesktop pages={pages} lang={lang} pathname={pathname} client:load />
 </header>
 
 <header class="header-mobile">

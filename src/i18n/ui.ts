@@ -30,10 +30,10 @@ export const ui = {
     'ABOUT.DESCRIPTION.1': `Graduated in Software Engineering and specialized in Web development.`,
     'ABOUT.DESCRIPTION.2': `Continuously learning and keeping up with new technologies to provide efficient and quality solutions.`,
     'ABOUT.DESCRIPTION.3': `I'm also a big fan of design, and I like to prototype my ideas in Figma before coding them.`,
-    'ABOUT.STUDIES': 'Ingeniería del Software en ',
-    'ABOUT.UNIVERSITY': 'Universidad de Málaga',
+    'ABOUT.STUDIES': 'Software Engineering at ',
+    'ABOUT.UNIVERSITY': 'University of Málaga',
     'ABOUT.TIMESTUDIES': '2020 - 2025',
-    'ABOUT.LASTROLE': 'Front-End Software Engineer en ',
+    'ABOUT.LASTROLE': 'Front-End Software Engineer at ',
     'ABOUT.LASTCOMPANY': 'Babel',
     'ABOUT.TIMECOMPANY': '2023 - 2024',
 

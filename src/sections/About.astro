@@ -41,14 +41,14 @@ const t = useTranslations(lang);
             <div class="education">
               <div class="header">
                 <Image src={educationIcon} alt="Icon of a school hat" />
-                <h3>{t('ABOUT.STUDIES')} <a>{t('ABOUT.UNIVERSITY')}</a></h3>
+                <h3>{t('ABOUT.STUDIES')} <a style={{ textDecoration: 'none' }} href="https://www.uma.es/" target="_blank" rel="noopener noreferrer">{t('ABOUT.UNIVERSITY')}</a></h3>
               </div>
               <span>{t('ABOUT.TIMESTUDIES')}</span>
             </div>
             <div class="work">
               <div class="header">
                 <Image src={workIcon} alt="Icon of a school hat" />
-                <h3>{t('ABOUT.LASTROLE')} <a>{t('ABOUT.LASTCOMPANY')}</a></h3>
+                <h3>{t('ABOUT.LASTROLE')} <a style={{ textDecoration: 'none' }} href="https://www.babelgroup.com/" target="_blank" rel="noopener noreferrer">{t('ABOUT.LASTCOMPANY')}</a></h3>
               </div>
               <span>{t('ABOUT.TIMECOMPANY')}</span>
             </div>
@@ -142,8 +142,6 @@ const t = useTranslations(lang);
     flex-direction: row;
     justify-content: flex-end;
     height: 100vh;
-    margin-bottom: 10rem;
-
   }
 
   .info {
@@ -291,6 +289,7 @@ const t = useTranslations(lang);
     .section--2 {
       width: 90%;
       justify-content: flex-start;
+      margin-bottom: 300px !important;
     }
     aside {
       display: none;
@@ -308,6 +307,17 @@ const t = useTranslations(lang);
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.75rem;
+    }
+
+    .work .header, .education .header {
+      align-items: flex-start;
+      img {
+        margin-top: 3px;
+      }
+    }
+
+    .work span, .education span {
+      margin-left: 21px;
     }
   }
 </style>

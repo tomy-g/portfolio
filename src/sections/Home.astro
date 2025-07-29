@@ -10,18 +10,6 @@ const t = useTranslations(lang);
 <section class="section section--1">
   <div class="info">
     <div class="data">
-      <!-- <div class="warning">
-        <p class="warning-1">
-          ❗This portfolio is under construction🚧. Please come back later.
-          Thank you!
-        </p>
-        <p class="warning-2">
-          You can contact me <a
-            class="link-warning"
-            href="mailto:tomasgoizuetadp@gmail.com"><b>here</b></a
-          >
-        </p>
-      </div> -->
       <h1>{t("HOME.TITLE")}</h1>
       <h2>Front-End Developer / UI</h2>
       <p class="description">
@@ -271,6 +259,7 @@ const t = useTranslations(lang);
     .section--1 {
       width: 90%;
       justify-content: flex-start;
+      margin-bottom: 150px !important;
     }
     .info {
       margin-left: 10vw;
@@ -296,6 +285,10 @@ const t = useTranslations(lang);
     .buttons {
       margin-top: 3rem;
       max-width: 20rem;
+    }
+
+    .social-button {
+      margin: 0.625rem 0.5rem;
     }
 
     .cta {
