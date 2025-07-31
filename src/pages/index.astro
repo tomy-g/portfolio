@@ -8,21 +8,22 @@ import About from "../sections/About.astro";
 import Experience from "../sections/Experience.astro";
 import Projects from "../sections/Projects.astro";
 import Contact from "../sections/Contact.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<html lang={lang}>
-  <head>
+<BaseLayout lang={lang}>
+  <Fragment slot="head">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{t("SITE.TITLE")}</title>
     <meta name="description" content={t("SITE.DESCRIPTION")} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Tomy Goizueta" />
-  </head>
-  <body>
+    <meta name="author" content="Tomás Goizueta" />
+  </Fragment>
+  <div>
     <Header
       pages={[
         t("NAVBAR.ABOUT"),
@@ -38,8 +39,8 @@ const t = useTranslations(lang);
       <Projects id="projects" />
       <Contact id="contact" />
     </main>
-  </body>
-</html>
+  </div>
+</BaseLayout>
 
 <style>
   * {
