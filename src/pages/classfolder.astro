@@ -17,12 +17,13 @@ import filePic from "../images/cf_file.png";
 import threadPic from "../images/cf_thread.png";
 import messagesPic from "../images/cf_messages.png";
 import Footer from "../components/Footer.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<html lang={lang}>
-  <head>
+<BaseLayout lang={lang}>
+  <Fragment slot="head">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{t("SITE.TITLE")}</title>
@@ -30,8 +31,8 @@ const t = useTranslations(lang);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="author" content="Tomás Goizueta" />
-  </head>
-  <body>
+  </Fragment>
+  <div>
     <Header
       pages={[
         t("NAVBAR.ABOUT"),
@@ -113,8 +114,8 @@ const t = useTranslations(lang);
         <Footer />
       </section>
     </main>
-  </body>
-</html>
+  </div>
+</BaseLayout>
 
 <style>
   * {

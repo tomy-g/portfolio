@@ -1,0 +1,32 @@
+---
+import Analytics from '@vercel/analytics/astro';
+const { lang } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <Analytics />
+  </body>
+</html>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    color: var(--white-primary);
+    font-family: "Inter Variable", sans-serif;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body, .prev-body {
+    background-color: var(--black-primary);;
+    /* min-height: 300vh; */
+  }
+</style>
