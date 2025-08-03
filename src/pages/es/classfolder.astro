@@ -28,7 +28,7 @@ const t = useTranslations(lang);
     <meta name="viewport" content="width=device-width" />
     <title>{t("SITE.TITLE")}</title>
     <meta name="description" content={t("SITE.DESCRIPTION")} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="author" content="Tomás Goizueta" />
   </Fragment>
@@ -45,7 +45,7 @@ const t = useTranslations(lang);
       <article class="content">
         <a href="/es/#projects" class="back-link">
           <ArrowLeft className="arrow-icon" />
-          Back to portfolio
+          {t("CLASSFOLDER.BACKLINK")}
         </a>
         <h1>{t("CLASSFOLDER.TITLE")}</h1>
         <h2>{t("CLASSFOLDER.DESCRIPTION")}</h2>

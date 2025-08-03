@@ -21,10 +21,10 @@ export const ui = {
     'HOME.SUBTITLE':
       'This is a <0>more complex</0> string to translate, mixed with <1>html elements</1>, such as a <2>a cool link</2>!',
     'HOME.DESCRIPTION':
-      'Software Engineer with 1 year of experience as Front-End developer. My lifelong passion for design has been combined with my interest in software development to create responsive and attractive products.',
+      'Software Engineer with 1 year of experience as a Front-End Developer. My lifelong passion for design combines with my interest in software development to create responsive, visually appealing and reliable products.',
     'HOME.HIGHLIGHT': 'Based in',
     'HOME.LOCATION': 'Málaga',
-    'HOME.CTA': 'MY WORKS',
+    'HOME.CTA': 'PROJECTS',
 
     'ABOUT.TITLE': 'A little about me.',
     'ABOUT.DESCRIPTION.1': `Graduated in Software Engineering and specialized in Web development.`,
@@ -37,6 +37,7 @@ export const ui = {
     'ABOUT.LASTCOMPANY': 'Babel',
     'ABOUT.TIMECOMPANY': '2023 - 2024',
 
+    'CLASSFOLDER.BACKLINK': 'Back to portfolio',
     'CLASSFOLDER.TITLE': 'Class Folder',
     'CLASSFOLDER.DESCRIPTION': 'A Collaborative Platform for Students',
     'CLASSFOLDER.TAGS': ['FULL STACK', 'ACADEMIC PROJECT', 'RESEARCH'],
@@ -81,8 +82,8 @@ export const ui = {
     'EXPERIENCE.POSITION.1.TITLE': 'Front-End Software Engineer @',
     'EXPERIENCE.POSITION.1.COMPANY': 'Babel',
     'EXPERIENCE.POSITION.1.TIME': 'Feb 2023 - Feb 2024',
-    'EXPERIENCE.POSITION.1.DESCRIPTION.1': `Front-end developer working externally on a project for Banco Santander.`,
-    'EXPERIENCE.POSITION.1.DESCRIPTION.2': `I have mainly worked on the front end of the application, although I have also maintained the web component catalog with Stencil and the back-end built with Node.js.`,
+    'EXPERIENCE.POSITION.1.DESCRIPTION.1': `Front-End developer working externally on a project for Banco Santander.`,
+    'EXPERIENCE.POSITION.1.DESCRIPTION.2': `I have mainly worked on the front-end of the application, although I have also maintained the web component catalog with Stencil and the back-end built with Node.js.`,
 
     'PROJECTS.TITLE': 'Personal projects.',
     'PROJECTS.1.TITLE': 'Class Folder',
@@ -90,7 +91,7 @@ export const ui = {
       'My Bachelor thesis project. A collaborative platform for students to share resources and stay organized.',
     'PROJECTS.2.TITLE': 'NextFive',
     'PROJECTS.2.DESCRIPTION':
-      'Movie and series recommendation app built with Chat GPT API to implement personalized recommendations.',
+      'Movie and series recommendation app built with the ChatGPT API to suggest 5 new movies based on 5 movies you like.',
     'PROJECTS.TEMPORARY_MESSAGE': 'More in the making...',
 
     'CONTACT.TITLE': "What's next?",
@@ -105,7 +106,7 @@ export const ui = {
 
     'HOME.TITLE': 'TOMÁS GOIZUETA',
     'HOME.DESCRIPTION':
-      'Ingeniero de Software con 1 año de experiencia como desarrollador Front-End. Mi pasión de toda la vida por el diseño se ha combinado con mi interés en el desarrollo de software para crear productos atractivos y responsivos.',
+      'Ingeniero de Software con 1 año de experiencia como desarrollador Front-End. Mi pasión de toda la vida por el diseño se combina con mi interés en el desarrollo de software para crear productos visualmente atractivos, responsivos y confiables.',
     'HOME.HIGHLIGHT': 'Viviendo en ',
     'HOME.LOCATION': 'Málaga',
     'HOME.CTA': 'PROYECTOS',
@@ -116,7 +117,7 @@ export const ui = {
     'ABOUT.DESCRIPTION.2':
       'Manteniéndome al día con nuevas tecnologías para ofrecer soluciones eficientes y de calidad.',
     'ABOUT.DESCRIPTION.3':
-      'También soy un gran fan del diseño, y me gusta prototipar mis ideas en Figma antes de programarlas.',
+      'Además, soy un gran aficionado al diseño y me gusta prototipar mis ideas en Figma antes de llevarlas a código.',
     'ABOUT.STUDIES': 'Ingeniería del Software en ',
     'ABOUT.UNIVERSITY': 'Universidad de Málaga',
     'ABOUT.TIMESTUDIES': '2020 - 2025',
@@ -124,6 +125,7 @@ export const ui = {
     'ABOUT.LASTCOMPANY': 'Babel',
     'ABOUT.TIMECOMPANY': '2023 - 2024',
 
+    'CLASSFOLDER.BACKLINK': 'Volver al portfolio',
     'CLASSFOLDER.TITLE': 'Class Folder',
     'CLASSFOLDER.DESCRIPTION': 'Una plataforma colaborativa para estudiantes',
     'CLASSFOLDER.TAGS': ['FULL STACK', 'PROYECTO ACADÉMICO', 'INVESTIGACIÓN'],
@@ -186,7 +188,7 @@ export const ui = {
       'Mi proyecto de TFG. Una plataforma colaborativa para que los estudiantes compartan recursos y se mantengan organizados.',
     'PROJECTS.2.TITLE': 'NextFive',
     'PROJECTS.2.DESCRIPTION':
-      'Aplicación de recomendación de películas y series construida con la API de Chat GPT para ofrecer recomendaciones personalizadas.',
+      'Aplicación de recomendación de películas y series creada con la API de ChatGPT, que sugiere 5 películas nuevas basadas en otras 5 que te gusten. ',
     'PROJECTS.TEMPORARY_MESSAGE': 'Más en camino...',
     
     'CONTACT.TITLE': '¿Qué sigue?',
