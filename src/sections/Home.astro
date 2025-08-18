@@ -1,6 +1,7 @@
 ---
 import gradient from "../images/Vector 2-min.png";
-import { Github, Linkedin } from "lucide-astro";
+import Github from "@lucide/astro/icons/github";
+import Linkedin from "@lucide/astro/icons/linkedin";
 import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
@@ -40,7 +41,7 @@ const t = useTranslations(lang);
         </a>
       </div>
     </div>
-    <Image class="gradient" loading="eager" decoding="sync" fetchpriority="high" src={gradient} alt="" />
+    <Image class="gradient" priority src={gradient} alt="" />
   </div>
 </section>
 

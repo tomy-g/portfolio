@@ -8,8 +8,8 @@ import About from "../../sections/About.astro";
 import Experience from "../../sections/Experience.astro";
 import Projects from "../../sections/Projects.astro";
 import Contact from "../../sections/Contact.astro";
-import { ArrowLeft } from "lucide-react";
-import { Calendar } from "lucide-astro";
+import ArrowLeft from "@lucide/astro/icons/arrow-left";
+import Calendar from "@lucide/astro/icons/calendar";
 import { Image } from "astro:assets";
 import landingPic from "../../images/cf_landing.png";
 import dashboardPic from "../../images/cf_dashboard.png";
@@ -44,7 +44,7 @@ const t = useTranslations(lang);
     <main class="main">
       <article class="content">
         <a href="/es/#projects" class="back-link">
-          <ArrowLeft className="arrow-icon" />
+          <ArrowLeft class="arrow-icon" />
           {t("CLASSFOLDER.BACKLINK")}
         </a>
         <h1>{t("CLASSFOLDER.TITLE")}</h1>
@@ -55,7 +55,7 @@ const t = useTranslations(lang);
           <span class="tag">{t("CLASSFOLDER.TAGS")[2]}</span>
         </div>
         <span class="date">
-          <Calendar className="calendar-icon" />
+          <Calendar class="calendar-icon" />
           {t("CLASSFOLDER.DATE")}
         </span>
         <p class="regular-text">
