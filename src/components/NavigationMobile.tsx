@@ -31,7 +31,7 @@ function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: s
   const toogleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
-  
+
   return (
     <div className="container">
       <button
