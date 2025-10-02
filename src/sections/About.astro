@@ -134,7 +134,6 @@ const t = useTranslations(lang);
 
   .section {
     height: 100vh;
-    height: 100dvh;
   }
 
   .section--2 {
@@ -143,7 +142,6 @@ const t = useTranslations(lang);
     flex-direction: row;
     justify-content: flex-end;
     height: 100vh;
-    height: 100dvh;
   }
 
   .info {
@@ -201,10 +199,9 @@ const t = useTranslations(lang);
 
   .photo {
     width: 100%;
-    width: 247px;
-    height: 370px;
-    /* max-height: 100%; */
-    /* max-height: fit-content; */
+    max-width: 247px;
+    min-width: 247px;
+    max-height: fit-content;
     aspect-ratio: 1/1.5;
     border-radius: 5px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
