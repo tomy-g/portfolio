@@ -52,7 +52,7 @@ function NavigationMobile ({ pages, lang, pathname }: { pages: string[], lang: s
       </button>
       <nav
         className="mobile-nav"
-        style={{ top: isMenuOpen ? "4rem" : "-75vh", opacity: isMenuOpen ? 1 : 0 }}
+        style={{ top: isMenuOpen ? "4rem" : "-75vh; top: -75dvh", opacity: isMenuOpen ? 1 : 0 }}
       >
         <ul className="mobile-pages">
           {pages.map(page => {
