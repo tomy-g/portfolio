@@ -5,7 +5,9 @@ import vercel from '@astrojs/vercel'
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    runtime: 'nodejs20.x',
+  }),
   i18n: {
     defaultLocale: "en",
     locales: ["es", "en"],
