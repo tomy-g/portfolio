@@ -28,7 +28,7 @@ const social = [
     <DitherField />
     <div class="hero-inner">
       <h1>{site.name}</h1>
-      <p class="lede">
+      <p class="tagline">
         Software engineer at <a
           href="https://ebury.com/"
           target="_blank"
@@ -39,7 +39,7 @@ const social = [
           rel="noopener noreferrer">Málaga</a
         >.
       </p>
-      <p class="lede">
+      <p class="note">
         I came to code through design, and I still build that way — sketching
         the thing before writing the component, and caring about how it behaves
         once it is on a real screen and a real connection.
@@ -221,7 +221,27 @@ const social = [
     line-height: 1.75;
     color: var(--t-text-secondary);
   }
-  .lede a {
+
+  /* The hero steps down in three: name, what I do, then the nuance. */
+  .tagline {
+    margin-top: 1.4rem;
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--t-text);
+  }
+
+  .note {
+    margin-top: 1.5rem;
+    max-width: 52ch;
+    font-size: 0.875rem;
+    line-height: 1.85;
+    /* Stays on secondary rather than muted: muted measures 3.65:1 against
+       the wave colour, which is under AA for text this size. */
+    color: var(--t-text-secondary);
+  }
+
+  .lede a,
+  .tagline a {
     color: var(--t-text);
     text-decoration: underline;
     text-decoration-color: var(--t-text-muted);
