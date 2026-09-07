@@ -61,16 +61,9 @@
   --t-text: #c0caf5;
   --t-text-secondary: #a9b1d6;
   --t-text-muted: #8b93b8;
-  --t-brand: #9ece6a;
-  --t-brand-soft: #9ece6a1f;
+  --t-brand: #bb9af7;
+  --t-brand-soft: #bb9af71f;
   --t-selection: #292e42;
-
-  /* Ramp for the hero's dither field, matching omarchy's --t-field-* set. */
-  --t-field-dim: #39482e;
-  --t-field-mid: #678549;
-  --t-field-lit: #9ece6a;
-  --t-field-hover: #bbdd97;
-  --t-field-crest: #daecc6;
 
   color-scheme: dark;
 }

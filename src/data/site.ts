@@ -1,5 +1,6 @@
 import eburyLogo from '../images/logos/ebury.png'
 import babelLogo from '../images/logos/babel.png'
+import umaLogo from '../images/logos/uma.png'
 import classFolderShot from '../images/cf_thumbnail.png'
 import classFolderLanding from '../images/cf_landing.png'
 import classFolderThread from '../images/cf_thread.png'
@@ -76,6 +77,7 @@ export const education = [
   {
     institution: 'University of Málaga',
     institutionUrl: 'https://www.uma.es/',
+    logo: umaLogo,
     title: 'BSc Software Engineering',
     start: '2020',
     end: '2025',

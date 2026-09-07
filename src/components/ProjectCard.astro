@@ -1,0 +1,292 @@
+---
+import { Image } from 'astro:assets'
+import Icon from './Icon.astro'
+import type { Project } from '../data/site'
+
+interface Props {
+  project: Project
+}
+const { project: p } = Astro.props
+const hasDeepDive = p.body.length > 1 || p.features !== undefined
+---
+
+<article class="card">
+  <div class="top">
+    <a
+      class="shot"
+      href={p.links[0]!.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <Image src={p.cover} alt="" width={760} loading="lazy" />
+    </a>
+
+    <div class="body">
+      <header>
+        <h3>{p.name}</h3>
+        <span class="year">{p.year}</span>
+      </header>
+      <p class="tagline">{p.tagline}</p>
+
+      <ul class="stack">
+        {p.stack.map((s) => <li>{s}</li>)}
+      </ul>
+
+      <p class="links">
+        {
+          p.links.map((l) => (
+            <a href={l.url} target="_blank" rel="noopener noreferrer">
+              <Icon name={l.label === 'Source' ? 'github' : 'external'} size={17} />
+              <span>{l.label}</span>
+            </a>
+          ))
+        }
+      </p>
+    </div>
+  </div>
+
+  {
+    hasDeepDive && (
+      <details class="more">
+        <summary>
+          <span class="mark" aria-hidden="true" />
+          <span class="label label-closed">Read more about this project</span>
+          <span class="label label-open">Show less</span>
+        </summary>
+        <div class="prose">
+          {p.body.map((para) => (
+            <p>{para}</p>
+          ))}
+          {p.features && (
+            <ul class="features">
+              {p.features.map((f) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+          )}
+          {p.shots && (
+            <div class="gallery">
+              {p.shots.map((s) => (
+                <figure>
+                  <Image src={s.src} alt={s.alt} width={1100} loading="lazy" />
+                  <figcaption>{s.alt}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+        </div>
+      </details>
+    )
+  }
+</article>
+
+<style>
+  .card {
+    border: 1px solid var(--t-border-subtle);
+    background: color-mix(in srgb, var(--t-surface) 60%, transparent);
+    transition: border-color 160ms ease;
+  }
+  .card:hover {
+    border-color: var(--t-border-strong);
+  }
+
+  .top {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 0;
+  }
+
+  .shot {
+    display: block;
+    overflow: hidden;
+    border-right: 1px solid var(--t-border-subtle);
+    background: var(--t-bg-deep);
+  }
+  .shot :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: left top;
+  }
+
+  .body {
+    padding: 1.5rem 1.6rem;
+    min-width: 0;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--t-text);
+  }
+
+  .year {
+    font-size: 0.8125rem;
+    color: var(--t-text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tagline {
+    margin-top: 0.5rem;
+    line-height: 1.65;
+    color: var(--t-text-secondary);
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+    padding: 0;
+    list-style: none;
+  }
+  .stack li {
+    border: 1px solid var(--t-border-subtle);
+    background: var(--t-bg-deep);
+    padding: 0.15rem 0.55rem;
+    font-size: 0.75rem;
+    color: var(--t-text-muted);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6ch;
+    font-size: 0.875rem;
+    color: var(--t-text-secondary);
+    text-decoration: none;
+    transition: color 140ms ease;
+  }
+  .links a span {
+    text-decoration: underline;
+    text-decoration-color: var(--t-text-muted);
+    text-underline-offset: 3px;
+  }
+  .links a:hover {
+    color: var(--t-brand);
+  }
+
+  /* The deep dive folds away under the card. */
+  .more {
+    border-top: 1px solid var(--t-border-subtle);
+  }
+  .more summary {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    padding: 0.85rem 1.6rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.875rem;
+    color: var(--t-text-muted);
+    transition: color 140ms ease;
+  }
+  .more summary::-webkit-details-marker {
+    display: none;
+  }
+  .more summary:hover,
+  .more summary:focus-visible {
+    color: var(--t-brand);
+  }
+  .mark::before {
+    content: '+';
+  }
+  .more[open] .mark::before {
+    content: '−';
+  }
+  .more[open] .label-closed,
+  .more:not([open]) .label-open {
+    display: none;
+  }
+
+  .prose {
+    padding: 0.25rem 1.6rem 1.75rem;
+  }
+  .prose p {
+    max-width: 68ch;
+    line-height: 1.75;
+    color: var(--t-text-secondary);
+  }
+  .prose p + p {
+    margin-top: 0.9rem;
+  }
+
+  .features {
+    margin-top: 1.25rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.4rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .features li {
+    position: relative;
+    padding-left: 2.2ch;
+    line-height: 1.7;
+    font-size: 0.9375rem;
+    color: var(--t-text-secondary);
+  }
+  .features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 5px;
+    height: 5px;
+    background: var(--t-brand);
+  }
+
+  .gallery {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+  }
+  .gallery :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--t-border-subtle);
+  }
+  .gallery figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--t-text-muted);
+  }
+
+  @media (width < 46rem) {
+    .top {
+      grid-template-columns: 1fr;
+    }
+    .shot {
+      border-right: 0;
+      border-bottom: 1px solid var(--t-border-subtle);
+      aspect-ratio: 16 / 9;
+    }
+    .body {
+      padding: 1.25rem;
+    }
+    .more summary,
+    .prose {
+      padding-inline: 1.25rem;
+    }
+  }
+</style>

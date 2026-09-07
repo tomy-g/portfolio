@@ -83,7 +83,7 @@ const hasChip = Astro.slots.has('chip')
   .entry-head {
     display: grid;
     grid-template-columns: 5ch 1fr 2ch;
-    align-items: start;
+    align-items: center;
     column-gap: 1ch;
     padding-block: 1.15rem;
     transition: background-color 140ms ease;
@@ -112,14 +112,21 @@ const hasChip = Astro.slots.has('chip')
 
   .entry-main {
     display: flex;
-    gap: 1.25ch;
+    align-items: center;
+    gap: 1rem;
     min-width: 0;
   }
 
+  /* A fixed box keeps logos of different proportions on the same axis. */
   .entry-chip {
     flex: none;
-    display: block;
-    line-height: 0;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+    border: 1px solid var(--t-border-subtle);
+    background: var(--t-bg-deep);
   }
 
   .entry-text {

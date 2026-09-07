@@ -2,16 +2,10 @@
 import { Image } from 'astro:assets'
 import Layout from '../layouts/Layout.astro'
 import Entry from '../components/Entry.astro'
-import HeroField from '../components/HeroField.astro'
-import PixelLabel from '../components/PixelLabel.astro'
+import ProjectCard from '../components/ProjectCard.astro'
+import DitherField from '../components/DitherField.astro'
 import Icon from '../components/Icon.astro'
-import {
-  site,
-  experience,
-  education,
-  projects,
-  formatDate,
-} from '../data/site'
+import { site, experience, education, projects, formatDate } from '../data/site'
 
 const year = new Date().getFullYear()
 
@@ -23,16 +17,16 @@ const social = [
     icon: 'linkedin',
   },
   { label: 'Email', url: `mailto:${site.email}`, icon: 'mail' },
-  { label: 'CV', url: site.cv, icon: 'file' },
+  { label: 'Download CV', url: site.cv, icon: 'cv' },
 ] as const
 ---
 
 <Layout>
   <a href="#work" class="skip">Skip to content</a>
 
-  <header class="intro">
-    <HeroField />
-    <div class="shell intro-inner">
+  <header class="hero">
+    <DitherField />
+    <div class="hero-inner">
       <h1>{site.name}</h1>
       <p class="lede">
         Software engineer at <a
@@ -51,16 +45,17 @@ const social = [
         once it is on a real screen and a real connection.
       </p>
 
-      <nav class="links" aria-label="Elsewhere">
+      <nav class="social" aria-label="Elsewhere">
         {
           social.map((s) => (
             <a
               href={s.url}
+              title={s.label}
+              aria-label={s.label}
               target={s.url.startsWith('mailto') ? undefined : '_blank'}
               rel="noopener noreferrer"
             >
               <Icon name={s.icon} />
-              {s.label}
             </a>
           ))
         }
@@ -71,133 +66,92 @@ const social = [
   <div class="shell">
     <main>
       <section id="work" aria-labelledby="work-h">
-        <h2 id="work-h"><PixelLabel text="Work" /></h2>
-        {
-          experience.map((role) => {
-            const hasDetail = role.summary !== '' || role.details.length > 0
-            return (
-              <Entry
-                year={role.start.slice(0, 4)}
-                heading={role.title}
-                subtitle={role.company}
-                subtitleUrl={role.companyUrl}
-                meta={`${formatDate(role.start)} – ${formatDate(role.end)}`}
-                current={role.end === null}
-                foldable={hasDetail}
-              >
-                <Image
-                  slot="chip"
-                  class="logo"
-                  src={role.logo}
-                  alt={`${role.company} logo`}
-                  width={64}
-                  height={64}
-                  loading="eager"
-                />
-                {role.summary && <p>{role.summary}</p>}
-                {role.details.map((d) => (
-                  <p>{d}</p>
-                ))}
-                {role.stack.length > 0 && (
-                  <ul class="stack">
-                    {role.stack.map((s) => (
-                      <li>{s}</li>
-                    ))}
-                  </ul>
-                )}
-              </Entry>
-            )
-          })
-        }
+        <h2 id="work-h">Work</h2>
+        <div class="ledger">
+          {
+            experience.map((role) => {
+              const hasDetail = role.summary !== '' || role.details.length > 0
+              return (
+                <Entry
+                  year={role.start.slice(0, 4)}
+                  heading={role.title}
+                  subtitle={role.company}
+                  subtitleUrl={role.companyUrl}
+                  meta={`${formatDate(role.start)} – ${formatDate(role.end)}`}
+                  current={role.end === null}
+                  foldable={hasDetail}
+                >
+                  <Image
+                    slot="chip"
+                    src={role.logo}
+                    alt={`${role.company} logo`}
+                    width={88}
+                    height={88}
+                    loading="eager"
+                  />
+                  {role.summary && <p>{role.summary}</p>}
+                  {role.details.map((d) => (
+                    <p>{d}</p>
+                  ))}
+                  {role.stack.length > 0 && (
+                    <ul class="stack">
+                      {role.stack.map((s) => (
+                        <li>{s}</li>
+                      ))}
+                    </ul>
+                  )}
+                </Entry>
+              )
+            })
+          }
+        </div>
       </section>
 
       <section id="projects" aria-labelledby="projects-h">
-        <h2 id="projects-h"><PixelLabel text="Projects" /></h2>
-        {
-          projects.map((p) => (
-            <Entry
-              year={p.year}
-              heading={p.name}
-              subtitle={p.tagline}
-              foldable={true}
-            >
-              <Image
-                slot="chip"
-                class="cover"
-                src={p.cover}
-                alt=""
-                width={192}
-                height={120}
-              />
-              {p.body.map((para) => (
-                <p>{para}</p>
-              ))}
-              {p.features && (
-                <ul class="features">
-                  {p.features.map((f) => (
-                    <li>{f}</li>
-                  ))}
-                </ul>
-              )}
-              {p.shots && (
-                <div class="shots">
-                  {p.shots.map((s) => (
-                    <figure>
-                      <Image src={s.src} alt={s.alt} width={900} loading="lazy" />
-                    </figure>
-                  ))}
-                </div>
-              )}
-              <ul class="stack">
-                {p.stack.map((s) => (
-                  <li>{s}</li>
-                ))}
-              </ul>
-              <p class="project-links">
-                {p.links.map((l) => (
-                  <a href={l.url} target="_blank" rel="noopener noreferrer">
-                    <Icon name={l.label === 'Source' ? 'github' : 'link'} size={16} />
-                    {l.label}
-                  </a>
-                ))}
-              </p>
-            </Entry>
-          ))
-        }
+        <h2 id="projects-h">Projects</h2>
+        <div class="projects">
+          {projects.map((p) => <ProjectCard project={p} />)}
+        </div>
       </section>
 
       <section id="education" aria-labelledby="education-h">
-        <h2 id="education-h"><PixelLabel text="Education" /></h2>
-        {
-          education.map((e) => (
-            <Entry
-              year={e.start}
-              heading={e.title}
-              subtitle={e.institution}
-              subtitleUrl={e.institutionUrl}
-              meta={`${e.start} – ${e.end}`}
-            />
-          ))
-        }
+        <h2 id="education-h">Education</h2>
+        <div class="ledger">
+          {
+            education.map((e) => (
+              <Entry
+                year={e.start}
+                heading={e.title}
+                subtitle={e.institution}
+                subtitleUrl={e.institutionUrl}
+                meta={`${e.start} – ${e.end}`}
+              >
+                <Image
+                  slot="chip"
+                  src={e.logo}
+                  alt={`${e.institution} logo`}
+                  width={88}
+                  height={88}
+                  loading="lazy"
+                />
+              </Entry>
+            ))
+          }
+        </div>
       </section>
 
       <section id="contact" aria-labelledby="contact-h">
-        <h2 id="contact-h"><PixelLabel text="Contact" /></h2>
-        <p class="lede">
-          The fastest way to reach me is email. I read everything.
-        </p>
+        <h2 id="contact-h">Contact</h2>
+        <p class="lede">The fastest way to reach me is email. I read everything.</p>
         <p class="mail">
-          <a href={`mailto:${site.email}`}>
-            <Icon name="mail" size={20} />
-            {site.email}
-          </a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
         </p>
       </section>
     </main>
 
     <footer>
       <p>© {year} {site.name}</p>
-      <p>Built with Astro. No trackers, no cookies.</p>
+      <p>Built with Astro.</p>
     </footer>
   </div>
 </Layout>
@@ -217,35 +171,55 @@ const social = [
   }
 
   .shell {
-    max-width: 40rem;
+    max-width: 58rem;
     margin-inline: auto;
     padding-inline: 1.5rem;
   }
 
-  .intro {
+  .hero {
     position: relative;
+    isolation: isolate;
     overflow: hidden;
     border-bottom: 1px solid var(--t-border-subtle);
   }
-  .intro-inner {
-    position: relative;
+  /* Sits between the waves and the copy so the text always has a floor. */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
     z-index: 1;
-    padding-block: clamp(3.5rem, 12vw, 6.5rem) clamp(2.5rem, 8vw, 4rem);
+    background: linear-gradient(
+      95deg,
+      color-mix(in srgb, var(--t-bg) 76%, transparent) 0%,
+      color-mix(in srgb, var(--t-bg) 38%, transparent) 42%,
+      transparent 74%
+    );
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: min(78vh, 40rem);
+    max-width: 58rem;
+    margin-inline: auto;
+    padding: clamp(4rem, 13vw, 7rem) 1.5rem clamp(3.5rem, 9vw, 5rem);
   }
 
   h1 {
     font-family: var(--font-sans);
-    font-size: clamp(2.25rem, 8vw, 3.25rem);
+    font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    color: var(--t-text);
+    letter-spacing: -0.035em;
+    line-height: 1.03;
+    color: #fff;
   }
 
   .lede {
     margin-top: 1.15rem;
-    max-width: 54ch;
-    line-height: 1.7;
+    max-width: 56ch;
+    line-height: 1.75;
     color: var(--t-text-secondary);
   }
   .lede a {
@@ -259,47 +233,61 @@ const social = [
     text-decoration-color: currentColor;
   }
 
-  .links {
+  .social {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1.75ch;
-    margin-top: 2rem;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
   }
-  .links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75ch;
-    padding: 0.4rem 0.85rem;
-    border: 1px solid var(--t-border-subtle);
-    background: color-mix(in srgb, var(--t-surface) 70%, transparent);
+  .social a {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--t-border-strong);
+    background: color-mix(in srgb, var(--t-bg-deep) 70%, transparent);
     color: var(--t-text-secondary);
-    font-size: 0.875rem;
-    text-decoration: none;
     transition:
-      color 140ms ease,
-      border-color 140ms ease;
+      color 150ms ease,
+      border-color 150ms ease,
+      background-color 150ms ease;
   }
-  .links a:hover {
+  .social a:hover {
     color: var(--t-brand);
     border-color: var(--t-brand);
+    background: var(--t-brand-soft);
   }
 
   section {
+    margin-top: 4rem;
+  }
+  section:first-child {
     margin-top: 3.5rem;
   }
 
   h2 {
-    color: var(--t-text-muted);
-    margin-bottom: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--t-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .ledger {
+    border-bottom: 1px solid var(--t-border-subtle);
+  }
+
+  .projects {
+    display: grid;
+    gap: 1.5rem;
   }
 
   .mail {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
   }
   .mail a {
-    display: inline-flex;
-    align-items: center;
-    gap: 1ch;
+    font-size: 1.0625rem;
     color: var(--t-brand);
     text-decoration: underline;
     text-decoration-color: var(--t-text-muted);
@@ -310,7 +298,7 @@ const social = [
   }
 
   footer {
-    margin-top: 4.5rem;
+    margin-top: 5rem;
     padding-block: 1.25rem 4rem;
     border-top: 1px solid var(--t-border-subtle);
     font-size: 0.8125rem;
@@ -321,24 +309,11 @@ const social = [
     gap: 0.5rem 2ch;
   }
 
-  /* Chips sitting to the left of an entry's heading. */
-  main :global(.logo) {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-  }
-  main :global(.cover) {
-    width: 96px;
-    height: 60px;
-    object-fit: cover;
-    border: 1px solid var(--t-border-subtle);
-  }
-
-  /* Content inside a fold. */
+  /* Fold content for work entries. */
   main :global(.entry-detail p) {
-    line-height: 1.7;
+    line-height: 1.75;
     color: var(--t-text-secondary);
-    max-width: 58ch;
+    max-width: 68ch;
   }
   main :global(.entry-detail p + p) {
     margin-top: 0.9rem;
@@ -346,64 +321,16 @@ const social = [
   main :global(.entry-detail .stack) {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem 0.5rem;
+    gap: 0.4rem;
     margin-top: 1.25rem;
     padding: 0;
     list-style: none;
-    font-size: 0.75rem;
-    color: var(--t-text-muted);
   }
   main :global(.entry-detail .stack li) {
     border: 1px solid var(--t-border-subtle);
-    padding: 0.15rem 0.6rem;
-  }
-  main :global(.entry-detail .features) {
-    margin-top: 1rem;
-    padding: 0;
-    list-style: none;
-  }
-  main :global(.entry-detail .features li) {
-    position: relative;
-    padding-left: 3ch;
-    line-height: 1.7;
-    color: var(--t-text-secondary);
-  }
-  main :global(.entry-detail .features li::before) {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 5px;
-    height: 5px;
-    background: var(--t-brand);
-  }
-  main :global(.shots) {
-    display: grid;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-  main :global(.shots img) {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: 1px solid var(--t-border-subtle);
-  }
-  main :global(.entry-detail .project-links) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.75ch;
-    margin-top: 1.25rem;
-  }
-  main :global(.entry-detail .project-links a) {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75ch;
-    color: var(--t-brand);
-    text-decoration: underline;
-    text-decoration-color: var(--t-text-muted);
-    text-underline-offset: 3px;
-  }
-  main :global(.entry-detail .project-links a:hover) {
-    text-decoration-color: currentColor;
+    background: var(--t-bg-deep);
+    padding: 0.15rem 0.55rem;
+    font-size: 0.75rem;
+    color: var(--t-text-muted);
   }
 </style>
