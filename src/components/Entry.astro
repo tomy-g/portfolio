@@ -117,16 +117,19 @@ const hasChip = Astro.slots.has('chip')
     min-width: 0;
   }
 
-  /* A fixed box keeps logos of different proportions on the same axis. */
+  /* A fixed square keeps logos of different proportions on the same axis,
+     without drawing a box around them. */
   .entry-chip {
     flex: none;
     display: grid;
     place-items: center;
-    width: 44px;
-    height: 44px;
-    padding: 6px;
-    border: 1px solid var(--t-border-subtle);
-    background: var(--t-bg-deep);
+    width: 38px;
+    height: 38px;
+  }
+  .entry-chip :global(img) {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
   }
 
   .entry-text {
