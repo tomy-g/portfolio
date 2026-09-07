@@ -61,8 +61,10 @@
   --t-text: #c0caf5;
   --t-text-secondary: #a9b1d6;
   --t-text-muted: #8b93b8;
-  --t-brand: #bb9af7;
-  --t-brand-soft: #bb9af71f;
+  /* The dither wave's own hue (262deg, full saturation), lifted to L=70%.
+     The wave itself, #4300b5, is 1.91:1 on black and cannot carry text. */
+  --t-brand: #9f66ff;
+  --t-brand-soft: #9f66ff1f;
   --t-selection: #292e42;
 
   color-scheme: dark;
