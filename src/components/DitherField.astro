@@ -23,18 +23,18 @@ interface Props {
   mouseRadius?: number
 }
 const {
-  waveColor = [0.2549019607843137, 0.1411764705882353, 0.4549019607843137],
-  background = [0.043137254901960784, 0.043137254901960784, 0.06274509803921569],
-  waveSpeed = 0.045,
+  waveColor = [0.2627450980392157, 0.0, 0.7098039215686275], // #4300b5
+  background = [0, 0, 0],
+  waveSpeed = 0.05,
   waveFrequency = 3,
   waveAmplitude = 0.3,
   colorNum = 4,
   pixelSize = 2,
-  mouseRadius = 0.9,
+  mouseRadius = 0.3,
   /** Share of the height, from the bottom, over which the waves dissolve. */
-  fadeBottom = 0.55,
+  fadeBottom = 0.42,
   /** Share of the width, from the left, over which they dissolve. */
-  fadeLeft = 0.32,
+  fadeLeft = 0.14,
 } = Astro.props
 const config = JSON.stringify({
   waveColor,
