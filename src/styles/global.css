@@ -52,12 +52,12 @@
 
 /* Tokyo Night. Base values match omarchy's themes/tokyo-night/colors.toml. */
 :root {
-  --t-bg: #1a1b26;
-  --t-bg-deep: #13141c;
-  --t-surface: #1f2230;
-  --t-surface-2: #24283b;
-  --t-border-subtle: #24283b;
-  --t-border-strong: #414868;
+  --t-bg: #0b0b10;
+  --t-bg-deep: #070709;
+  --t-surface: #131320;
+  --t-surface-2: #191926;
+  --t-border-subtle: #1e1e2b;
+  --t-border-strong: #34344a;
   --t-text: #c0caf5;
   --t-text-secondary: #a9b1d6;
   --t-text-muted: #8b93b8;

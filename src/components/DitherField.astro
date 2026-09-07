@@ -24,13 +24,17 @@ interface Props {
 }
 const {
   waveColor = [0.2549019607843137, 0.1411764705882353, 0.4549019607843137],
-  background = [0.1019607843137255, 0.10588235294117647, 0.14901960784313725],
+  background = [0.043137254901960784, 0.043137254901960784, 0.06274509803921569],
   waveSpeed = 0.045,
   waveFrequency = 3,
   waveAmplitude = 0.3,
   colorNum = 4,
   pixelSize = 2,
   mouseRadius = 0.9,
+  /** Share of the height, from the bottom, over which the waves dissolve. */
+  fadeBottom = 0.55,
+  /** Share of the width, from the left, over which they dissolve. */
+  fadeLeft = 0.32,
 } = Astro.props
 const config = JSON.stringify({
   waveColor,
@@ -41,6 +45,8 @@ const config = JSON.stringify({
   colorNum,
   pixelSize,
   mouseRadius,
+  fadeBottom,
+  fadeLeft,
 })
 ---
 
@@ -78,6 +84,8 @@ const config = JSON.stringify({
     uniform float uMouseOn;
     uniform float uColorNum;
     uniform float uPixelSize;
+    uniform float uFadeBottom;
+    uniform float uFadeLeft;
 
     vec4 mod289(vec4 x) { return x - floor(x * (1.0/289.0)) * 289.0; }
     vec4 permute(vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }
@@ -166,6 +174,13 @@ const config = JSON.stringify({
         f -= 0.5 * (1.0 - smoothstep(0.0, uMouseRadius, d));
       }
 
+      // Fade the wave amount, not the finished colour: the dither still
+      // quantises, so the field dissolves into scattered dots and meets the
+      // page background with no edge.
+      vec2 sp = gl_FragCoord.xy / uRes;
+      f *= smoothstep(0.0, uFadeBottom, sp.y);
+      f *= smoothstep(0.0, uFadeLeft, sp.x);
+
       vec3 col = mix(uBg, uWave, clamp(f, 0.0, 1.0));
       fragColor = vec4(dither(gl_FragCoord.xy, col), 1.0);
     }`
@@ -216,6 +231,8 @@ const config = JSON.stringify({
       gl.uniform1f(u('uMouseRadius'), cfg.mouseRadius)
       gl.uniform1f(u('uColorNum'), cfg.colorNum)
       gl.uniform1f(u('uPixelSize'), cfg.pixelSize)
+      gl.uniform1f(u('uFadeBottom'), cfg.fadeBottom)
+      gl.uniform1f(u('uFadeLeft'), cfg.fadeLeft)
       gl.uniform1f(uMouseOn, 0)
 
       // The output is pixelated, so there is nothing to gain from a retina
