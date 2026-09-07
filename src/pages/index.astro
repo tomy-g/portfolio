@@ -1,17 +1,303 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { site, experience, formatDate } from '../data/site'
+import Entry from '../components/Entry.astro'
+import {
+  site,
+  socials,
+  experience,
+  education,
+  projects,
+  formatDate,
+} from '../data/site'
+
+const year = new Date().getFullYear()
 ---
 
 <Layout>
-  <main class="mx-auto max-w-2xl px-6 py-24">
-    <h1 class="font-sans text-3xl font-semibold tracking-tight">{site.name}</h1>
-    <p class="mt-2 text-text-muted">{site.role} — {site.location}</p>
-    <p class="mt-8 text-brand">Toolchain smoke test.</p>
-    <ul class="mt-4 space-y-1 text-sm text-text-secondary">
-      {experience.map((r) => (
-        <li>{r.title} @ {r.company} — {formatDate(r.start)} to {formatDate(r.end)}</li>
-      ))}
-    </ul>
-  </main>
+  <a href="#work" class="skip">Skip to content</a>
+
+  <div class="shell">
+    <header class="intro">
+      <h1>{site.name}</h1>
+      <p class="lede">
+        Software engineer at <a
+          href="https://ebury.com/"
+          target="_blank"
+          rel="noopener noreferrer">Ebury</a
+        >, in <a
+          href={site.locationUrl}
+          target="_blank"
+          rel="noopener noreferrer">Málaga</a
+        >.
+      </p>
+      <p class="lede">
+        I came to code through design, and I still build that way — sketching
+        the thing before writing the component, and caring about how it behaves
+        once it is on a real screen and a real connection.
+      </p>
+
+      <nav class="links" aria-label="Elsewhere">
+        {
+          socials.map((s) => (
+            <a href={s.url} target="_blank" rel="noopener noreferrer">
+              {s.label}
+            </a>
+          ))
+        }
+        <a href={site.cv}>CV</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="work" aria-labelledby="work-h">
+        <h2 id="work-h">Work</h2>
+        {
+          experience.map((role) => {
+            const meta = `${formatDate(role.start)} – ${formatDate(role.end)}`
+            const hasDetail = role.summary !== '' || role.details.length > 0
+            const head = {
+              year: role.start.slice(0, 4),
+              heading: role.title,
+              subtitle: role.company,
+              subtitleUrl: role.companyUrl,
+              meta,
+              current: role.end === null,
+            }
+            // A fold marker must always mean "there is more here", so an entry
+            // with nothing written yet renders as a plain row.
+            return hasDetail ? (
+              <Entry {...head}>
+                {role.summary && <p>{role.summary}</p>}
+                {role.details.map((d) => (
+                  <p>{d}</p>
+                ))}
+                {role.stack.length > 0 && (
+                  <ul class="stack">
+                    {role.stack.map((s) => (
+                      <li>{s}</li>
+                    ))}
+                  </ul>
+                )}
+              </Entry>
+            ) : (
+              <Entry {...head} />
+            )
+          })
+        }
+      </section>
+
+      <section id="projects" aria-labelledby="projects-h">
+        <h2 id="projects-h">Projects</h2>
+        {
+          projects.map((p) => (
+            <Entry year={p.year} heading={p.name} subtitle={p.tagline}>
+              {p.body.map((para) => (
+                <p>{para}</p>
+              ))}
+              {p.features && (
+                <ul class="features">
+                  {p.features.map((f) => (
+                    <li>{f}</li>
+                  ))}
+                </ul>
+              )}
+              <ul class="stack">
+                {p.stack.map((s) => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+              <p class="project-links">
+                {p.links.map((l) => (
+                  <a href={l.url} target="_blank" rel="noopener noreferrer">
+                    {l.label}
+                  </a>
+                ))}
+              </p>
+            </Entry>
+          ))
+        }
+      </section>
+
+      <section id="education" aria-labelledby="education-h">
+        <h2 id="education-h">Education</h2>
+        {
+          education.map((e) => (
+            <Entry
+              year={e.start}
+              heading={e.title}
+              subtitle={e.institution}
+              subtitleUrl={e.institutionUrl}
+              meta={`${e.start} – ${e.end}`}
+            />
+          ))
+        }
+      </section>
+
+      <section id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Contact</h2>
+        <p class="lede">
+          The fastest way to reach me is email. I read everything.
+        </p>
+        <p class="mail">
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© {year} {site.name}</p>
+      <p>Built with Astro. No trackers, no cookies, no JavaScript.</p>
+    </footer>
+  </div>
 </Layout>
+
+<style>
+  .skip {
+    position: absolute;
+    left: -9999px;
+  }
+  .skip:focus {
+    left: 1.5rem;
+    top: 1rem;
+    z-index: 1;
+    background: var(--t-surface);
+    padding: 0.5rem 0.75rem;
+    color: var(--t-brand);
+  }
+
+  .shell {
+    max-width: 40rem;
+    margin-inline: auto;
+    padding: clamp(3.5rem, 12vw, 7rem) 1.5rem 4rem;
+  }
+
+  h1 {
+    font-family: var(--font-sans);
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--t-text);
+  }
+
+  .lede {
+    margin-top: 1.15rem;
+    max-width: 62ch;
+    line-height: 1.7;
+    color: var(--t-text-secondary);
+  }
+
+  .lede a {
+    color: var(--t-text);
+    text-decoration: underline;
+    text-decoration-color: var(--t-text-muted);
+    text-underline-offset: 3px;
+  }
+  .lede a:hover {
+    color: var(--t-brand);
+    text-decoration-color: currentColor;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5ch;
+    margin-top: 2rem;
+  }
+  .links a {
+    color: var(--t-text-secondary);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: color 120ms ease;
+  }
+  .links a:hover {
+    color: var(--t-brand);
+    text-decoration-color: currentColor;
+  }
+
+  section {
+    margin-top: 3.5rem;
+  }
+
+  h2 {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--t-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .mail {
+    margin-top: 0.75rem;
+  }
+  .mail a {
+    color: var(--t-brand);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  footer {
+    margin-top: 4.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--t-border-subtle);
+    font-size: 0.8125rem;
+    color: var(--t-text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2ch;
+  }
+
+  /* Content inside a fold. Scoped here because the markup is authored here. */
+  main :global(.entry-detail p) {
+    line-height: 1.7;
+    color: var(--t-text-secondary);
+    max-width: 62ch;
+  }
+  main :global(.entry-detail p + p) {
+    margin-top: 0.9rem;
+  }
+  main :global(.entry-detail .stack) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 2ch;
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+    font-size: 0.8125rem;
+    color: var(--t-text-muted);
+  }
+  main :global(.entry-detail .features) {
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+  main :global(.entry-detail .features li) {
+    position: relative;
+    padding-left: 3ch;
+    line-height: 1.7;
+    color: var(--t-text-secondary);
+  }
+  main :global(.entry-detail .features li::before) {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--t-text-muted);
+  }
+  main :global(.entry-detail .project-links) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5ch;
+    margin-top: 1rem;
+  }
+  main :global(.entry-detail .project-links a) {
+    color: var(--t-brand);
+    text-decoration: underline;
+    text-decoration-color: var(--t-text-muted);
+    text-underline-offset: 3px;
+  }
+  main :global(.entry-detail .project-links a:hover) {
+    text-decoration-color: currentColor;
+  }
+</style>
