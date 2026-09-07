@@ -73,7 +73,6 @@ const social = [
               const hasDetail = role.summary !== '' || role.details.length > 0
               return (
                 <Entry
-                  year={role.start.slice(0, 4)}
                   heading={role.title}
                   subtitle={role.company}
                   subtitleUrl={role.companyUrl}
@@ -120,7 +119,6 @@ const social = [
           {
             education.map((e) => (
               <Entry
-                year={e.start}
                 heading={e.title}
                 subtitle={e.institution}
                 subtitleUrl={e.institutionUrl}

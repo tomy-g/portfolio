@@ -1,22 +1,19 @@
 ---
 /**
- * One row on the time spine: year in the left gutter, an optional visual
- * chip, then the content. Entries with body content fold open like a
- * collapsed region in an editor; entries without one render as a plain row,
- * so the marker always means "there is more here".
+ * One row of the ledger: an optional logo, then the position. Rows with body
+ * content fold open like a collapsed region in an editor; rows without one
+ * render plain, so the marker always means "there is more here".
  */
 interface Props {
-  year: string
   heading: string
   subtitle?: string
   subtitleUrl?: string
   meta?: string
-  /** Paints the year green: this is the live one. */
+  /** Accents the dates: this is the live one. */
   current?: boolean
   foldable?: boolean
 }
 const {
-  year,
   heading,
   subtitle,
   subtitleUrl,
@@ -31,10 +28,6 @@ const hasChip = Astro.slots.has('chip')
 
 <Tag class="entry">
   <Head class="entry-head">
-    <span class:list={['entry-year', current && 'entry-year--current']}>
-      {year}
-    </span>
-
     <span class="entry-main">
       {
         hasChip && (
@@ -58,7 +51,13 @@ const hasChip = Astro.slots.has('chip')
             </span>
           )
         }
-        {meta && <span class="entry-meta">{meta}</span>}
+        {
+          meta && (
+            <span class:list={['entry-meta', current && 'entry-meta--current']}>
+              {meta}
+            </span>
+          )
+        }
       </span>
     </span>
 
@@ -82,8 +81,8 @@ const hasChip = Astro.slots.has('chip')
 
   .entry-head {
     display: grid;
-    grid-template-columns: 5ch 1fr 2ch;
-    align-items: center;
+    grid-template-columns: 1fr 2ch;
+    align-items: start;
     column-gap: 1ch;
     padding-block: 1.15rem;
     transition: background-color 140ms ease;
@@ -100,31 +99,23 @@ const hasChip = Astro.slots.has('chip')
     background-color: color-mix(in srgb, var(--t-surface) 55%, transparent);
   }
 
-  .entry-year {
-    font-size: 0.8125rem;
-    line-height: 1.7;
-    color: var(--t-text-muted);
-    font-variant-numeric: tabular-nums;
-  }
-  .entry-year--current {
-    color: var(--t-brand);
-  }
-
   .entry-main {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     min-width: 0;
   }
 
   /* A fixed square keeps logos of different proportions on the same axis,
-     without drawing a box around them. */
+     without drawing a box around them. The nudge lines the mark's top edge
+     up with the cap of the position, rather than with its line box. */
   .entry-chip {
     flex: none;
     display: grid;
     place-items: center;
     width: 38px;
     height: 38px;
+    margin-top: 0.15rem;
   }
   .entry-chip :global(img) {
     max-width: 100%;
@@ -163,11 +154,16 @@ const hasChip = Astro.slots.has('chip')
     font-size: 0.8125rem;
     color: var(--t-text-muted);
   }
+  /* Carries the "this is the current one" signal the accented year used to. */
+  .entry-meta--current {
+    color: var(--t-brand);
+  }
 
   .entry-mark {
     color: var(--t-text-muted);
     transition: color 140ms ease;
     justify-self: end;
+    line-height: 1.5;
   }
   .entry-mark::before {
     content: '+';
@@ -180,19 +176,13 @@ const hasChip = Astro.slots.has('chip')
     color: var(--t-brand);
   }
 
+  /* Line the fold's content up with the text, past the logo. */
   .entry-detail {
-    padding-left: 6ch;
+    padding-left: calc(38px + 1rem);
     padding-bottom: 1.5rem;
   }
 
   @media (width < 34rem) {
-    .entry-head {
-      grid-template-columns: 1fr 2ch;
-      row-gap: 0.3rem;
-    }
-    .entry-year {
-      grid-column: 1 / -1;
-    }
     .entry-detail {
       padding-left: 0;
     }
