@@ -1,9 +1,9 @@
 ---
 /**
- * One row on the time spine: year in the left gutter, content on the right.
- * Entries with body content fold open like a collapsed region in an editor;
- * entries without one render as a plain row, so the marker always means
- * "there is more here".
+ * One row on the time spine: year in the left gutter, an optional visual
+ * chip, then the content. Entries with body content fold open like a
+ * collapsed region in an editor; entries without one render as a plain row,
+ * so the marker always means "there is more here".
  */
 interface Props {
   year: string
@@ -13,12 +13,20 @@ interface Props {
   meta?: string
   /** Paints the year green: this is the live one. */
   current?: boolean
+  foldable?: boolean
 }
-const { year, heading, subtitle, subtitleUrl, meta, current = false } =
-  Astro.props
-const foldable = Astro.slots.has('default')
+const {
+  year,
+  heading,
+  subtitle,
+  subtitleUrl,
+  meta,
+  current = false,
+  foldable = false,
+} = Astro.props
 const Tag = foldable ? 'details' : 'div'
 const Head = foldable ? 'summary' : 'div'
+const hasChip = Astro.slots.has('chip')
 ---
 
 <Tag class="entry">
@@ -26,25 +34,37 @@ const Head = foldable ? 'summary' : 'div'
     <span class:list={['entry-year', current && 'entry-year--current']}>
       {year}
     </span>
-    <span class="entry-body">
-      {foldable && <span class="entry-mark" aria-hidden="true" />}
-      <span class="entry-heading">{heading}</span>
+
+    <span class="entry-main">
       {
-        subtitle && (
-          <span class="entry-sub">
-            {subtitleUrl ? (
-              <a href={subtitleUrl} target="_blank" rel="noopener noreferrer">
-                {subtitle}
-              </a>
-            ) : (
-              subtitle
-            )}
+        hasChip && (
+          <span class="entry-chip">
+            <slot name="chip" />
           </span>
         )
       }
-      {meta && <span class="entry-meta">{meta}</span>}
+      <span class="entry-text">
+        <span class="entry-heading">{heading}</span>
+        {
+          subtitle && (
+            <span class="entry-sub">
+              {subtitleUrl ? (
+                <a href={subtitleUrl} target="_blank" rel="noopener noreferrer">
+                  {subtitle}
+                </a>
+              ) : (
+                subtitle
+              )}
+            </span>
+          )
+        }
+        {meta && <span class="entry-meta">{meta}</span>}
+      </span>
     </span>
+
+    {foldable && <span class="entry-mark" aria-hidden="true" />}
   </Head>
+
   {
     foldable && (
       <div class="entry-detail">
@@ -57,18 +77,18 @@ const Head = foldable ? 'summary' : 'div'
 <style>
   .entry {
     display: block;
-    padding-block: 1.15rem;
     border-top: 1px solid var(--t-border-subtle);
   }
 
   .entry-head {
     display: grid;
-    grid-template-columns: 5ch 1fr;
-    align-items: baseline;
+    grid-template-columns: 5ch 1fr 2ch;
+    align-items: start;
     column-gap: 1ch;
+    padding-block: 1.15rem;
+    transition: background-color 140ms ease;
   }
 
-  /* The whole summary row is the hit target, so kill the native marker. */
   summary.entry-head {
     cursor: pointer;
     list-style: none;
@@ -76,9 +96,13 @@ const Head = foldable ? 'summary' : 'div'
   summary.entry-head::-webkit-details-marker {
     display: none;
   }
+  summary.entry-head:hover {
+    background-color: color-mix(in srgb, var(--t-surface) 55%, transparent);
+  }
 
   .entry-year {
     font-size: 0.8125rem;
+    line-height: 1.7;
     color: var(--t-text-muted);
     font-variant-numeric: tabular-nums;
   }
@@ -86,30 +110,21 @@ const Head = foldable ? 'summary' : 'div'
     color: var(--t-brand);
   }
 
-  /* 3ch of reserved space keeps every heading on the same column whether or
-     not it carries a fold marker. */
-  .entry-body {
-    position: relative;
-    display: block;
-    padding-left: 3ch;
+  .entry-main {
+    display: flex;
+    gap: 1.25ch;
+    min-width: 0;
   }
 
-  .entry-mark {
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--t-text-muted);
-    transition: color 120ms ease;
+  .entry-chip {
+    flex: none;
+    display: block;
+    line-height: 0;
   }
-  .entry-mark::before {
-    content: '+';
-  }
-  details[open] > .entry-head .entry-mark::before {
-    content: '−';
-  }
-  summary.entry-head:hover .entry-mark,
-  summary.entry-head:focus-visible .entry-mark {
-    color: var(--t-brand);
+
+  .entry-text {
+    display: block;
+    min-width: 0;
   }
 
   .entry-heading {
@@ -139,28 +154,34 @@ const Head = foldable ? 'summary' : 'div'
     color: var(--t-text-muted);
   }
 
-  .entry-detail {
-    padding-left: calc(5ch + 1ch + 3ch);
-    padding-top: 0.9rem;
+  .entry-mark {
+    color: var(--t-text-muted);
+    transition: color 140ms ease;
+    justify-self: end;
+  }
+  .entry-mark::before {
+    content: '+';
+  }
+  details[open] > .entry-head .entry-mark::before {
+    content: '−';
+  }
+  summary.entry-head:hover .entry-mark,
+  summary.entry-head:focus-visible .entry-mark {
+    color: var(--t-brand);
   }
 
-  /* Below the fold width the gutter costs more than it gives: drop to one
-     column and let the year sit above the heading. */
+  .entry-detail {
+    padding-left: 6ch;
+    padding-bottom: 1.5rem;
+  }
+
   @media (width < 34rem) {
     .entry-head {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 2ch;
       row-gap: 0.3rem;
     }
-    .entry-body,
-    .entry-detail {
-      padding-left: 0;
-    }
-    .entry-mark {
-      position: static;
-      margin-right: 1ch;
-    }
-    .entry-heading {
-      display: inline;
+    .entry-year {
+      grid-column: 1 / -1;
     }
     .entry-detail {
       padding-left: 0;

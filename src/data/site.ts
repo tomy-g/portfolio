@@ -1,17 +1,26 @@
+import eburyLogo from '../images/logos/ebury.png'
+import babelLogo from '../images/logos/babel.png'
+import classFolderShot from '../images/cf_thumbnail.png'
+import classFolderLanding from '../images/cf_landing.png'
+import classFolderThread from '../images/cf_thread.png'
+import classFolderFiles from '../images/cf_file.png'
+import nextFiveShot from '../images/nextfive_ss.png'
+import type { ImageMetadata } from 'astro'
+
 /**
  * Single source of truth for every piece of copy on the site.
  * The page is one document, so the content lives in one file.
  */
 
 export const site = {
-  name: 'Tomás Goizueta',
+  name: 'Tomy Goizueta',
   role: 'Software Engineer',
   location: 'Málaga, Spain',
   locationUrl: 'https://maps.app.goo.gl/98ggs2Xvfz3kNJxKA',
   email: 'tomasgoizuetadp@gmail.com',
   cv: '/files/CV EN.pdf',
   description:
-    'Software Engineer based in Málaga, building for the web. Portfolio of Tomás Goizueta.',
+    'Software Engineer based in Málaga, building for the web. Portfolio of Tomy Goizueta.',
 } as const
 
 export const socials = [
@@ -23,6 +32,7 @@ export const socials = [
 export type Role = {
   company: string
   companyUrl: string
+  logo: ImageMetadata
   title: string
   start: string
   end: string | null // null renders as "Present"
@@ -35,6 +45,7 @@ export const experience: Role[] = [
   {
     company: 'Ebury',
     companyUrl: 'https://ebury.com/',
+    logo: eburyLogo,
     title: 'Software Engineer',
     start: '2026-03',
     end: null,
@@ -46,6 +57,7 @@ export const experience: Role[] = [
   {
     company: 'Babel',
     companyUrl: 'https://www.babelgroup.com/',
+    logo: babelLogo,
     title: 'Front-End Software Engineer',
     start: '2023-02',
     end: '2024-02',
@@ -74,6 +86,8 @@ export type Project = {
   name: string
   tagline: string
   year: string
+  cover: ImageMetadata
+  shots?: { src: ImageMetadata; alt: string }[]
   stack: string[]
   links: { label: string; url: string }[]
   /** Rendered inside a <details> block. Each string is a paragraph. */
@@ -86,6 +100,12 @@ export const projects: Project[] = [
     name: 'Class Folder',
     tagline: 'A collaborative platform for students.',
     year: '2025',
+    cover: classFolderShot,
+    shots: [
+      { src: classFolderLanding, alt: 'Class Folder landing page' },
+      { src: classFolderThread, alt: 'A threaded discussion in Class Folder' },
+      { src: classFolderFiles, alt: 'The file browser in Class Folder' },
+    ],
     stack: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'Express', 'MySQL'],
     links: [
       { label: 'Source', url: 'https://github.com/tomy-g/classfolder-front' },
@@ -108,6 +128,7 @@ export const projects: Project[] = [
     name: 'NextFive',
     tagline: 'Tell it five films you like, it finds you five more.',
     year: '2024',
+    cover: nextFiveShot,
     stack: ['Next.js', 'React', 'OpenAI API'],
     links: [
       { label: 'Live', url: 'https://nextfive.vercel.app' },
