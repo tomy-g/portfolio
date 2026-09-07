@@ -1,16 +1,16 @@
-import { defineConfig } from 'astro/config';
-import react from "@astrojs/react";
-import vercel from '@astrojs/vercel'
+// @ts-check
+import { defineConfig } from 'astro/config'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  adapter: vercel({
-    runtime: 'nodejs20.x',
-  }),
-  i18n: {
-    defaultLocale: "en",
-    locales: ["es", "en"],
+  site: 'https://tomyg.com',
+  output: 'static',
+  trailingSlash: 'ignore',
+  build: { format: 'directory' },
+  // No adapter and no framework integration on purpose: the site is a single
+  // prerendered document with no client-side JavaScript.
+  vite: {
+    plugins: [tailwindcss()],
   },
-  integrations: [react()]
-});
+})

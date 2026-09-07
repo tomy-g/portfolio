@@ -1,19 +1,149 @@
+@import 'tailwindcss';
+
+/* Latin + Latin-Extended only. Spanish names need the extended range. */
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url('@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Geist Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/geist/files/geist-latin-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Geist Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('@fontsource-variable/geist/files/geist-latin-ext-wght-normal.woff2')
+    format('woff2-variations');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304,
+    U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Tokyo Night. Base values match omarchy's themes/tokyo-night/colors.toml. */
 :root {
-  --blue-primary: #0e37f1;
-  --pink-primary: #fe19aa;
-  --purple-primary: #5B2EDB;
-  --blue-vibrant: #0E92F1;
+  --t-bg: #1a1b26;
+  --t-bg-deep: #13141c;
+  --t-surface: #1f2230;
+  --t-surface-2: #24283b;
+  --t-border-subtle: #24283b;
+  --t-border-strong: #414868;
+  --t-text: #c0caf5;
+  --t-text-secondary: #a9b1d6;
+  --t-text-muted: #8b93b8;
+  --t-brand: #9ece6a;
+  --t-brand-soft: #9ece6a1f;
+  --t-selection: #292e42;
+  color-scheme: dark;
+}
 
+@theme inline {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
-  /* --pink-primary: rgb(255, 0, 199); */
-  /* --blue-primary: rgb(97, 0, 255); */
-  --light-gray: #a5a3b7;
-  --medium-gray: #6a687a;
-  --dark-gray: #38364a;
-  --black-primary: #060329;
-  --white-primary: #ebeaf3;
+  --color-bg: var(--t-bg);
+  --color-bg-deep: var(--t-bg-deep);
+  --color-surface: var(--t-surface);
+  --color-surface-2: var(--t-surface-2);
+  --color-border-subtle: var(--t-border-subtle);
+  --color-border-strong: var(--t-border-strong);
+  --color-text: var(--t-text);
+  --color-text-secondary: var(--t-text-secondary);
+  --color-text-muted: var(--t-text-muted);
+  --color-brand: var(--t-brand);
+  --color-brand-soft: var(--t-brand-soft);
 
-  --fade-gray: linear-gradient(180deg, var(--white-primary) 0%, rgba(166, 163, 189, 0) 300%);
+  /* Tokyo Night accents, for syntax-like highlights. */
+  --color-tn-blue: #7aa2f7;
+  --color-tn-purple: #bb9af7;
+  --color-tn-cyan: #7dcfff;
+  --color-tn-orange: #ff9e64;
+  --color-tn-red: #f7768e;
+  --color-tn-yellow: #e0af68;
+}
 
-  --bg-size: 400%;
+@theme {
+  /* Squared off, like the rest of the Omarchy surface. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+}
+
+@layer base {
+  html {
+    /* The whole point of v2: a tight column that falls straight to mobile. */
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--t-selection);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  /* No 300ms double-tap-zoom wait on anything pressable. */
+  a,
+  button,
+  summary {
+    touch-action: manipulation;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }

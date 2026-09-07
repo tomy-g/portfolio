@@ -1,63 +1,17 @@
 ---
-import Header from "../components/Header.astro";
-import Home from "../sections/Home.astro";
-import "../styles/global.css";
-import "@fontsource-variable/inter";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import About from "../sections/About.astro";
-import Experience from "../sections/Experience.astro";
-import Projects from "../sections/Projects.astro";
-import Contact from "../sections/Contact.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+import Layout from '../layouts/Layout.astro'
+import { site, experience, formatDate } from '../data/site'
 ---
 
-<BaseLayout lang={lang}>
-  <Fragment slot="head">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{t("SITE.TITLE")}</title>
-    <meta name="description" content={t("SITE.DESCRIPTION")} />
-    <link rel="icon" type="image/ico" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Tomás Goizueta" />
-  </Fragment>
-  <div>
-    <Header
-      pages={[
-        t("NAVBAR.ABOUT"),
-        t("NAVBAR.EXPERIENCE"),
-        t("NAVBAR.PROJECTS"),
-        t("NAVBAR.CONTACT"),
-      ]}
-    />
-    <main class="main">
-      <Home />
-      <About />
-      <Experience />
-      <Projects id="projects" />
-      <Contact id="contact" />
-    </main>
-  </div>
-</BaseLayout>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    color: var(--white-primary);
-    font-family: "Inter Variable", sans-serif;
-  }
-
-  html {
-    overflow-x: hidden;
-  }
-
-  body {
-    background-color: var(--black-primary);
-    overflow-x: hidden;
-    position: relative;
-    /* min-height: 300vh; */
-  }
-</style>
+<Layout>
+  <main class="mx-auto max-w-2xl px-6 py-24">
+    <h1 class="font-sans text-3xl font-semibold tracking-tight">{site.name}</h1>
+    <p class="mt-2 text-text-muted">{site.role} — {site.location}</p>
+    <p class="mt-8 text-brand">Toolchain smoke test.</p>
+    <ul class="mt-4 space-y-1 text-sm text-text-secondary">
+      {experience.map((r) => (
+        <li>{r.title} @ {r.company} — {formatDate(r.start)} to {formatDate(r.end)}</li>
+      ))}
+    </ul>
+  </main>
+</Layout>
