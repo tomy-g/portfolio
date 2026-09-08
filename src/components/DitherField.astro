@@ -35,6 +35,17 @@ const {
   fadeBottom = 0.42,
   /** Share of the width, from the left, over which they dissolve. */
   fadeLeft = 0.14,
+  /** Widest the field spans, in CSS px. Past it the page keeps black margins. */
+  fieldWidth = 1360,
+  /** Distance, in px, over which each side dissolves once that width is hit. */
+  fadeSides = 280,
+  /**
+   * Height, in px, that one unit of the wave pattern is measured against.
+   * Fixed rather than the canvas height so the hero can be resized without
+   * rescaling the waves. 40rem is the height the hero used to have, so this
+   * reproduces that rendering exactly.
+   */
+  scaleHeight = 640,
 } = Astro.props
 const config = JSON.stringify({
   waveColor,
@@ -47,6 +58,9 @@ const config = JSON.stringify({
   mouseRadius,
   fadeBottom,
   fadeLeft,
+  fieldWidth,
+  fadeSides,
+  scaleHeight,
 })
 ---
 
@@ -86,6 +100,9 @@ const config = JSON.stringify({
     uniform float uPixelSize;
     uniform float uFadeBottom;
     uniform float uFadeLeft;
+    uniform float uFieldWidth;
+    uniform float uFadeSides;
+    uniform float uScaleHeight;
 
     vec4 mod289(vec4 x) { return x - floor(x * (1.0/289.0)) * 289.0; }
     vec4 permute(vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }
@@ -161,15 +178,18 @@ const config = JSON.stringify({
       // Sample the wave at the pixelated coordinate: the original renders the
       // wave then reads it back through the same floor(), so this matches.
       vec2 pix = floor(gl_FragCoord.xy / uPixelSize) * uPixelSize;
-      vec2 uv = pix / uRes;
-      uv -= 0.5;
-      uv.x *= uRes.x / uRes.y;
+      // Offset from the centre, in units of uScaleHeight. Algebraically the
+      // same as the original divide-by-uRes-then-correct-for-aspect, except
+      // the divisor no longer moves: a wave is a fixed number of pixels
+      // across whatever size the canvas is, so resizing the hero shows more
+      // or less of the field instead of a bigger or smaller version of it.
+      vec2 uv = (pix - uRes * 0.5) / uScaleHeight;
 
       float f = pattern(uv);
 
       if (uMouseOn > 0.5) {
-        vec2 m = (uMouse / uRes - 0.5) * vec2(1.0, -1.0);
-        m.x *= uRes.x / uRes.y;
+        vec2 m = vec2(uMouse.x - uRes.x * 0.5, uRes.y * 0.5 - uMouse.y)
+          / uScaleHeight;
         float d = length(uv - m);
         f -= 0.5 * (1.0 - smoothstep(0.0, uMouseRadius, d));
       }
@@ -180,6 +200,19 @@ const config = JSON.stringify({
       vec2 sp = gl_FragCoord.xy / uRes;
       f *= smoothstep(0.0, uFadeBottom, sp.y);
       f *= smoothstep(0.0, uFadeLeft, sp.x);
+
+      // Past uFieldWidth the field stops widening and dissolves into the page
+      // instead of running wall to wall. The canvas still spans the viewport,
+      // so uRes -- and with it the wave scale and where it sits -- is
+      // unchanged; a narrow screen simply never reaches the edge. The fade
+      // distance eases in with the overshoot so nothing snaps on resize, and
+      // its 1px floor keeps the smoothstep from degenerating.
+      float edge = uFieldWidth * 0.5;
+      float soft = max(
+        uFadeSides * smoothstep(uFieldWidth, uFieldWidth + uFadeSides, uRes.x),
+        1.0
+      );
+      f *= 1.0 - smoothstep(edge - soft, edge, abs(gl_FragCoord.x - uRes.x * 0.5));
 
       vec3 col = mix(uBg, uWave, clamp(f, 0.0, 1.0));
       fragColor = vec4(dither(gl_FragCoord.xy, col), 1.0);
@@ -233,6 +266,9 @@ const config = JSON.stringify({
       gl.uniform1f(u('uPixelSize'), cfg.pixelSize)
       gl.uniform1f(u('uFadeBottom'), cfg.fadeBottom)
       gl.uniform1f(u('uFadeLeft'), cfg.fadeLeft)
+      gl.uniform1f(u('uFieldWidth'), cfg.fieldWidth)
+      gl.uniform1f(u('uFadeSides'), cfg.fadeSides)
+      gl.uniform1f(u('uScaleHeight'), cfg.scaleHeight)
       gl.uniform1f(uMouseOn, 0)
 
       // The output is pixelated, so there is nothing to gain from a retina

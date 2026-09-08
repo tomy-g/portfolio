@@ -198,10 +198,14 @@ const social = [
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: min(78vh, 40rem);
+    /* Barely taller than the copy itself, so there is little slack to
+       distribute and the hero reads as a band rather than a screenful. The
+       dither no longer takes its scale from this height, so shrinking it
+       shows a shorter slice of the field at the same size. */
+    min-height: min(52vh, 28rem);
     max-width: 58rem;
     margin-inline: auto;
-    padding: clamp(4rem, 13vw, 7rem) 1.5rem clamp(3.5rem, 9vw, 5rem);
+    padding: clamp(4.5rem, 11vw, 7rem) 1.5rem clamp(2.75rem, 6vw, 3.5rem);
   }
 
   h1 {
@@ -274,7 +278,7 @@ const social = [
     margin-top: 4rem;
   }
   section:first-child {
-    margin-top: 3.5rem;
+    margin-top: 1.5rem;
   }
 
   h2 {
